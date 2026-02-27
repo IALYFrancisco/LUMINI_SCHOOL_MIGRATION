@@ -8,7 +8,7 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
             .then((response)=>setUser(response.data))
             .catch(()=>setUser(null))
             .finally(()=> setLoading(false))
