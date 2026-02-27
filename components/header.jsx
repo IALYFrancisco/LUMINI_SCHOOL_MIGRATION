@@ -2,8 +2,6 @@
 import { Nav } from "./nav";
 import Link from "next/link";
 import Image from "next/image";
-import arrow from '/images/arrow.png'
-import femme from '/images/laptop3.png'
 
 export function Header(){
     return(
@@ -16,7 +14,7 @@ export function Header(){
                         <p>Vous êtes donc au bon endroit 👍. Plusieurs modules de nos formations sont faites pour vous.</p>
                         <div className="actions">
                             <a href="#demo-formations">
-                                <button>En savoir plus <Image src={arrow} alt="flèche pointant  à droite"/></button>
+                                <button>En savoir plus <Image width={32} height={32} priority src='/images/arrow.png' alt="flèche pointant  à droite"/></button>
                             </a>
                             <Link href="/formations">
                                 <button>Voir toutes les formations</button>
@@ -25,7 +23,7 @@ export function Header(){
                     </div>
                     <div className="right">
                         <div className="img-container">
-                            <Image src={femme} alt="jeune femme tenant un laptop"/>
+                            <Image src="/images/laptop3.png" className="femme" width={430} height={581} priority alt="jeune femme tenant un laptop"/>
                         </div>
                     </div>
                 </div>
