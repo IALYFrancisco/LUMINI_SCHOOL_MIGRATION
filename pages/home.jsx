@@ -1,3 +1,9 @@
+import { Header } from "@/components/header"
+
 export function Home(){
-    return <h1>This the home page!</h1>
+    return (
+        <>
+            <Header></Header>
+        </>
+    )
 }
