@@ -23,7 +23,7 @@ export function Header(){
                     </div>
                     <div className="right">
                         <div className="img-container">
-                            <Image src="/images/laptop3.png" className="femme" width={430} height={581} priority alt="jeune femme tenant un laptop"/>
+                            <Image src="/images/laptop3.png" className="femme" width={429} height={581} priority alt="jeune femme tenant un laptop"/>
                         </div>
                     </div>
                 </div>

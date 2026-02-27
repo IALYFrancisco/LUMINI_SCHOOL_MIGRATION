@@ -62,6 +62,7 @@ button {
 
 button img {
     width: 25px;
+    height: auto;
 }
 
 button:active {
