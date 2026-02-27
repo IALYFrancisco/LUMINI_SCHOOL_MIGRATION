@@ -19,10 +19,10 @@ export default function App({ Component, pageProps }) {
     ogSiteName: 'LUMINI School',
     ogLocale: 'fr_MG',
     ogType: 'website',
-    ogImage: 'https://raw.githubusercontent.com/IALYFrancisco/ASSETS/refs/heads/main/LUMINI%20School/IMAGES/lumini-school-logo.png',
+    ogImage: `${process.env.NEXT_PUBLIC_APP_BASE_URL}/images/lumini-school-logo.png`,
 
     twitterCard: 'summary_large_image',
-    twitterImage: 'https://raw.githubusercontent.com/IALYFrancisco/ASSETS/refs/heads/main/LUMINI%20School/IMAGES/lumini-school-logo.png'
+    twitterImage: `${process.env.NEXT_PUBLIC_APP_BASE_URL}/images/lumini-school-logo.png`
 
   })
 
