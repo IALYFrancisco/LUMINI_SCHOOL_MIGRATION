@@ -737,6 +737,7 @@ footer .actions button {
 
 .prev img, .next img {
     width: 30px;
+    height: auto;
 }
 
 .blog-container {
