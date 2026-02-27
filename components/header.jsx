@@ -2,8 +2,8 @@
 import { Nav } from "./nav";
 import Link from "next/link";
 import Image from "next/image";
-import arrow from '@/public/images/arrow.png'
-import femme from '@/public/images/laptop3.png'
+import arrow from '/images/arrow.png'
+import femme from '/images/laptop3.png'
 
 export function Header(){
     return(
@@ -25,7 +25,7 @@ export function Header(){
                     </div>
                     <div className="right">
                         <div className="img-container">
-                            <Image src={femme} className="femme" alt="jeune femme tenant un laptop"/>
+                            <Image src={femme} alt="jeune femme tenant un laptop"/>
                         </div>
                     </div>
                 </div>
