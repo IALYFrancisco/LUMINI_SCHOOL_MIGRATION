@@ -1,5 +1,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
+import menu from '@/public/images/menu.png'
+import Image from "next/image";
 
 export function Nav(){
 
@@ -56,32 +58,32 @@ export function Nav(){
                         }
                     </li>
                     <li className="menu" onClick={handleClick}>
-                        <img src="/images/menu.png" alt="" />
+                        <Image src={menu} alt="menu" priority/>
                     </li>
                 </ul>
             </nav>
             <div className="mobile-menu" onClick={handleClick}>
                 <ul>
                     <li onClick={handleClick}>
-                        <NavLink  onClick={handleClick} to="/" end className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Accueil</NavLink>
+                        <Link  onClick={handleClick} href="/" end className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Accueil</Link>
                     </li>
                     <li onClick={handleClick}>
-                        <NavLink  onClick={handleClick} to="/formations" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Formations</NavLink>
+                        <Link  onClick={handleClick} href="/formations" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Formations</Link>
                     </li>
                     <li onClick={handleClick}>
-                        <NavLink to="/articles" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Articles</NavLink>
+                        <Link href="/articles" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Articles</Link>
                     </li>
                     { !user && <>
                         <li onClick={handleClick}>
-                            <NavLink  onClick={handleClick} to="/authentication/login" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Se connecter</NavLink>
+                            <Link  onClick={handleClick} href="/authentication/login" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Se connecter</Link>
                         </li>
                         <li onClick={handleClick}>
-                            <NavLink  onClick={handleClick} to="/authentication/register" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Créer un compte</NavLink>
+                            <Link  onClick={handleClick} href="/authentication/register" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Créer un compte</Link>
                         </li>
                     </> }
                     { user && <>
                         <li onClick={handleClick}>
-                            <NavLink  onClick={handleClick} to="/dashboard" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Dashboard</NavLink>
+                            <Link  onClick={handleClick} href="/dashboard" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Dashboard</Link>
                         </li>
                     </> }
                 </ul>
