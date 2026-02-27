@@ -1,14 +1,17 @@
 import "@/styles/globals.css";
 import '@/styles/home.css'
 import { AuthProvider } from "@/contexts/AuthContext";
-import { UnheadProvider, createHead } from '@unhead/react/client'
+import { UnheadProvider, createHead } from '@unhead/react/client';
 import { useHead, useSeoMeta } from "@unhead/react";
 
-const head = createHead()
+const head = createHead();
 
 function GlobalSEO() {
   useHead({
-    meta: [{ name: "robots", content: "index, follow" }]
+    meta: [
+      { name: "robots", content: "index, follow" },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
   });
 
   useSeoMeta({
@@ -24,13 +27,12 @@ function GlobalSEO() {
 }
 
 export default function App({ Component, pageProps }) {
-
   return (
     <UnheadProvider head={head}>
-        <GlobalSEO/>
-        <AuthProvider>
-          <Component {...pageProps} />
-        </AuthProvider>
+      <GlobalSEO />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </UnheadProvider>
   );
 }
