@@ -58,7 +58,7 @@ export function Nav(){
                         }
                     </li>
                     <li className="menu" onClick={handleClick}>
-                        <Image src={menu} alt="menu" priority/>
+                        <Image width={96} height={96} src={menu} alt="menu" priority/>
                     </li>
                 </ul>
             </nav>

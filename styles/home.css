@@ -147,6 +147,7 @@ nav ul .menu {
 
 nav ul .menu img {
     width: 50px;
+    height: auto;
 }
 
 .nav-link {
