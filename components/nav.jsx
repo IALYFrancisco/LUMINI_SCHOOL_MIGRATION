@@ -2,10 +2,12 @@ import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 import menu from '@/public/images/menu.png'
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 export function Nav(){
 
     const { user } = useAuth()
+    const router = useRouter()
 
     const handleClick = () => {
         const element = document.querySelector('.mobile-menu')
@@ -22,13 +24,13 @@ export function Nav(){
                     <li>
                         <ul>
                             <li>
-                                <Link href="/" end className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Accueil</Link>
+                                <Link href="/" className={router.pathname === "/" ? "nav-link active" : "nav-link"}>Accueil</Link>
                             </li>
                             <li>
-                                <Link href="/formations" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Formations</Link>
+                                <Link href="/formations" className={router.pathname === "/formations" ? "nav-link active" : "nav-link"}>Formations</Link>
                             </li>
                             <li>
-                                <Link href="/articles" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Articles</Link>
+                                <Link href="/articles" className={router.pathname === "/articles" ? "nav-link active" : "nav-link"}>Articles</Link>
                             </li>
                         </ul>
                     </li>
@@ -65,25 +67,25 @@ export function Nav(){
             <div className="mobile-menu" onClick={handleClick}>
                 <ul>
                     <li onClick={handleClick}>
-                        <Link  onClick={handleClick} href="/" end className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Accueil</Link>
+                        <Link  onClick={handleClick} href="/" end className={router.pathname === "/" ? "nav-link active" : "nav-link"}>Accueil</Link>
                     </li>
                     <li onClick={handleClick}>
-                        <Link  onClick={handleClick} href="/formations" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Formations</Link>
+                        <Link  onClick={handleClick} href="/formations" className={router.pathname === "/formations" ? "nav-link active" : "nav-link"}>Formations</Link>
                     </li>
                     <li onClick={handleClick}>
-                        <Link href="/articles" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Articles</Link>
+                        <Link href="/articles" className={router.pathname === "/articles" ? "nav-link active" : "nav-link"}>Articles</Link>
                     </li>
                     { !user && <>
                         <li onClick={handleClick}>
-                            <Link  onClick={handleClick} href="/authentication/login" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Se connecter</Link>
+                            <Link  onClick={handleClick} href="/authentication/login" className={router.pathname === "/authentication/login" ? "nav-link active" : "nav-link"}>Se connecter</Link>
                         </li>
                         <li onClick={handleClick}>
-                            <Link  onClick={handleClick} href="/authentication/register" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Créer un compte</Link>
+                            <Link  onClick={handleClick} href="/authentication/register" className={router.pathname === "/authentication/register" ? "nav-link active" : "nav-link"}>Créer un compte</Link>
                         </li>
                     </> }
                     { user && <>
                         <li onClick={handleClick}>
-                            <Link  onClick={handleClick} href="/dashboard" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Dashboard</Link>
+                            <Link  onClick={handleClick} href="/dashboard" className={router.pathname === "/dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>
                         </li>
                     </> }
                 </ul>
