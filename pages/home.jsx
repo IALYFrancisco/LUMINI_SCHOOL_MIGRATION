@@ -2,7 +2,7 @@ import { Header } from "@/components/header";
 import { Formations } from "@/components/formations";
 import Head from  'next/head'
 
-export function Home() {
+export default function Home() {
   return (
     <>
       <Head>
