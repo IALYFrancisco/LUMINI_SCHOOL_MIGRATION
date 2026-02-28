@@ -1,0 +1,1054 @@
+header {
+    width: 100%;
+    height: 500px;
+    background-color: var(--primary);
+    overflow: hidden;
+}
+
+header > div {
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px 100px 50px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .left {
+    width: 50%;
+}
+
+header h1 {
+    color: var(--secondary);
+    margin-bottom: 40px;
+    line-height: 50px;
+}
+
+header p {
+    color: var(--secondary);
+    margin-bottom: 40px;
+    width: 80%;
+}
+
+header .actions {
+    display: flex;
+    column-gap: 30px;
+}
+
+header .actions a:nth-child(2) button {
+    background-color: transparent;
+    color: var(--fourth);
+    border: 1px solid var(--fourth);
+    padding: 14px 15px;
+}
+
+header .actions a:nth-child(2) button:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+button {
+    background-color: var(--secondary);
+    color: var(--primary);
+    font-weight: 600;
+    padding: 10px 15px;
+    border: none;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+button img {
+    width: 25px;
+    height: auto;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+button:hover {
+    transition: .4s;
+    cursor: pointer;
+    background-color: var(--thirdly);
+    column-gap: 25px;
+}
+
+header .right {
+    display: flex;
+    justify-content: end;
+    width: 50%;
+    overflow: hidden;
+}
+
+header .right img.femme {
+    margin-top: -100px;
+    max-width: 400px;
+}
+
+header .right img:not(.femme) {
+   width: 100px;
+   position: absolute;
+}
+
+header .right img.note {
+    top: 310px;
+    left: 30px;
+    transform: rotateZ(20deg);
+    opacity: 0.5;
+}
+
+header .right img.clavier {
+    opacity: 0.5;
+    top: 0;
+    left: -100px;
+    transform: rotateZ(20deg);
+}
+
+nav {
+    padding: 0 100px;
+    max-width: 1440px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--secondary);
+    margin: auto;
+}
+
+.nav-container {
+    background-color: var(--primary);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+nav ul ul {
+    column-gap: 40px;
+}
+
+nav ul li {
+    display: flex;
+}
+
+nav ul li a {
+    color: var(--secondary);
+}
+
+nav ul .menu {
+    display: none;
+}
+
+nav ul .menu img {
+    width: 50px;
+    height: auto;
+}
+
+.nav-link {
+    position: relative;
+    transition: .5s;
+    padding-bottom: 2px;
+}
+
+.dash-link:hover {
+    transition: .25s;
+    color: var(--fourth);
+}
+
+.dash-link.active {
+    transition: .25s;
+    color: var(--secondary);
+    background-color: var(--fourth);
+    padding: 3px;
+    border-radius: 2px;
+}
+
+.nav-link:hover {
+    color: var(--fourth);
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--fourth);
+    transition: .5s;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+    transition: .5s;
+}
+
+.nav-link.active {
+    color: var(--fourth);
+    position: relative;
+}
+
+.nav-link.active::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--fourth);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    color: var(--secondary);
+}
+
+header .img-container {
+    border: 3px var(--secondary) dashed;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.avis {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avis h2{
+    color: var(--primary);
+}
+
+.avis .img-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avis .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.avis .card {
+    width: 210px;
+    border: 1px solid var(--primary);
+    box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524),  -3px -3px 10px rgba(128, 128, 128, 0.524);
+    padding: 10px;
+    border-top-left-radius: 35px;
+}
+
+.avis .card .info-user {
+    display: flex;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 15px;
+}
+
+.avis .card .user-name {
+    padding: 2px 0 0 10px;
+}
+
+.user-name h4 {
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.user-name h5 {
+    color: var(--fourth);
+}
+
+.avis .comments-container {
+    margin-top: 65px;
+    max-width: 800px;
+    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avis .message {
+    margin-top: 15px;
+}
+
+.message p {
+    font-size: 14px;
+}
+
+em {
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.avis > p {
+    margin-top: 30px;
+    max-width: 500px;
+    font-size: 15px;
+    text-align: center;
+    color: var(--primary);
+}
+
+.avis button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+    font-weight: 600;
+    padding: 10px 15px;
+    border: none;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.avis .actions {
+    margin-top: 50px;
+    display: flex;
+    column-gap: 30px;
+}
+
+.contact {
+    margin-top: 75px;
+    max-width: 1440px;
+    margin: 100px auto 0 auto;
+    padding: 100px;
+    display: flex;
+    column-gap: 100px;
+    background-color: var(--primary);
+}
+
+.contact .left {
+    width: 50%;
+}
+
+.contact .right {
+    width: 50%;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+    color: var(--secondary);
+}
+
+.contact p {
+    font-size: 15px;
+    color: var(--secondary);
+}
+
+.contact form {
+    margin-top: 60px;
+}
+
+.contact form label {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.contact form input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: 900;
+}
+
+.contact form input::placeholder {
+    font-weight: 900;
+}
+
+.contact form .element {
+    margin-top: 30px;
+}
+
+.contact form textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    font-weight: 900;
+}
+
+.contact form input:focus, .contact form textarea:focus {
+    border: 2px #0884ff solid;
+}
+
+.contact-container {
+    background-color: var(--primary);
+}
+
+.contact .card {
+    border: 1px solid var(--fourth);
+    padding: 20px;
+    display: flex;
+    column-gap: 20px;
+    align-items: start;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.contact .card:hover {
+    cursor: pointer;
+    background-color: var(--fourth);
+}
+
+.contact .card:active {
+    scale: 0.95;
+    transition: .5s;
+}
+
+.contact .card h3 {
+    margin-bottom: 8px;
+    padding: 0;
+    color: var(--fourth);
+}
+
+.contact .card:hover h3 {
+    color: var(--secondary);
+}
+
+.contact .cards-container {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.contact .cards-container .icon-container {
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    height: 50px;
+    background-color: var(--fourth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.contact .cards-container .card:hover .icon-container {
+    transition: .5s;
+    background-color: var(--primary);
+}
+
+.contact .icon-container img {
+    width: 30px;
+}
+
+.contact button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.contact button .loader {
+    animation: spinner infinite 3s linear;
+    width: 25px;
+    height: 25px;
+}
+
+footer {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px 100px 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary)
+}
+
+footer a {
+    column-gap: 20px;
+    color: var(--primary);
+    align-items: center;
+    height: 100%;
+    display: contents;
+}
+
+footer p {
+    font-size: 14px;
+    color: var(--primary);
+}
+
+footer > section:nth-child(1) {
+    width: 25%;
+}
+
+footer > section:nth-child(2) ul li {
+    position: relative;
+    width: max-content;
+}
+
+footer > section:nth-child(3) {
+    width: 25%;
+}
+
+footer > section {
+    width: max-content;
+}
+
+footer section h3 {
+    border-bottom: 2px solid var(--primary);
+    margin-bottom:20px;
+    width: max-content;
+}
+
+footer section ul li {
+    font-size: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+footer section ul li img {
+    width: 25px;
+}
+
+footer .rs {
+    display: flex;
+    column-gap: 20px;
+}
+
+footer .rs li {
+    background-color: var(--fourth);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+footer .rs li:hover {
+    background-color: var(--primary);
+    cursor: pointer;
+    transition: .5s;
+}
+
+footer .rs img {
+    width: 25px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer .logo a {
+    color: var(--primary);
+}
+
+footer .actions {
+    display: flex;
+    margin-top: 30px;
+    column-gap: 20px;
+}
+
+footer .actions button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+}
+
+.info-page {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    height: 70px;
+    justify-content: space-between;
+    padding: 0 100px;
+    max-width: 1440px;
+    margin: auto;
+    color: var(--primary)
+}
+
+.info-page a {
+    color: var(--primary);
+}
+
+.info-page a:hover {
+    text-decoration: underline;
+}
+
+.formations-container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px;
+    color: var(--primary);
+    overflow: hidden;
+    position: relative;
+}
+
+.formations-container .head {
+    width: 50%;
+}
+
+.formations-container .head h2 {
+    margin-bottom: 30px;
+}
+
+.formations-container .head p {
+    font-size: 15px;
+}
+
+.formations-container .cards-container {
+    display: flex;
+    width: 100%;
+    padding: 25px 0;
+    overflow: hidden;
+}
+
+.formations-container .card {
+    min-width: 200px;
+    height: 300px;
+    box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
+    border: 1px solid var(--primary);
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.formations-container .card:hover {
+    transform: translateY(-10px);
+    transition: .3s;
+}
+
+.formations-container .card .formation-infos {
+    background-color: var(--primary);
+    width: 100%;
+    height: 126px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid var(--primary);
+    padding: 8px;
+    color: var(--secondary);
+}
+
+.formations-container .card .formation-infos p {
+    font-size: 11px;
+    margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.formations-container .card .formation-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.formations-container .card .formation-infos button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.formations-container .card .formation-image {
+    width: 100%;
+    height: calc(100% - 126px);
+}
+
+.formations-container .card .formation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.formations-container > button {
+    background-color: var(--primary);
+    color: var(--secondary);
+    margin-top: 25px;
+}
+
+.formations-container .swiper {
+    padding-top: 25px;
+}
+
+.formations-container > a button {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.prev, .next {
+    position: absolute;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--fourth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 10px rgba(44, 39, 39, 0.288), -3px -3px 10px rgba(44, 39, 39, 0.288);
+    top: 50%;
+    cursor: pointer;
+}
+
+.prev {
+    right: 75px;
+}
+
+.next {
+    left: 75px;
+}
+
+.prev img {
+    transform: rotateZ(90deg);
+    margin-left: 5px;
+}
+
+.next img {
+    transform: rotateZ(-90deg);
+    margin-right: 5px;
+}
+
+.prev:active, .next:active {
+    transform: scale(.8);
+    transition: .3s;
+}
+
+.prev img, .next img {
+    width: 30px;
+    height: auto;
+}
+
+.blog-container {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.blog-container > section {
+    display: flex;
+    max-width: 1440px;
+    margin: auto;
+    column-gap: 100px;
+    padding: 100px;
+}
+
+.blog-container .left {
+    width: 58%;
+    position: relative;
+}
+
+.blog-container .left .prev {
+    right: -25px;
+    background-color: var(--secondary);
+}
+
+.blog-container .left .next {
+    left: -25px;
+    background-color: var(--secondary);
+}
+
+.blog-container .right {
+    width: 50%;
+}
+
+.blog-container .right h2 {
+    margin-bottom: 40px;
+}
+
+.blog-container .right button {
+    margin-top: 40px;
+}
+
+.blog-container .cards-container {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.blog-container .card {
+    height: 300px;
+    box-shadow: 3px 3px 10px rgba(77, 77, 77, 0.577), -3px -3px 10px rgba(135, 131, 131, 0.242);
+    border: 1px solid var(--fourth);
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.blog-container .card .blog-image {
+    width: 100%;
+    height: 100%;
+}
+
+.blog-container .card .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-container .card .blog-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-container .card .blog-infos > p {
+    font-size: 11px;
+    margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-container .card .blog-infos button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: var(--primary);
+}
+
+.blog-container .card .blog-infos {
+    background-color: var(--fourth);
+    width: 100%;
+    height: 126px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid var(--fourth);
+    padding: 8px;
+    color: var(--secondary);
+}
+
+@media only screen and (max-width: 1024px) {
+
+    header > div {
+        padding: 50px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .left {
+        margin: auto;
+        width: 80%;
+    }
+
+    header .left p {
+        margin: 0 auto 40px auto;
+    }
+
+    header .left .actions {
+        justify-content: center;
+    }
+
+    header .right {
+        margin: 100px auto;
+        width: 100%;
+    }
+
+    header .img-container {
+        margin: auto;
+    }
+
+    header {
+        height: 850px;
+    }
+
+    nav {
+        padding: 0 50px;
+    }
+
+    nav ul li:nth-child(2),
+    nav ul li:nth-child(3) {
+        display: none;
+    }
+
+    nav ul .menu {
+        display: block;
+    }
+
+    .formations-container {
+        padding: 50px;
+    }
+
+    .next {
+        left: 27px;
+    }
+
+    .prev {
+        right: 27px;
+    }
+
+    .blog-container > section {
+        padding: 50px;
+        column-gap: 50px;
+    }
+
+    .contact {
+        padding: 50px;
+        column-gap: 75px;
+    }
+
+    footer {
+        padding: 50px 50px 30px 50px;
+        flex-wrap: wrap;
+        row-gap: 50px;
+    }
+
+    footer > section:nth-child(1) {
+        width: 70%;
+    }
+
+    footer > section:nth-child(3) {
+        width: 50%;
+    }
+
+    footer > section {
+        width: max-content;
+    }
+
+    .info-page {
+        padding: 0 50px;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    header .left {
+        width: 100%;
+    }
+    header > div {
+        padding: 50px 25px;
+    }
+    nav {
+        padding: 0 25px;
+    }
+    .formations-container {
+        padding: 50px 25px;
+    }
+    .formations-container .head {
+        width: 100%;
+    }
+    .contact {
+        display: block;
+        padding: 50px 25px;
+    }
+    .contact .left,
+    .contact .right {
+        width: 100%;
+    }
+
+    .contact .right {
+        margin-top: 100px;
+    }
+
+    .blog-container > section {
+        row-gap: 50px;
+        flex-direction: column-reverse;
+        padding: 50px 25px;
+    }
+
+    .blog-container > section .right,
+    .blog-container > section .left {
+        width: 100%;
+    }
+
+    .avis {
+        padding: 25px;
+    }
+
+    footer {
+        padding: 50px 25px;
+    }
+
+    .info-page {
+        padding: 25px;
+    }
+    
+    .next {
+        left: 0px;
+    }
+
+    .prev {
+        right: 0px;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    
+    footer > section:nth-child(1) {
+        width: 100%;
+    }
+
+    footer > section:nth-child(3) {
+        width: 100%;
+    }
+
+    footer > section {
+        width: max-content;
+    }
+
+    header .right img.femme {
+        width: 100%;
+        margin-top: -50px;
+    }
+
+}
+
+.mobile-menu {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: #1b22329c;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -100%;
+    transition: .3s;
+}
+
+.mobile-menu.opened {
+    left: 0;
+    transition: .3s;
+}
+
+.mobile-menu ul {
+    display: flex;
+    row-gap: 40px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.mobile-menu ul li,
+.mobile-menu ul li .nav-link {
+    color: white;
+    font-size: 22px;
+    padding: 5px 10px;
+}
+
+.mobile-menu ul li .nav-link.active {
+    background-color: var(--fourth);
+}

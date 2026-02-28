@@ -2,16 +2,35 @@
   "name": "lumini-school-migration",
   "version": "0.1.0",
   "private": true,
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).",
+  "homepage": "https://github.com/IALYFrancisco/LUMINI_SCHOOL_MIGRATION#readme",
+  "bugs": {
+    "url": "https://github.com/IALYFrancisco/LUMINI_SCHOOL_MIGRATION/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IALYFrancisco/LUMINI_SCHOOL_MIGRATION.git"
+  },
+  "license": "ISC",
+  "author": "IALY",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@unhead/react": "^2.1.9",
+    "axios": "^1.13.5",
+    "dompurify": "^3.3.1",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.2",
+    "swiper": "^12.1.2",
+    "toast": "^0.5.4"
   },
   "devDependencies": {
     "eslint": "^9",
