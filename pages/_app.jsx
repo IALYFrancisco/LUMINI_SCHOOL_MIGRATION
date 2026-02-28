@@ -24,6 +24,9 @@ export default function App({ Component, pageProps }) {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/png" href="/images/logo-de-lumini-school.png"/>
           <meta name="robots" content="index, follow" />
+          <meta property="og:image" content={`${process.env.NEXT_PUBLIC_APP_BASE_URL}/images/lumini-school-logo.png`} />
+          <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_APP_BASE_URL}/images/lumini-school-logo.png`} />
+          <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Component {...pageProps} />
       </AuthProvider>
