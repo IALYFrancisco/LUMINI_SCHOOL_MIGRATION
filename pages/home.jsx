@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Formations } from "@/components/formations";
+import { Articles } from "@/components/articles";
 import Head from  'next/head'
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       </Head>
       <Header />
       <Formations />
+      <Articles/>
     </>
   );
 }
