@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
-import '@/styles/home.css'
+import '@/styles/home.css';
+import '@/styles/formationsPage.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
 import { Toaster } from "sonner"
