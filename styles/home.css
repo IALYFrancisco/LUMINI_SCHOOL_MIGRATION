@@ -529,6 +529,7 @@ footer section ul li {
 
 footer section ul li img {
     width: 25px;
+    height: auto;
 }
 
 footer .rs {
