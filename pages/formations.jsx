@@ -5,6 +5,7 @@ import axios from "axios"
 import Link from "next/link"
 import Loading from '@/components/loading'
 import Head from 'next/head'
+import Image from 'next/image'
 
 export default function FormationsPage(){
 
@@ -12,22 +13,8 @@ export default function FormationsPage(){
     var [ loading, setLoading ] = useState(true)
     var [ prompt, setPrompt ] = useState("")
 
-    useHead({
-        meta: [
-            { name:'description', content: 'Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.' }
-        ]
-    })
-
-    useSeoMeta({
-
-        ogDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.",
-        
-        twitterDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours."
-
-    })
-
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get`, { withCredentials: true })
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data.filter( f => f.published === true ))
             })
@@ -37,7 +24,7 @@ export default function FormationsPage(){
 
     useEffect(()=>{
         let timer = setTimeout(()=>{
-            axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?title=${prompt}`, { withCredentials: true })
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?title=${prompt}`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data.filter( f => f.published === true ))
             })
@@ -52,11 +39,14 @@ export default function FormationsPage(){
             <Head>
                 <title>Formations | LUMINI School - Plateforme de formation en informatique</title>
                 <link rel="canonical" href="https://luminischool.onrender.com/formations" />
-            
+                <meta name="description" content="Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours."/>
+
                 <meta property="og:title" content="Formations | LUMINI School - Plateforme de formation en informatique" />
+                <meta property="og:description" content="Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours."/>
                 <meta property="og:url" content="https://luminischool.onrender.com/formations" />
-            
+           
                 <meta name="twitter:title" content="Formations | LUMINI School - Plateforme de formation en informatique" />
+                <meta name="twitter:description" content="Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours." />
             </Head>
             <Nav></Nav>
             <section className="formations-page">
@@ -73,12 +63,12 @@ export default function FormationsPage(){
                             <div className="card-container" key={formation._id}>
                                 <div className="card">
                                     <div className="formation-image">
-                                        <img src={ (formation.image.includes('https') || formation.image.includes('http')) ? formation.image : `${import.meta.env.VITE_API_BASE_URL}/${formation.image}` } alt="" />
+                                        <Image src={ (formation.image.startsWith('https') || formation.image.startsWith('http')) ? formation.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${formation.image}` } alt={formation.title} width={500} height={500} unoptimized={ process.env.NEXT_PUBLIC_NODE_ENV === "development" } priority />
                                     </div>
                                     <div className="formation-infos">
                                         <h4>{formation.title}</h4>
                                         <p>{formation.description}</p>
-                                        <Link to={`/registrations/formation/${formation._id}`}>
+                                        <Link href={`/registrations/formation/${formation._id}`}>
                                             <button>S'inscrire</button>
                                         </Link>
                                     </div>
