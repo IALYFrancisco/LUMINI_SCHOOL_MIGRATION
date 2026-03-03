@@ -51,7 +51,7 @@ export function FormationsSlider() {
                     <SwiperSlide key={formation._id}>
                         <div className="card" key={formation._id}>
                             <div className="formation-image">
-                                <Image src={ (formation.image.includes('https') || formation.image.includes('http')) ? formation.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${formation.image}` } alt={formation.title} width={500} height={500} unoptimized={ process.env.NEXT_PUBLIC_NODE_ENV === "development" } priority/>
+                                <Image src={ (formation.image.startsWith('https') || formation.image.startsWith('http')) ? formation.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${formation.image}` } alt={formation.title} width={500} height={500} unoptimized={ process.env.NEXT_PUBLIC_NODE_ENV === "development" } priority/>
                             </div>
                             <div className="formation-infos">
                                 <h4>{formation.title}</h4>
