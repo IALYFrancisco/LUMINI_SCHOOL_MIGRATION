@@ -1,0 +1,156 @@
+.formations-page {
+    height: 100%;
+    width: 100%;
+    padding: 100px;
+    color: var(--primary);
+    max-width: 1440px;
+    margin: auto;
+}
+
+.formations-page .head h2 {
+    margin-bottom: 30px;
+}
+
+.formations-page .head p {
+    font-size: 15px;
+    width: 50%;
+}
+
+.formations-page input {
+    display: block;
+    width: 50%;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    padding: 10px;
+    margin-top: 30px;
+    font-weight: 900;
+    transition: .25s;
+}
+
+.formations-page input:focus {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.formations-page .body {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.formations-page .body .card-container {
+    width: 20%;
+    padding: 15px;
+}
+
+.formations-page .card {
+    width: 100%;
+    height: 300px;
+    box-shadow: 3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
+    border: 1px solid var(--primary);
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.formations-page .card:hover {
+    transform: translateY(-10px);
+    transition: .3s;
+}
+
+.formations-page .card .formation-infos {
+    background-color: var(--primary);
+    width: 100%;
+    height: 126px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid var(--primary);
+    padding: 8px;
+    color: var(--secondary);
+}
+
+.formations-page .card .formation-infos > p {
+    font-size: 11px;
+    margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.formations-page .card .formation-infos h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.formations-page .card .formation-infos button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.formations-page .card .formation-image {
+    width: 100%;
+    height: calc(100% - 126px);
+}
+
+.formations-page .card .formation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.formations-page > button {
+    background-color: var(--primary);
+    color: var(--secondary);
+    margin-top: 25px;
+}
+
+@media only screen and (max-width: 1210px) {
+    .formations-page .body .card-container {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .formations-page {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .formations-page .body .card-container {
+        width: 33%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .formations-page {
+        padding: 25px;
+    }
+    
+    .formations-page .head p {
+        width: 100%;
+    }
+
+    .formations-page input {
+        width: 100%;
+    }
+
+    .formations-page .body .card-container {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 460px) {
+    .formations-page .body .card-container {
+        width: 100%;
+        padding: 15px 0;
+    }
+}
