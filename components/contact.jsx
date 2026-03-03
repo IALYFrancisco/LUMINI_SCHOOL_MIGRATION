@@ -23,7 +23,7 @@ export function Contact(){
             message: data.message
         }
 
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/email/send`, clientMessage)
+        await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/email/send`, clientMessage)
             .then(()=>{
                 reset()
                 toast.success("Votre message a été bien envoyé, vous auriez une réponse le plutôt possible.")

@@ -459,6 +459,7 @@ em {
 
 .contact .icon-container img {
     width: 30px;
+    height: auto;
 }
 
 .contact button:disabled {
