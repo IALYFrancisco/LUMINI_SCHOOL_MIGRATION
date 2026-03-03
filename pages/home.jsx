@@ -4,6 +4,7 @@ import { Articles } from "@/components/articles";
 import { Avis } from "@/components/avis";
 import Head from  'next/head'
 import { Contact } from "@/components/contact";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Articles/>
       <Avis/>
       <Contact/>
+      <Footer/>
     </>
   );
 }
