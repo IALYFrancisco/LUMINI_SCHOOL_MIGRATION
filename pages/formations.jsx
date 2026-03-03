@@ -6,7 +6,7 @@ import Link from "next/link"
 import Loading from '@/components/loading'
 import Head from 'next/head'
 
-export function FormationsPage(){
+export default function FormationsPage(){
 
     var [ formations, setFormations ] = useState([])
     var [ loading, setLoading ] = useState(true)
