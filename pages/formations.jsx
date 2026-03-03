@@ -1,11 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Nav } from '@/components/nav'
-import '../../public/styles/formationsPage.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
-import Loading from "../components/loading"
-import { useHead, useSeoMeta } from "@unhead/react"
+import Link from "next/link"
+import Loading from '@/components/loading'
+import Head from 'next/head'
 
 export function FormationsPage(){
 
@@ -14,9 +13,6 @@ export function FormationsPage(){
     var [ prompt, setPrompt ] = useState("")
 
     useHead({
-        link: [
-            { rel: 'canonical', href: 'https://luminischool.onrender.com/formations' }
-        ],
         meta: [
             { name:'description', content: 'Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.' }
         ]
@@ -24,13 +20,8 @@ export function FormationsPage(){
 
     useSeoMeta({
 
-        title: 'Formations | LUMINI School - Plateforme de formation en informatique',
-
-        ogTitle: 'Formations | LUMINI School - Plateforme de formation en informatique',
         ogDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours.",
-        ogUrl: 'https://luminischool.onrender.com/formations',
-
-        twitterTitle: 'Formations | LUMINI School - Plateforme de formation en informatique',
+        
         twitterDescription: "Explorez toutes les formations proposées sur LUMINI School, la plateforme de formation en informatique. Accédez facilement aux informations et détails en ligne pour préparer votre parcours."
 
     })
@@ -58,6 +49,15 @@ export function FormationsPage(){
     if(loading) return <Loading/>
     if(formations) return(
         <>
+            <Head>
+                <title>Formations | LUMINI School - Plateforme de formation en informatique</title>
+                <link rel="canonical" href="https://luminischool.onrender.com/formations" />
+            
+                <meta property="og:title" content="Formations | LUMINI School - Plateforme de formation en informatique" />
+                <meta property="og:url" content="https://luminischool.onrender.com/formations" />
+            
+                <meta name="twitter:title" content="Formations | LUMINI School - Plateforme de formation en informatique" />
+            </Head>
             <Nav></Nav>
             <section className="formations-page">
                 <div className="head">
