@@ -1,7 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import axios from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import Image from 'next/image'
 
 export function Contact(){
 
@@ -61,8 +63,8 @@ export function Contact(){
                         <div className="element">
                             <button disabled={sendClientMessageLoading}>
                                 Envoyer le message
-                                { sendClientMessageLoading && <img src="/images/spinner (2).png" alt="" className='loader' /> }
-                                { !sendClientMessageLoading && <img src="/images/send.png" alt="" />}
+                                { sendClientMessageLoading && <Image src="/images/spinner (2).png" alt="icone spinner" className='loader' width={50} height={50} priority /> }
+                                { !sendClientMessageLoading && <Image src="/images/send.png" alt="icone fusée en papier" width={50} height={50} priority />}
                             </button>
                         </div>
                     </form>
@@ -73,7 +75,7 @@ export function Contact(){
                     <div className="cards-container">
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/phone.png" alt="" />
+                                <Image src="/images/phone.png" alt="icone téléphone" width={50} height={50} priority />
                             </div>
                             <div className="contact-info">
                                 <h3>Téléphone</h3>
@@ -83,7 +85,7 @@ export function Contact(){
                         <a href="mailto:ialyfrancisco7@gmail.com">
                             <div className="card">
                                 <div className="icon-container">
-                                    <img src="images/envelope.png" alt="" />
+                                    <Image src="/images/envelope.png" alt="icone envelope" width={50} height={50} priority />
                                 </div>
                                 <div className="contact-info">
                                     <h3>Email</h3>
@@ -93,7 +95,7 @@ export function Contact(){
                         </a>
                         <div className="card">
                             <div className="icon-container">
-                                <img src="images/gps.png" alt="" />
+                                <Image src="/images/gps.png" alt="icone localisation" width={50} height={50} priority />
                             </div>
                             <div className="contact-info">
                                 <h3>Adresse</h3>
