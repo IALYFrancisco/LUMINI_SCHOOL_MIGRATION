@@ -1,4 +1,5 @@
-import Nav from "../components/nav"
+/* eslint-disable react/no-unescaped-entities */
+import { Nav } from '@/components/nav'
 import '../../public/styles/formationsPage.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
