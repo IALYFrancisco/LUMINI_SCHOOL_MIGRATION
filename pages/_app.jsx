@@ -1,7 +1,11 @@
 import "@/styles/globals.css";
-import '@/styles/home.css'
+import '@/styles/home.css';
+import '@/styles/formationsPage.css';
+import '@/styles/login.css';
+import '@/styles/registrations.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
+import { Toaster } from "sonner"
 
 export default function App({ Component, pageProps }) {
   return (
@@ -17,6 +21,7 @@ export default function App({ Component, pageProps }) {
         <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_APP_BASE_URL}/images/lumini-school-logo.png`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <Toaster position='top-center' richColors/>
       <Component {...pageProps} />
     </AuthProvider>
   );
