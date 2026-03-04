@@ -1,5 +1,5 @@
 import { Nav } from "@/components/nav"
-import { useNavigate } from "next/router"
+import { useRouter } from "next/router"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -10,29 +10,8 @@ import Link from "next/link"
 
 export function Register(){
 
-    useHead({
-        link: [
-            { rel: 'canonical', href: 'https://luminischool.onrender.com/authentication/register' }
-        ],
-        meta: [
-            { name: 'description', content: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité." }
-        ]
-    })
-
-    useSeoMeta({
-
-        title: 'Création de compte | LUMINI School - Plateforme de formation en informatique',
-
-        ogTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
-        ogDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité.",
-        ogUrl: 'https://luminischool.onrender.com/authentication/register',
-
-        twitterTitle: "Création de compte | LUMINI School - Plateforme de formation en informatique",
-        twitterDescription: "Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."
-    })
-
     var { reset, register, handleSubmit } = useForm()
-    const navigate = useNavigate()
+    const router = useRouter()
 
     var [ registerLoading, setRegisterLoading ] = useState(false)
 
@@ -47,10 +26,10 @@ export function Register(){
                 password: data.password
             }
 
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/register`, user )
+            await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/authentication/register`, user )
                 .then(()=>{
                     toast.success("Félicitation ✨, votre compte a été bien créé.")
-                    navigate('/authentication/login')
+                    router.push('/authentication/login')
                     reset()
                 }).finally(()=>{setRegisterLoading(false)})
         }
@@ -66,13 +45,25 @@ export function Register(){
 
     return(
         <>
+            <Head>
+                <title>Création de compte | LUMINI School - Plateforme de formation en informatique</title>
+                <link rel="canonical" href="https://luminischool.onrender.com/authentication/register" />
+                <meta name="description" content="Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."/>
+                
+                <meta property="og:title" content="Création de compte | LUMINI School - Plateforme de formation en informatique" />
+                <meta property="og:description" content="Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité."/>
+                <meta property="og:url" content="https://luminischool.onrender.com/authentication/register" />
+
+                <meta name="twitter:title" content="Création de compte | LUMINI School - Plateforme de formation en informatique" />
+                <meta name="twitter:description" content="Créez votre compte LUMINI School et bénéficiez d'un espace personnel complet pour gérer vos inscriptions, paiements et toutes vos activités sur la plateforme en toute simplicité." />
+            </Head>
             <Nav></Nav>
             <section className="login-form">
                 <h2>Création de compte</h2>
                 <h5>à LUMINI School</h5>
                 <form onSubmit={handleSubmit(_handleSubmit)}>
-                    <img src="/images/note.png" alt="" className="laptop-mouse" />
-                    <img src="/images/clavier (2).png" alt="" className="mouse" />
+                    <Image src="/images/note.png" alt="note" className="laptop-mouse" width={400} height={400} priority />
+                    <Image src="/images/clavier (2).png" alt="clavier" className="mouse" width={375} height={375} priority />
                     <div className="element">
                         <label htmlFor="user-name">Votre nom complet :</label>
                         <input type="text" id="user-name" placeholder="Ex: John Doe" { ...register('name', { required: true }) } required />
@@ -88,12 +79,12 @@ export function Register(){
                     <div className="element">
                         <button disabled={registerLoading}>
                             Soumettre
-                            { registerLoading && <img src="/images/spinner.png" alt="" />}
+                            { registerLoading && <Image src="/images/spinner.png" alt="loading spinner" width={50} height={50} priority />}
                         </button>
                     </div>
                 </form>
                 <span>
-                    <p>Vous avez déjà un compte? <Link to="/authentication/login">Se connecter</Link>.</p>
+                    <p>Vous avez déjà un compte? <Link href="/authentication/login">Se connecter</Link>.</p>
                 </span>
             </section>
         </>
