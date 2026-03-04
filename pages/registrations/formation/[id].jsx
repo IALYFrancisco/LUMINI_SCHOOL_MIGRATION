@@ -98,15 +98,15 @@ export default function Registrations(){
                                             <legend><h3>Vos informations personnelles</h3></legend>
                                             <div className="element">
                                                 <label htmlFor="">Votre nom :</label>
-                                                <input type="text" id="" value={user.name} disabled readOnly />
+                                                <input type="text" id="" value={user?.name || ""} disabled readOnly />
                                             </div>
                                             <div className="element">
                                                 <label htmlFor="">Votre email :</label>
-                                                <input type="email" id="" value={user.email} disabled readOnly />
+                                                <input type="email" id="" value={user?.email || ""} disabled readOnly />
                                             </div>
                                             <div className="element">
                                                 <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
-                                                <input type="tel" id="" placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true, value: user.phoneNumber ? user.phoneNumber : "" }) } required />
+                                                <input type="tel" id="" placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true, value: user?.phoneNumber || "" }) } required />
                                             </div>
                                         </fieldset>
                                     </div>
