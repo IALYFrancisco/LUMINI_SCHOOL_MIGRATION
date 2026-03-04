@@ -1,25 +1,12 @@
-import Nav from "../components/nav"
-import '../../public/styles/formationsPage.css'
+import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import Loading from "../components/loading"
+import { Loading } from "@/components/loading"
 import DOMPurify from "dompurify"
-import { Link } from "react-router-dom"
-import { useHead, useSeoMeta } from "@unhead/react"
+import Link from "next/link"
+import Head from "next/head"
 
 export function ArticlesPage(){
-
-    useHead({
-        link: [
-            { rel: 'canonical', href: 'https://luminischool.onrender.com/articles' }
-        ]
-    })
-
-    useSeoMeta({
-
-        ogUrl: 'https://luminischool.onrender.com/articles'
-
-    })
 
     var [ articles, setArticles ] = useState([])
     var [ loading, setLoading ] = useState(true)
@@ -47,6 +34,11 @@ export function ArticlesPage(){
     if(loading) return <Loading/>
     if(articles) return(
         <>
+            <Head>
+                <link rel="canonical" href="https://luminischool.onrender.com/articles" />
+            
+                <meta property="og:url" content="https://luminischool.onrender.com/articles" />
+            </Head>
             <Nav></Nav>
             <section className="formations-page">
                 <div className="head">
