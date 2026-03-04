@@ -1,0 +1,118 @@
+.registrations-container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 100px;
+    color: var(--primary);
+}
+
+.registrations-container h2 {
+    margin-bottom: 30px;
+}
+
+.registrations-container .title {
+    color: var(--fourth);
+}
+
+.registrations-container p {
+    font-size: 15px;
+}
+
+.registrations-container p a {
+    text-decoration: underline;
+}
+
+.registrations-container .colored {
+    color: red;
+}
+
+.registrations-container form > div {
+    display: flex;
+    column-gap: 100px;
+    margin-top: 60px;
+}
+
+.registrations-container fieldset {
+    width: 50%;
+    border: none;
+}
+
+.registrations-container input {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    padding: 10px;
+    font-weight: 900;
+    transition: .25s;
+    margin-top: 10px;
+}
+
+.registrations-container input:focus {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.registrations-container .element {
+    margin-top: 30px;
+}
+
+.registrations-container form label {
+    font-weight: 900;
+}
+
+.registrations-container textarea {
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    padding: 10px;
+    font-weight: 900;
+    transition: .25s;
+    margin-top: 10px;
+    resize: none;
+    height: 225px;
+}
+
+.registrations-container form button {
+    background-color: var(--primary);
+    color: var(--secondary);
+    outline: none;
+}
+
+.registrations-container form button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.registrations-container form button img {
+    width: 30px;
+}
+
+.registrations-container button .loader {
+    animation: spinner infinite 3s linear;
+    width: 25px;
+    height: 25px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .registrations-container {
+        padding: 50px;
+    }
+    .registrations-container form > div {
+        column-gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .registrations-container {
+        padding: 50px 25px;
+    }
+    .registrations-container form > div {
+        display: block;
+    }
+    .registrations-container fieldset {
+        width: 100%;
+    }
+}
