@@ -5,35 +5,16 @@ import axios from "axios"
 import { useAuth } from "@/contexts/AuthContext"
 import { toast } from "sonner"
 import { useState } from "react"
-import { useHead, useSeoMeta } from "@unhead/react"
+import Head from "next/head"
+import Image from "next/image"
 
-export function Login(){
+export default function Login(){
 
     var { setUser, setLoading } = useAuth()
 
     var { reset, register, handleSubmit } = useForm()
 
     var [ loginLoading, setLoginLoading ] = useState(false)
-
-    useHead({
-        link: [
-            { rel: 'canonical', href: 'https://luminischool.onrender.com/authentication/login' }
-        ],
-        meta: [
-            { name: 'description', content: 'Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.' }
-        ]
-    })
-
-    useSeoMeta({
-        title: 'Connexion | LUMINI School - Plateforme de formation en informatique',
-
-        ogTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
-        ogDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel.",
-        ogUrl: 'https://luminischool.onrender.com/authentication/login',
-
-        twitterTitle: "Connexion | LUMINI School - Plateforme de formation en informatique",
-        twitterDescription: "Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."
-    })
 
     var _handleSubmit = async (data) => {
         try{
@@ -45,12 +26,12 @@ export function Login(){
                 password: data.password
             }
 
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/login`,
+            await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/authentication/login`,
                 user,
                 { withCredentials: true }
             )
             .then( async ()=>{
-                await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                await axios.get(`${import.meta.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
                         reset()
@@ -73,13 +54,25 @@ export function Login(){
 
     return(
         <>
+            <Head>
+                <title>Connexion | LUMINI School - Plateforme de formation en informatique</title>
+                <link rel="canonical" href="https://luminischool.onrender.com/authentication/login" />
+                <meta name="description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
+
+                <meta property="og:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
+                <meta property="og:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
+                <meta property="og:url" content="https://luminischool.onrender.com/authentication/login" />
+
+                <meta name="twitter:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
+                <meta name="twitter:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel." />
+            </Head>
             <Nav></Nav>
             <section className="login-form">
                 <h2>Connexion</h2>
                 <h5>à LUMINI School</h5>
                 <form onSubmit={handleSubmit(_handleSubmit)}>
-                    <img src="/images/fleur.png" alt="" className="laptop-mouse" />
-                    <img src="/images/coffee-laptop.png" alt="" className="mouse" />
+                    <Image src="/images/fleur.png" alt="fleur" className="laptop-mouse" width={400} height={400} priority />
+                    <Image src="/images/coffee-laptop.png" alt="café et laptop" className="mouse" width={400} height={400} priority />
                     <div className="element">
                         <label htmlFor="user-email">Votre adresse email :</label>
                         <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
@@ -91,12 +84,12 @@ export function Login(){
                     <div className="element">
                         <button disabled={loginLoading}>
                             Soumettre
-                            { loginLoading && <img src="/images/spinner.png" alt="" />}
+                            { loginLoading && <Image src="/images/spinner.png" alt="chargement spinner" width={50} height={50} priority />}
                         </button>
                     </div>
                 </form>
                 <span>
-                    <p>Pas de compte? <Link to="/authentication/register">En créer un</Link>.</p>
+                    <p>Pas de compte? <Link href="/authentication/register">En créer un</Link>.</p>
                 </span>
             </section>
         </>

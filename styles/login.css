@@ -105,6 +105,7 @@
     z-index: -1;
     opacity: .3;
     animation: infinite mouse-smooth linear 3s;
+    height: auto;
 }
 
 .laptop-mouse {
@@ -113,6 +114,7 @@
     left: -130px;
     bottom: -50px;
     width: 100px;
+    height: auto;
     z-index: -1;
     opacity: .3;
 }
