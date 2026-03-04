@@ -2,10 +2,9 @@
 import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import '../../public/styles/registrations.css'
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "@/contexts/AuthContext"
 import { useForm } from "react-hook-form"
-import Loading from "../components/loading"
+import Loading from "@/components/loading"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
@@ -40,7 +39,7 @@ export default function Registrations(){
                 dataToSend,
                 { withCredentials: true }
             ).then( async ()=>{
-                await axios.get(`${process.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
                         console.log(response.data)
