@@ -1,20 +1,20 @@
 import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Loading } from "@/components/loading"
+import Loading from "@/components/loading"
 import DOMPurify from "dompurify"
 import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
 
-export function ArticlesPage(){
+export default function ArticlesPage(){
 
     var [ articles, setArticles ] = useState([])
     var [ loading, setLoading ] = useState(true)
     var [ prompt, setPrompt ] = useState("")
 
     useEffect(()=>{
-        axios.get(`${process.env.NEXT_PUBLIC_APP_BASE_URL}/article/get`, { withCredentials: true })
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
                 setArticles(response.data.filter( article => article.published === true ))
             })
@@ -23,7 +23,7 @@ export function ArticlesPage(){
     }, [])
 
     useEffect(()=>{
-        let timer = axios.get(`${process.env.NEXT_PUBLIC_APP_BASE_URL}/article/get?title=${prompt}`, { withCredentials: true })
+        let timer = axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?title=${prompt}`, { withCredentials: true })
             .then((response)=>{
                 setArticles(response.data.filter( article => article.published === true ))
             })
@@ -55,7 +55,7 @@ export function ArticlesPage(){
                             <article className="card-container" key={article._id}>
                                 <div className="card">
                                     <div className="formation-image">
-                                        <Image src={ (article.image.startsWith('https') || article.image.startsWith('http')) ? article.image : `${process.env.NEXT_PUBLIC_APP_BASE_URL}/${article.image}` } alt={article.title} width={500} height={500} unoptimized={ process.env.NEXT_PUBLIC_NODE_ENV === "development" } priority />
+                                        <Image src={ (article.image.startsWith('https') || article.image.startsWith('http')) ? article.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${article.image}` } alt={article.title} width={500} height={500} unoptimized={ process.env.NEXT_PUBLIC_NODE_ENV === "development" } priority />
                                     </div>
                                     <div className="formation-infos">
                                         <h4>{article.title}</h4>
