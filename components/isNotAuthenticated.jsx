@@ -32,4 +32,7 @@ export default function IsNotAuthenticated({ children }) {
 
   if (loading) return <Loading />;
 
-  if (user) return null; // évite le flash pendant la redirecti
+  if (user) return null; // évite le flash pendant la redirection
+
+  return children;
+}
