@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { useState } from "react"
 import Head from "next/head"
 import Image from "next/image"
+import IsNotAuthenticated from "@/components/isNotAuthenticated"
 
 export default function Login(){
 
@@ -53,45 +54,47 @@ export default function Login(){
     }
 
     return(
-        <>
-            <Head>
-                <title>Connexion | LUMINI School - Plateforme de formation en informatique</title>
-                <link rel="canonical" href="https://luminischool.onrender.com/authentication/login" />
-                <meta name="description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
+        <IsNotAuthenticated>
+            <>
+                <Head>
+                    <title>Connexion | LUMINI School - Plateforme de formation en informatique</title>
+                    <link rel="canonical" href="https://luminischool.onrender.com/authentication/login" />
+                    <meta name="description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
 
-                <meta property="og:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
-                <meta property="og:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
-                <meta property="og:url" content="https://luminischool.onrender.com/authentication/login" />
+                    <meta property="og:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
+                    <meta property="og:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel."/>
+                    <meta property="og:url" content="https://luminischool.onrender.com/authentication/login" />
 
-                <meta name="twitter:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
-                <meta name="twitter:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel." />
-            </Head>
-            <Nav></Nav>
-            <section className="login-form">
-                <h2>Connexion</h2>
-                <h5>à LUMINI School</h5>
-                <form onSubmit={handleSubmit(_handleSubmit)}>
-                    <Image src="/images/fleur.png" alt="fleur" className="laptop-mouse" width={400} height={400} priority />
-                    <Image src="/images/coffee-laptop.png" alt="café et laptop" className="mouse" width={400} height={400} priority />
-                    <div className="element">
-                        <label htmlFor="user-email">Votre adresse email :</label>
-                        <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
-                    </div>
-                    <div className="element">
-                        <label htmlFor="user-password">Votre mot de passe :</label>
-                        <input type="password" id="user-password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
-                    </div>
-                    <div className="element">
-                        <button disabled={loginLoading}>
-                            Soumettre
-                            { loginLoading && <Image src="/images/spinner.png" alt="chargement spinner" width={50} height={50} priority />}
-                        </button>
-                    </div>
-                </form>
-                <span>
-                    <p>Pas de compte? <Link href="/authentication/register">En créer un</Link>.</p>
-                </span>
-            </section>
-        </>
+                    <meta name="twitter:title" content="Connexion | LUMINI School - Plateforme de formation en informatique" />
+                    <meta name="twitter:description" content="Accédez à votre espace personnel LUMINI School pour consulter les détails de votre inscription et effectuer le paiement de vos frais de formation en présentiel." />
+                </Head>
+                <Nav></Nav>
+                <section className="login-form">
+                    <h2>Connexion</h2>
+                    <h5>à LUMINI School</h5>
+                    <form onSubmit={handleSubmit(_handleSubmit)}>
+                        <Image src="/images/fleur.png" alt="fleur" className="laptop-mouse" width={400} height={400} priority />
+                        <Image src="/images/coffee-laptop.png" alt="café et laptop" className="mouse" width={400} height={400} priority />
+                        <div className="element">
+                            <label htmlFor="user-email">Votre adresse email :</label>
+                            <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
+                        </div>
+                        <div className="element">
+                            <label htmlFor="user-password">Votre mot de passe :</label>
+                            <input type="password" id="user-password" placeholder="Le mot de passe que vous avez choisi" { ...register('password', { required: true }) } required />
+                        </div>
+                        <div className="element">
+                            <button disabled={loginLoading}>
+                                Soumettre
+                                { loginLoading && <Image src="/images/spinner.png" alt="chargement spinner" width={50} height={50} priority />}
+                            </button>
+                        </div>
+                    </form>
+                    <span>
+                        <p>Pas de compte? <Link href="/authentication/register">En créer un</Link>.</p>
+                    </span>
+                </section>
+            </>
+        </IsNotAuthenticated>
     )
 }
