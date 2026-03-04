@@ -1,23 +1,24 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useNavigate, useParams } from "react-router-dom"
-import Nav from "../components/nav"
+import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import '../../public/styles/registrations.css'
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from "react-hook-form"
 import Loading from "../components/loading"
+import { useRouter } from "next/router"
+import Image from "next/image"
 
 export default function Registrations(){
 
-    const navigate = useNavigate()
+    const router = useRouter()
 
     const { reset, register, handleSubmit } = useForm()
 
     const { user, setUser } = useAuth()
     var [formation, setFormation] = useState(null)
     var [loading, setLoading] = useState(true)
-    var { id } = useParams()
+    var { id } = router.query
 
     var [ registrationLoading, setRegistrationLoading ] = useState(false)
 
@@ -35,16 +36,16 @@ export default function Registrations(){
                 userPhoneNumber: data.phoneNumber
             }
             await axios.post(
-                `${import.meta.env.VITE_API_BASE_URL}/registration/create`,
+                `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/create`,
                 dataToSend,
                 { withCredentials: true }
             ).then( async ()=>{
-                await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                await axios.get(`${process.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
                         console.log(response.data)
                         reset()
-                        navigate('/formations')
+                        router.push('/formations')
                     })
                     .catch(()=>setUser(null))
             })
@@ -54,11 +55,11 @@ export default function Registrations(){
     }
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>setFormation(response.data))
         .catch(()=>setFormation(null))
         .finally(()=>{ setRegistrationLoading(false); setLoading(false)})
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
         .then((response)=> {
             setUser(response.data)
         })
@@ -111,8 +112,8 @@ export default function Registrations(){
                                 <div className="element">
                                     <button id="submition" disabled={registrationLoading}>
                                         Soumettre l'inscription
-                                        { registrationLoading && <img src="/images/spinner.png" alt="" className='loader' /> }
-                                        { !registrationLoading && <img src="/images/send (2).png" alt="" />}
+                                        { registrationLoading && <Image src="/images/spinner.png" alt="loader spinner" className='loader' width={50} height={50} priority /> }
+                                        { !registrationLoading && <Image src="/images/send (2).png" alt="icone fusé en papier" width={64} height={64} priority />}
                                     </button>
                                 </div>
                             </form>
