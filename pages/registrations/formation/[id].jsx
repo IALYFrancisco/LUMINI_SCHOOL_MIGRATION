@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useNavigate, useParams } from "react-router-dom"
 import Nav from "../components/nav"
 import { useEffect, useState } from "react"
