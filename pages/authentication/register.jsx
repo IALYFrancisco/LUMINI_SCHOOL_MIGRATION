@@ -8,7 +8,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 
-export function Register(){
+export default function Register(){
 
     var { reset, register, handleSubmit } = useForm()
     const router = useRouter()
