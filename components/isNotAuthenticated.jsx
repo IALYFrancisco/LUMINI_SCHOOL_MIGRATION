@@ -1,20 +1,5 @@
 // This component allows to protect routes by authenticated users
 
-// import { Navigate } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthContext";
-// import Loading from "./loading";
-
-// export default function IsNotAuthenticated({children}) {
-//     const { user, loading } = useAuth()
-
-//     if(loading) return <Loading/>
-//     if(user) return <Navigate to="/dashboard" replace/>
-//     return children
-
-// }
-
-// components/IsNotAuthenticated.jsx
-
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContext";
@@ -32,7 +17,7 @@ export default function IsNotAuthenticated({ children }) {
 
   if (loading) return <Loading />;
 
-  if (user) return null; // évite le flash pendant la redirection
+  if (user) return null;
 
   return children;
 }
