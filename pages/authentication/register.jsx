@@ -1,11 +1,12 @@
-import Nav from "../components/nav"
-import '../../public/styles/login.css'
-import { Link, useNavigate } from "react-router-dom"
+import { Nav } from "@/components/nav"
+import { useNavigate } from "next/router"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { useState } from "react"
-import { useSeoMeta, useHead } from "@unhead/react"
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
 
 export function Register(){
 
