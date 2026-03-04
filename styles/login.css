@@ -1,0 +1,150 @@
+.login-form {
+    width: 100%;
+    height: 100vh;
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 25px 0 25px;
+    color: var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form form {
+    position: relative;
+    max-width: 350px;
+    width: 100%;
+    background-color: var(--primary);
+    padding: 20px;
+    margin: 30px auto 0 auto;
+    box-shadow:  3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
+}
+
+.login-form form label {
+    color: var(--secondary);
+}
+
+.login-form h2 {
+    color: var(--fourth);
+    margin-bottom: 10px;
+}
+
+.login-form span {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form p {
+    font-size: 13px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.login-form button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+    column-gap: 10px;
+}
+
+.login-form button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.login-form button img {
+    width: 18px;
+    animation: spinner infinite 3s linear;
+}
+
+@keyframes spinner {
+    0%{
+        transform: rotateZ(-360deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+.login-form form label {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.login-form form input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: 900;
+}
+
+.login-form form input::placeholder {
+    font-weight: 900;
+}
+
+.login-form form .element {
+    margin-top: 30px;
+}
+
+.login-form form input:focus, .login-form form textarea:focus {
+    border: 2px #0884ff solid;
+}
+
+.mouse {
+    position: absolute;
+    right: -200px;
+    top: -100px;
+    width: 200px;
+    z-index: -1;
+    opacity: .3;
+    animation: infinite mouse-smooth linear 3s;
+}
+
+.laptop-mouse {
+    animation: infinite laptop-mouse-smooth linear 5s;
+    position: absolute;
+    left: -130px;
+    bottom: -50px;
+    width: 100px;
+    z-index: -1;
+    opacity: .3;
+}
+
+.login-form a {
+    color: var(--primary);
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+@keyframes mouse-smooth {
+    0%{
+        top: -80px;
+    }
+    50% {
+        top: -60px;
+    }
+    100% {
+        top: -80px;
+    }
+}
+
+@keyframes laptop-mouse-smooth {
+    0%{
+        bottom: -80px;
+    }
+    50% {
+        bottom: -60px;
+    }
+    100% {
+        bottom: -80px;
+    }
+}
