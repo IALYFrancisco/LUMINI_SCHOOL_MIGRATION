@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import Loading from "@/components/loading"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import IsAuthenticated from "@/components/isAuthenticated"
 
 export default function Registrations(){
 
@@ -67,59 +68,61 @@ export default function Registrations(){
 
     if(loading) return(<Loading/>)
     if(!loading) return(
-        <>
-            <Nav></Nav>
-            { formation &&
-                <section className="registrations-container">
-                    { formation.map( f =>
-                        <span key={f._id}>
-                            <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
-                            <p>Veuillez <a href="#submition" className="colored" style={{ textDecoration: "underline" }}>soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
-                            <form onSubmit={handleSubmit(_handleSubmit)}>
-                                <div>
-                                    <fieldset disabled="disabled">
-                                        <legend><h3>A propos de la formation</h3></legend>
-                                        <div className="element">
-                                            <label htmlFor="">Titre de la formation :</label>
-                                            <input type="text" id="" value={f.title} readOnly />
-                                        </div>
-                                        <div className="element">
-                                            <label htmlFor="">Les prérequis de la formation :</label>
-                                            <input type="text" id="" value={f.prerequisites} readOnly />
-                                        </div>
-                                        <div className="element">
-                                            <label htmlFor="">Déscription de la formation :</label>
-                                            <textarea id="" value={f.description} readOnly ></textarea>
-                                        </div>
-                                    </fieldset>
-                                    <fieldset>
-                                        <legend><h3>Vos informations personnelles</h3></legend>
-                                        <div className="element">
-                                            <label htmlFor="">Votre nom :</label>
-                                            <input type="text" id="" value={user.name} disabled readOnly />
-                                        </div>
-                                        <div className="element">
-                                            <label htmlFor="">Votre email :</label>
-                                            <input type="email" id="" value={user.email} disabled readOnly />
-                                        </div>
-                                        <div className="element">
-                                            <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
-                                            <input type="tel" id="" placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true, value: user.phoneNumber ? user.phoneNumber : "" }) } required />
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div className="element">
-                                    <button id="submition" disabled={registrationLoading}>
-                                        Soumettre l'inscription
-                                        { registrationLoading && <Image src="/images/spinner.png" alt="loader spinner" className='loader' width={50} height={50} priority /> }
-                                        { !registrationLoading && <Image src="/images/send (2).png" alt="icone fusé en papier" width={64} height={64} priority />}
-                                    </button>
-                                </div>
-                            </form>
-                        </span>
-                    ) }
-                </section>
-            }
-        </>
+        <IsAuthenticated>
+            <>
+                <Nav></Nav>
+                { formation &&
+                    <section className="registrations-container">
+                        { formation.map( f =>
+                            <span key={f._id}>
+                                <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
+                                <p>Veuillez <a href="#submition" className="colored" style={{ textDecoration: "underline" }}>soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
+                                <form onSubmit={handleSubmit(_handleSubmit)}>
+                                    <div>
+                                        <fieldset disabled="disabled">
+                                            <legend><h3>A propos de la formation</h3></legend>
+                                            <div className="element">
+                                                <label htmlFor="">Titre de la formation :</label>
+                                                <input type="text" id="" value={f.title} readOnly />
+                                            </div>
+                                            <div className="element">
+                                                <label htmlFor="">Les prérequis de la formation :</label>
+                                                <input type="text" id="" value={f.prerequisites} readOnly />
+                                            </div>
+                                            <div className="element">
+                                                <label htmlFor="">Déscription de la formation :</label>
+                                                <textarea id="" value={f.description} readOnly ></textarea>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend><h3>Vos informations personnelles</h3></legend>
+                                            <div className="element">
+                                                <label htmlFor="">Votre nom :</label>
+                                                <input type="text" id="" value={user.name} disabled readOnly />
+                                            </div>
+                                            <div className="element">
+                                                <label htmlFor="">Votre email :</label>
+                                                <input type="email" id="" value={user.email} disabled readOnly />
+                                            </div>
+                                            <div className="element">
+                                                <label htmlFor="">Votre numéro téléphone <span className="colored">*</span> :</label>
+                                                <input type="tel" id="" placeholder="ex: 030 00 000 00" { ...register('phoneNumber', { required:true, value: user.phoneNumber ? user.phoneNumber : "" }) } required />
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div className="element">
+                                        <button id="submition" disabled={registrationLoading}>
+                                            Soumettre l'inscription
+                                            { registrationLoading && <Image src="/images/spinner.png" alt="loader spinner" className='loader' width={50} height={50} priority /> }
+                                            { !registrationLoading && <Image src="/images/send (2).png" alt="icone fusé en papier" width={64} height={64} priority />}
+                                        </button>
+                                    </div>
+                                </form>
+                            </span>
+                        ) }
+                    </section>
+                }
+            </>
+        </IsAuthenticated>
     )
 }
