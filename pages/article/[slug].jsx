@@ -3,49 +3,30 @@ import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Loading from "@/components/loading"
-import '../../public/styles/articleView.css'
 import DOMPurify from 'dompurify'
-import { useHead, useSeoMeta } from "@unhead/react"
+import Head from "next/head"
 
 export default function ArticleView(){
     
-    const { slug } = useParams()
+    const router = useRouter()
+    const { slug } = router.query
     var [ article, setArticle ] = useState(null)
     var [ loading, setLoading ] = useState(true)
     var [ seo, setSeo ] = useState(null)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?slug=${slug}`)
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?slug=${slug}`)
         .then((response)=>{
             setArticle(response.data)
-            axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
                 .then((response)=>{
                     setSeo(response.data)
                 })
         }).finally(()=>setLoading(false))
     }, [slug])
-
-    useHead({
-        link: [
-            { rel: 'canonical', href: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined }
-        ],
-        meta: [
-            { name: 'description', content: (seo && seo.description) || undefined }
-        ]
-    })
     
     useSeoMeta({
-
-        title: (seo && seo.title) || undefined,
         
-        ogTitle: (seo && seo.title) || undefined,
-        ogType: 'article',
-        ogDescription: (seo && seo.description) || undefined,
-        ogUrl: (seo && `${import.meta.env.VITE_APP_BASE_URL}${seo.canonicUrl}`) || undefined,
-        ogImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
-        
-        twitterTitle: (seo && seo.title) || undefined,
-        twitterDescription: (seo && seo.description) || undefined,
         twitterImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
         
         articleAuthor: 'LUMINI School',
@@ -56,6 +37,22 @@ export default function ArticleView(){
     if (loading) return <Loading/>
     return (
         <>
+            <Head>
+                    <title>{(seo && seo.title) || undefined}</title>
+                    <link rel="canonical" href={(seo && `${process.env.NEXT_PUBLIC_APP_BASE_URL}${seo.canonicUrl}`) || undefined} />
+                    <meta name="description" content={ (seo && seo.description) || undefined }/>
+
+                    <meta property="og:title" content={ (seo && seo.title) || undefined } />
+                    <meta property="og:type" content="article"/>
+                    <meta property="og:description" content={ (seo && seo.description) || undefined }/>
+                    <meta property="og:url" content={ (seo && `${process.env.NEXT_PUBLIC_APP_BASE_URL}${seo.canonicUrl}`) || undefined } />
+                    <meta property="og:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } />
+
+                    <meta name="twitter:title" content={ (seo && seo.title) || undefined } />
+                    <meta name="twitter:description" content={ (seo && seo.description) || undefined } />
+                    <meta name="twitter:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } />
+
+            </Head>
             <Nav></Nav>
             <div className="article-container">
                 <article>
