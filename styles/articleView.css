@@ -1,0 +1,35 @@
+.article-container article {
+    max-width: 1024px;
+    padding: 100px;
+    margin: auto;
+    color: var(--primary);
+}
+
+.article-contents {
+    margin-top: 30px;
+}
+
+.article-contents .ql-editor {
+    padding: 0;
+    overflow: initial;
+}
+
+.article-contents.ql-container.ql-snow {
+    border: none;
+}
+
+.article-contents.ql-container {
+    font-size: initial;
+}
+
+@media only screen and (max-width: 1024px){
+    .article-container article {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .article-container article {
+        padding: 25px;
+    }
+}
