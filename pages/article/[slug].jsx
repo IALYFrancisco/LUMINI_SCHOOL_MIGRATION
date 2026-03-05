@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom"
-import Nav from "../components/nav"
+import { useRouter } from "next/router"
+import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import Loading from "../components/loading"
+import Loading from "@/components/loading"
 import '../../public/styles/articleView.css'
 import DOMPurify from 'dompurify'
 import { useHead, useSeoMeta } from "@unhead/react"
