@@ -24,15 +24,6 @@ export default function ArticleView(){
                 })
         }).finally(()=>setLoading(false))
     }, [slug])
-    
-    useSeoMeta({
-        
-        twitterImage: seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${import.meta.env.VITE_API_BASE_URL}/${seo.image}` ),
-        
-        articleAuthor: 'LUMINI School',
-        articlePublishedTime: (article && `${article.publishedAt}`) || undefined
-    
-    })
 
     if (loading) return <Loading/>
     return (
@@ -51,7 +42,8 @@ export default function ArticleView(){
                     <meta name="twitter:title" content={ (seo && seo.title) || undefined } />
                     <meta name="twitter:description" content={ (seo && seo.description) || undefined } />
                     <meta name="twitter:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } />
-
+                    <meta property="article:author" content="LUMINI School" />
+                    <meta property="article:published_time" content={ (article && `${article.publishedAt}`) || undefined } />
             </Head>
             <Nav></Nav>
             <div className="article-container">
