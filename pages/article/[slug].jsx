@@ -36,14 +36,14 @@ export default function ArticleView(){
                     <meta name="description" content={ (seo && seo.description) || undefined }/>
 
                     <meta property="og:title" content={ (seo && seo.title) || undefined } />
-                    <meta property="og:type" content="article"/>
+                    <meta property="og:type" content="article" key="og:type"/>
                     <meta property="og:description" content={ (seo && seo.description) || undefined }/>
                     <meta property="og:url" content={ (seo && `${process.env.NEXT_PUBLIC_APP_BASE_URL}${seo.canonicUrl}`) || undefined } />
-                    <meta property="og:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } />
+                    <meta property="og:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } key="og:image" />
 
                     <meta name="twitter:title" content={ (seo && seo.title) || undefined } />
                     <meta name="twitter:description" content={ (seo && seo.description) || undefined } />
-                    <meta name="twitter:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } />
+                    <meta name="twitter:image" content={ seo && ( (seo.image.startsWith('http') || seo.image.startsWith('http')) ? seo.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${seo.image}` ) } key="twitter:image" />
                     <meta property="article:author" content="LUMINI School" />
                     <meta property="article:published_time" content={ (article && `${article.publishedAt}`) || undefined } />
             </Head>
