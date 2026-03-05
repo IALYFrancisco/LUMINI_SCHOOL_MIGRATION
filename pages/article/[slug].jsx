@@ -15,14 +15,16 @@ export default function ArticleView(){
     var [ seo, setSeo ] = useState(null)
     
     useEffect(()=>{
-        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?slug=${slug}`)
-        .then((response)=>{
-            setArticle(response.data)
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
-                .then((response)=>{
-                    setSeo(response.data)
-                })
-        }).finally(()=>setLoading(false))
+        if(slug){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?slug=${slug}`)
+            .then((response)=>{
+                setArticle(response.data)
+                axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${response.data._id}`, {withCredentials: true})
+                    .then((response)=>{
+                        setSeo(response.data)
+                    })
+            }).finally(()=>setLoading(false))
+        }
     }, [slug])
 
     if (loading) return <Loading/>
@@ -48,7 +50,7 @@ export default function ArticleView(){
             <Nav></Nav>
             <div className="article-container">
                 <article>
-                {
+                { article &&
                     <>
                         <h1>{article.title}</h1>
                         <div className="article-contents ql-container ql-snow">
