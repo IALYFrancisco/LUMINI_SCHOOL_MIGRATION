@@ -1,14 +1,17 @@
 import axios from "axios"
-import { Link, NavLink } from "react-router-dom"
-import { useAuth } from "../../contexts/AuthContext"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { useAuth } from "@/contexts/AuthContext"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function Sidebar(){
 
+    const router = useRouter()
     const { user, setUser } = useAuth()
 
     const handleClick = () => {
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
+        axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
         .then(()=>{
             setUser(null)
         }).catch(()=>{
@@ -20,12 +23,12 @@ export default function Sidebar(){
         <aside>
             <ul>
                 <li className="logo">
-                    <Link to="/">LUMINI School</Link>
+                    <Link href="/">LUMINI School</Link>
                 </li>
                 <li>
                     <div className="border">
                         <div className="profile-container">
-                            <img src={ (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}/${user.profile}` } alt="" />
+                            <Image src={ (user.profile.startsWith('https') || user.profile.startsWith('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${user.profile}` } alt={ user.name } width={300} height={300} priority />
                         </div>
                     </div>
                     <div className="user-infos">
@@ -36,41 +39,41 @@ export default function Sidebar(){
                 <li>
                     <ul>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
-                            <NavLink to="/dashboard" end className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
-                                <img src="/images/formations.png" alt="" />
+                            <Link href="/dashboard" end className={ router.pathname === "/dashboard" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/formations.png" alt="icone formations" width={48} height={48} priority />
                                 Formations
-                            </NavLink>
+                            </Link>
                         </li> }
                         <li>
-                            <NavLink to="/dashboard/inscriptions" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
-                                <img src="/images/inscription.png" alt="" />
+                            <Link href="/dashboard/inscriptions" className={ router.pathname === "/dashboard/inscriptions" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/inscription.png" alt="icone inscription" width={50} height={50} priority />
                                 Inscriptions
-                            </NavLink>
+                            </Link>
                         </li>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
-                            <NavLink to="/dashboard/articles"  className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
-                                <img src="/images/article.png" alt="" />
+                            <Link href="/dashboard/articles"  className={router.pathname === "/dashboard/articles" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/article.png" alt="icone article" width={50} height={50} priority />
                                 Articles
-                            </NavLink>
+                            </Link>
                         </li> }
                         { user && user.status === "superuser" && <li>
-                            <NavLink to="/dashboard/users" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
-                                <img src="/images/group.png" alt="" />
+                            <Link href="/dashboard/users" className={router.pathname === "/dashboard/users" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/group.png" alt="icone groupe" width={30} height={30} priority />
                                 Utilisateurs
-                            </NavLink>
+                            </Link>
                         </li> }
                         <li>
-                            <NavLink to="/dashboard/settings" className={({ isActive })=> isActive ? "dash-link active" : "dash-link"}>
-                                <img src="/images/settings.png" alt="" />
+                            <Link href="/dashboard/settings" className={router.pathname === "/dashboard/settings" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/settings.png" alt="icone paramètres" width={50} height={50} priority />
                                 Paramètres
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </li>
             </ul>
             <div className="actions" onClick={handleClick}>
                 <p>
-                    <img src="/images/logout.png" alt="" />
+                    <Image src="/images/logout.png" alt="icone de déconnexion" width={50} height={50} priority />
                     Se déconnecter
                 </p>
             </div>
