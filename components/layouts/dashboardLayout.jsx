@@ -1,22 +1,18 @@
 import Sidebar from "@/components/dashboard/sidebar"
-import '../../../public/styles/dashboard/dashboard.css'
-import { Outlet } from "react-router-dom"
-import { useHead } from "@unhead/react"
+import Head from "next/head"
 
-export default function Dashboard(){
-
-    useHead({
-        meta: [
-            { name: 'robots', content: 'noindex, nofollow' }
-        ]
-    })
-
+export default function Dashboard({children}){
     return(
-        <section id="dashboard-view">
-            <Sidebar></Sidebar>
-            <section className="sections-container">
-                <Outlet/>
+        <>
+            <Head>
+                <meta name="robots" content="noindex, nofollow" key="robots" />
+            </Head>
+            <section id="dashboard-view">
+                <Sidebar></Sidebar>
+                <section className="sections-container">
+                    {children}
+                </section>
             </section>
-        </section>
+        </>
     )
 }
