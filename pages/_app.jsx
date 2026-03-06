@@ -4,7 +4,7 @@ import '@/styles/formationsPage.css';
 import '@/styles/login.css';
 import '@/styles/registrations.css';
 import '@/styles/articleView.css';
-import '@/styles/dashboard.css';
+import '@/styles/dashboard/dashboard.css';
 import "react-quill-new/dist/quill.snow.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
