@@ -18,7 +18,6 @@ export default function Sidebar(){
             toast.error("Erreur de déconnexion, veuillez réessayer plus tard.")
         })
     }
-
     return(
         <aside>
             <ul>
@@ -28,7 +27,7 @@ export default function Sidebar(){
                 <li>
                     <div className="border">
                         <div className="profile-container">
-                            <Image src={ (user.profile.startsWith('https') || user.profile.startsWith('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${user.profile}` } alt={ user.name } width={300} height={300} priority />
+                            <Image src={ (user.profile.startsWith('https') || user.profile.startsWith('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${user.profile}` } alt={ user.name } width={100} height={100} priority />
                         </div>
                     </div>
                     <div className="user-infos">

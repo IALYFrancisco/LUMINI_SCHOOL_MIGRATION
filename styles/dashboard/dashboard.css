@@ -86,6 +86,7 @@ aside ul ul li a {
 
 aside ul ul li img {
     width: 20px;
+    height: auto;
 }
 
 aside .actions {
@@ -103,6 +104,7 @@ aside .actions p {
 
 aside .actions p img {
     width: 20px;
+    height: auto;
 }
 
 .sections-container {
