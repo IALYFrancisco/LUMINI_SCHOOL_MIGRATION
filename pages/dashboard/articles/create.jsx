@@ -5,6 +5,8 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import './CustomImageBlot'
+import Dashboard from "@/components/layouts/dashboardLayout";
+import ArticleLayout from "@/components/layouts/articleLayout";
 
 export default function CreateArticle() {
 
@@ -168,51 +170,55 @@ const _handleSubmit = (data) => {
   }, [image, watchAll.url])
 
   return (
-    <>
-      <div className="add-article">
-        <h3>Création d'un article :</h3>
-          {uploading && (
-              <p className="upload-message">
-                🔄 Upload en cours...
-              </p>
-          )}
-        <form onSubmit={handleSubmit(_handleSubmit)}>
-          <fieldset>
-            <div className="element">
-              <label htmlFor="">Titre de l'article :</label>
-              <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
+    <Dashboard>
+        <ArticleLayout>
+            <>
+            <div className="add-article">
+                <h3>Création d'un article :</h3>
+                {uploading && (
+                    <p className="upload-message">
+                        🔄 Upload en cours...
+                    </p>
+                )}
+                <form onSubmit={handleSubmit(_handleSubmit)}>
+                <fieldset>
+                    <div className="element">
+                    <label htmlFor="">Titre de l'article :</label>
+                    <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="element">
+                    <label htmlFor="">Image de mis en avant pour l'article :</label>
+                    <div className="inputs-container">
+                        <input disabled={imageIsDefined} type="url" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required />
+                        <input disabled={urlIsDefined} type="file" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required />
+                    </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="element">
+                        <label htmlFor="">Contenus de l'article :</label>
+                        <ReactQuill
+                            ref={quillRef}
+                            theme="snow"
+                            value={content}
+                            onChange={setContent}
+                            modules={modules}
+                            formats={formats}
+                            placeholder="Écrivez votre article ici..."
+                        />
+                    <button>Soumettre</button>
+                    </div>
+                </fieldset>
+                </form>
+                <div className="previsualisation ql-container ql-snow">
+                    <h3>Prévisualisation :</h3>
+                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+                </div>
             </div>
-          </fieldset>
-          <fieldset>
-            <div className="element">
-              <label htmlFor="">Image de mis en avant pour l'article :</label>
-              <div className="inputs-container">
-                <input disabled={imageIsDefined} type="url" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required />
-                <input disabled={urlIsDefined} type="file" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required />
-              </div>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="element">
-                <label htmlFor="">Contenus de l'article :</label>
-                <ReactQuill
-                    ref={quillRef}
-                    theme="snow"
-                    value={content}
-                    onChange={setContent}
-                    modules={modules}
-                    formats={formats}
-                    placeholder="Écrivez votre article ici..."
-                />
-              <button>Soumettre</button>
-            </div>
-          </fieldset>
-        </form>
-        <div className="previsualisation ql-container ql-snow">
-            <h3>Prévisualisation :</h3>
-            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
-        </div>
-      </div>
-    </>
+            </>
+        </ArticleLayout>    
+    </Dashboard>
   );
 };
