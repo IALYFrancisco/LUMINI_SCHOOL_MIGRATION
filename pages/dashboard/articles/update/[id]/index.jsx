@@ -1,12 +1,12 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill-new";
 import DOMPurify from "dompurify";
 import axios from "axios";
-import "react-quill-new/dist/quill.snow.css";
-import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
-import { useParams, Link } from "react-router-dom";
-import './CustomImageBlot'
+import { useRouter } from "next/router";
+import Link from "next/link";
+import '../../CustomImageBlot'
 
 export default function UpdateArticle() {
 
@@ -18,18 +18,19 @@ export default function UpdateArticle() {
   const [content, setContent] = useState("");
   const [uploading, setUploading] = useState(false);
   const quillRef = useRef(null);
+  const router = useRouter()
 
-  const { id } = useParams()
+  const { id } = router.query
 
   var watchAll = watch()
 
   useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
+    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
     .then((response)=>{
         setArticle(response.data)
         reset({
             title: response.data.title,
-            url : (response.data.image.includes("https") || response.data.image.includes("http")) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+            url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
         })
         setContent(response.data.contents)
     })
@@ -98,7 +99,7 @@ export default function UpdateArticle() {
   
         try {
           setUploading(true);
-          const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-illustration`, formData, {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/add-illustration`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
             withCredentials: true
           });
@@ -110,7 +111,7 @@ export default function UpdateArticle() {
   
           if(altImage){
             quill.insertEmbed(range.index, "image", {
-              src: `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`,
+              src: `${process.env.NEXT_PUBLIC_API_BASE_URL}/${res.data.url}`,
               alt: altImage
             })
           }
@@ -136,14 +137,14 @@ const handleDocumentUpload = async () => {
 
       try {
         setUploading(true);
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-file`, formData, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/add-file`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true
         });
 
         const quill = quillRef.current.getEditor();
         const range = quill.getSelection();
-        quill.insertText(range.index, file.name, "link", `${import.meta.env.VITE_API_BASE_URL}${res.data.url}`);
+        quill.insertText(range.index, file.name, "link", `${process.env.NEXT_PUBLIC_API_BASE_URL}${res.data.url}`);
       } catch (err) {
         console.error("Erreur upload document:", err);
       } finally {
@@ -171,23 +172,23 @@ const _handleSubmit = (data) => {
             if(image){
                 _article.append('image', image)
             }
-            if(`${import.meta.env.VITE_API_BASE_URL}/${article.image}` !== data.url && data.url !== ""){
+            if(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${article.image}` !== data.url && data.url !== ""){
                 _article.append('image', data.url)
             }
 
-            axios.put(`${import.meta.env.VITE_API_BASE_URL}/article/update?_id=${id}`, _article,
+            axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/update?_id=${id}`, _article,
                 { 
                     headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
                     withCredentials: true
                 }
             ).then(()=>{
-                axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`)
+                axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`)
                     .then((response)=>{
                         setArticle(response.data)
                         reset()
                         reset({
                             title: response.data.title,
-                            url : (response.data.image.includes("https") || response.data.image.includes("http")) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                            url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
                         })
                         setContent(response.data.contents)
                     })
@@ -216,7 +217,7 @@ const _handleSubmit = (data) => {
     <>
       <div className="add-article">
         <h3>Modification d'un article :
-           <Link to={`/dashboard/articles/update/${id}/seo`}>
+           <Link href={`/dashboard/articles/update/${id}/seo`}>
             <button>Modifier le SEO</button>
            </Link>
         </h3>
