@@ -9,14 +9,9 @@ import { toast } from "sonner";
 export default function IsAuthenticated({ children }) {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const toastShown = useRef(false);
 
   useEffect(() => {
     if (!loading && !user) {
-      if (!toastShown.current) {
-        toast.info("Vous devez d'abord vous connecter à votre compte.");
-        toastShown.current = true;
-      }
       router.replace("/authentication/login");
     }
   }, [user, loading, router]);

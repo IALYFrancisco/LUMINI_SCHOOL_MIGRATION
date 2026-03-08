@@ -32,7 +32,7 @@ export default function Login(){
                 { withCredentials: true }
             )
             .then( async ()=>{
-                await axios.get(`${import.meta.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
+                await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
                         reset()
