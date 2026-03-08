@@ -1,17 +1,19 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
-import { useParams } from "react-router-dom"
-import DateRefactoring from "../../../contexts/DateRefactoring"
+import { useRouter } from "next/router"
+import DateRefactoring from "@/contexts/DateRefactoring"
 
 export default function UpdateFormation(){
+    const router = useRouter()
 
     var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
     var [formation, setFormation] = useState(null)
     var [ image, setImage ] = useState('')
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
-    const { id } = useParams()
+    const { id } = router.query
 
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
@@ -19,7 +21,7 @@ export default function UpdateFormation(){
     var watchAll = watch()
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
         .then((response)=>{
             response.data[0].coursePrice = JSON.stringify(response.data[0].coursePrice)
             setFormation(response.data[0])
@@ -27,7 +29,7 @@ export default function UpdateFormation(){
                 title: response.data[0].title,
                 prerequisites: response.data[0].prerequisites[0],
                 description: response.data[0].description,
-                url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
+                url: (response.data[0].image.startsWith("https") || response.data[0].image.startsWith("http")) ? response.data[0].image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data[0].image}`,
                 beginDate: DateRefactoring(response.data[0].beginDate),
                 endDate: DateRefactoring(response.data[0].endDate),
                 coursePlace: response.data[0].coursePlace,
@@ -68,7 +70,7 @@ export default function UpdateFormation(){
                 if(image){
                     _formation.append("poster", image)
                 }
-                if(`${import.meta.env.VITE_API_BASE_URL}/${formation.image}` !== data.url && data.url !== ""){
+                if(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${formation.image}` !== data.url && data.url !== ""){
                     _formation.append("image", data.url)
                 }
                 if(DateRefactoring(formation.beginDate) !== DateRefactoring(watchAll.beginDate)){
@@ -84,13 +86,13 @@ export default function UpdateFormation(){
                     _formation.append("coursePrice", data.coursePrice)
                 }
 
-                await axios.put(`${import.meta.env.VITE_API_BASE_URL}/formation/update?_id=${id}`, _formation,
+                await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/update?_id=${id}`, _formation,
                     { 
                         headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
                         withCredentials: true
                     }
                 ).then(()=>{
-                    axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${id}`)
+                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
                     .then((response)=>{
                         response.data[0].coursePrice = JSON.stringify(response.data[0].coursePrice)
                         setFormation(response.data[0])
@@ -98,7 +100,7 @@ export default function UpdateFormation(){
                             title: response.data[0].title,
                             prerequisites: response.data[0].prerequisites[0],
                             description: response.data[0].description,
-                            url: (response.data[0].image.includes("https") || response.data[0].image.includes("http")) ? response.data[0].image : `${import.meta.env.VITE_API_BASE_URL}/${response.data[0].image}`,
+                            url: (response.data[0].image.startsWith("https") || response.data[0].image.startsWith("http")) ? response.data[0].image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data[0].image}`,
                             beginDate: DateRefactoring(response.data[0].beginDate),
                             endDate: DateRefactoring(response.data[0].endDate),
                             coursePlace: response.data[0].coursePlace,
