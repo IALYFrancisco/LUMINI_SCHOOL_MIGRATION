@@ -1,7 +1,7 @@
 import Head from "next/head"
 import IsAdminOrSuperuser from "../isAdminOrSuperuser"
 
-export default function FormationLayout({children}){
+export default function ArticleLayout({children}){
     return(
         <IsAdminOrSuperuser>
             <Head>
