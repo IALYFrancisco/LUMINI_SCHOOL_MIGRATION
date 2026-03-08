@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import '../../CustomImageBlot'
+import Dashboard from "@/components/layouts/dashboardLayout";
+import ArticleLayout from "@/components/layouts/articleLayout";
 
 export default function UpdateArticle() {
 
@@ -214,56 +216,60 @@ const _handleSubmit = (data) => {
   }, [image, watchAll.url])
 
   return (
-    <>
-      <div className="add-article">
-        <h3>Modification d'un article :
-           <Link href={`/dashboard/articles/update/${id}/seo`}>
-            <button>Modifier le SEO</button>
-           </Link>
-        </h3>
-          {uploading && (
-              <p className="upload-message">
-                🔄 Upload en cours...
-              </p>
-          )}
-        <form onSubmit={handleSubmit(_handleSubmit)}>
-          <fieldset>
-            <div className="element">
-              <label htmlFor="">Titre de l'article :</label>
-              <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="element">
-              <label htmlFor="">Image de mis en avant pour l'article :</label>
-              <div className="inputs-container">
-                <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required/>
-                <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required/>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="element">
-                <label htmlFor="">Contenus de l'article :</label>
-                <ReactQuill
-                    ref={quillRef}
-                    theme="snow"
-                    value={content}
-                    onChange={setContent}
-                    modules={modules}
-                    formats={formats}
-                    placeholder="Écrivez votre article ici..."
-                />
-              <button disabled={!isModified}>Soumettre</button>
-            </div>
-          </fieldset>
-        </form>
+    <Dashboard>
+        <ArticleLayout>
+            <>
+            <div className="add-article">
+                <h3>Modification d'un article :
+                <Link href={`/dashboard/articles/update/${id}/seo`}>
+                    <button>Modifier le SEO</button>
+                </Link>
+                </h3>
+                {uploading && (
+                    <p className="upload-message">
+                        🔄 Upload en cours...
+                    </p>
+                )}
+                <form onSubmit={handleSubmit(_handleSubmit)}>
+                <fieldset>
+                    <div className="element">
+                    <label htmlFor="">Titre de l'article :</label>
+                    <input type="text" name="" id="" placeholder="Ajouter un titre à l'article" { ...register("title", { required: true }) } required />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="element">
+                    <label htmlFor="">Image de mis en avant pour l'article :</label>
+                    <div className="inputs-container">
+                        <input disabled={imageIsDefined} type="url" name="" id="" placeholder="Utilisez cet champ pour une image en ligne" { ...register("url") } required/>
+                        <input disabled={urlIsDefined} type="file" name="" id="" onChange={(e)=>setImage(e.target.files[0])} accept="image/jpeg, image/png" required/>
+                    </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="element">
+                        <label htmlFor="">Contenus de l'article :</label>
+                        <ReactQuill
+                            ref={quillRef}
+                            theme="snow"
+                            value={content}
+                            onChange={setContent}
+                            modules={modules}
+                            formats={formats}
+                            placeholder="Écrivez votre article ici..."
+                        />
+                    <button disabled={!isModified}>Soumettre</button>
+                    </div>
+                </fieldset>
+                </form>
 
-          <div className="previsualisation ql-container ql-snow">
-              <h3>Prévisualisation :</h3>
-              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
-          </div>
-      </div>
-    </>
+                <div className="previsualisation ql-container ql-snow">
+                    <h3>Prévisualisation :</h3>
+                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+                </div>
+            </div>
+            </>
+        </ArticleLayout>
+    </Dashboard>
   );
 };
