@@ -1,5 +1,5 @@
 /** @type { import('next-sitemap').IConfig } */
-modules.exports = {
+module.exports = {
     siteUrl: process.env.NEXT_PUBLIC_APP_BASE_URL,
     generateRobotsTxt: true,
     sitemapSize: 7000,
