@@ -1,6 +1,6 @@
 import Head from "next/head"
 
-export default function Formations({children}){
+export default function FormationLayout({children}){
     return(
         <>
             <Head>
