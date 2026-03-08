@@ -1,16 +1,13 @@
-import { useHead } from "@unhead/react"
-import { Outlet } from "react-router-dom"
+import Head from "next/head"
 
-export default function Formations(){
-
-    useHead({
-        title: 'Formations - Dashboard | LUMINI School'
-    })
-
+export default function Formations({children}){
     return(
         <>
+            <Head>
+                <title>Formations - Dashboard | LUMINI School</title>
+            </Head>
             <h2>Formations</h2>
-            <Outlet/>
+            {children}
         </>
     )
 }
