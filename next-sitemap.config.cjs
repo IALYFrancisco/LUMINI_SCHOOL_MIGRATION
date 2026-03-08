@@ -16,5 +16,5 @@ module.exports = {
             }
         ]
     },
-    exclude: [ '/dashboard/*' ]
+    exclude: [ '/dashboard', '/dashboard/*' ]
 }
