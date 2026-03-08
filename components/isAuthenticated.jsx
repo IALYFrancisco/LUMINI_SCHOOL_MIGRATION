@@ -1,6 +1,6 @@
 // This component allows to protect routes by not authenticated users
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContext";
 import Loading from "@/components/loading";
@@ -12,14 +12,13 @@ export default function IsAuthenticated({ children }) {
 
   useEffect(() => {
     if (!loading && !user) {
-      toast.info("Vous devez d'abord vous connecter à votre compte.");
       router.replace("/authentication/login");
     }
   }, [user, loading, router]);
 
   if (loading) return <Loading />;
 
-  if (!user) return <Loading />;
+  if (!user) return null;
 
   return children;
 }
