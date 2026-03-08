@@ -15,10 +15,8 @@ export default function IsNotAuthenticated({ children }) {
     }
   }, [user, loading, router]);
 
-  // Pendant la vérification de l'auth
   if (loading) return <Loading />;
 
-  // Si user existe, on bloque l'affichage
   if (user) return <Loading />;
 
   return children;
