@@ -1,9 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill-new";
 import DOMPurify from "dompurify";
 import axios from "axios";
-import "react-quill-new/dist/quill.snow.css";
-import '../../../../public/styles/dashboard/article.css'
 import { useForm } from "react-hook-form";
 import './CustomImageBlot'
 
@@ -80,7 +79,7 @@ export default function CreateArticle() {
 
       try {
         setUploading(true);
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-illustration`, formData, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/add-illustration`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true
         });
@@ -92,7 +91,7 @@ export default function CreateArticle() {
 
         if(altImage){
           quill.insertEmbed(range.index, "image", {
-            src: `${import.meta.env.VITE_API_BASE_URL}/${res.data.url}`,
+            src: `${process.env.NEXT_PUBLIC_API_BASE_URL}/${res.data.url}`,
             alt: altImage
           })
         }
@@ -118,14 +117,14 @@ const handleDocumentUpload = async () => {
 
       try {
         setUploading(true);
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/add-file`, formData, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/add-file`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true
         });
 
         const quill = quillRef.current.getEditor();
         const range = quill.getSelection();
-        quill.insertText(range.index, file.name, "link", `${import.meta.env.VITE_API_BASE_URL}${res.data.url}`);
+        quill.insertText(range.index, file.name, "link", `${process.env.NEXT_PUBLIC_API_BASE_URL}${res.data.url}`);
       } catch (err) {
         console.error("Erreur upload document:", err);
       } finally {
@@ -150,7 +149,7 @@ const _handleSubmit = (data) => {
   }
   article.append('contents', cleanHTML)
   
-  axios.post(`${import.meta.env.VITE_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: imageIsDefined ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" } })
+  axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/create`, article, { withCredentials: true, headers: imageIsDefined ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" } })
   .then(()=>{
     reset()
     setImage(null)
