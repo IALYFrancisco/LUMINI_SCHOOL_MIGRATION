@@ -8,5 +8,13 @@ module.exports = {
     changefreq: 'weekly',
     priority: 0.7,
     autoLastmod: true,
+    robotsTxtOptions: {
+        policies: [
+            {
+                userAgent: "*",
+                disallow: ["/dashboard"]
+            }
+        ]
+    },
     exclude: [ '/dashboard/*' ]
 }
