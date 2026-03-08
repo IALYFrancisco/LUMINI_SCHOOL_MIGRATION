@@ -1,0 +1,32 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 100px);
+}
+
+.not-found-container div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 20px;
+    position: relative;
+}
+
+.not-found-container button {
+    margin: auto;
+    color: var(--secondary);
+    background-color: var(--fourth);
+}
+
+.not-found-container .mouse {
+    z-index: 1;
+}
+
+.not-found-container .laptop-mouse {
+    z-index: 999;
+}

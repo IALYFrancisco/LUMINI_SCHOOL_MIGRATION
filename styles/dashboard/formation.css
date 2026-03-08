@@ -1,0 +1,201 @@
+.formation {
+    display: flex;
+    column-gap: 50px;
+    color: var(--primary);
+    position: relative;
+    align-items: center;
+}
+
+.formation::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--fourth);
+}
+
+.formations {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.formations > li {
+    position: relative;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.formation li p {
+    font-size: 13px;
+}
+
+.formations .title,
+.formations .description,
+.formations .addDate,
+.formations .publicationDate {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.formations .published,
+.formations .formation-actions {
+    width: 10%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.formation .formation-actions:hover {
+    cursor: pointer;
+}
+
+.formation .formation-actions img {
+    transition: .25s;
+}
+
+.formation .formation-actions:active img {
+    transform: scale(0.8);
+    transition: .25s;
+}
+
+.formations .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.formation .description {
+    overflow: hidden;
+    height: 18px;
+}
+
+.formation .description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.formation .title {
+    overflow: hidden;
+}
+
+.formation .title h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.formation-actions .custom-container {
+    width: max-content;
+}
+
+.add-formation-form {
+    margin-top: 50px;
+    color: var(--primary);
+    height: calc(100vh - 160px);
+    overflow-y: scroll;
+}
+
+.add-formation-form::-webkit-scrollbar {
+    width: 1px;
+}
+
+.add-formation-form .message {
+    color: red;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.add-formation-form .element {
+    margin-top: 30px;
+}
+
+.add-formation-form .element label {
+    font-weight: 900;
+    display: block;
+}
+
+.add-formation-form .element label p {
+    font-size: 13px;
+    font-weight: 400;
+    display: inline;
+    margin-left: 5px;
+}
+
+.add-formation-form form .fieldsets-top {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-formation-form input,
+.add-formation-form textarea,
+.add-formation-form fieldset {
+    width: 100%;
+}
+
+.add-formation-form input,
+.add-formation-form textarea {
+    margin-top: 10px;
+    outline: none;
+}
+
+.add-formation-form input[type="text"],
+.add-formation-form textarea,
+.add-formation-form input[type="datetime-local"],
+.add-formation-form input[type="number"],
+.add-formation-form input[type="url"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+}
+
+.add-formation-form input[type="text"]:focus,
+.add-formation-form textarea:focus,
+.add-formation-form input[type="datetime-local"]:focus,
+.add-formation-form input[type="number"]:focus,
+.add-formation-form input[type="url"]:focus {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.add-formation-form input {
+    height: 40px;
+}
+
+.add-formation-form textarea {
+    height: 288px;
+    resize: none;
+}
+
+.add-formation-form fieldset {
+    border: none;
+}
+
+.add-formation-form .element button {
+    background-color: var(--fourth);
+    color: var(--secondary);
+}
+
+.add-formation-form .fieldsets-bottom fieldset {
+    display: flex;
+    column-gap: 50px;
+}
+
+.add-formation-form .fieldsets-bottom .element{
+    width: 100%;
+}
+
+.add-formation-form .fieldsets-bottom button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.add-formation-form .fieldsets-bottom button img {
+    animation: spinner infinite 3s linear;
+    width: 20px;
+}
