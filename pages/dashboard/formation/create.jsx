@@ -1,7 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function AddFormation(){
     
@@ -41,7 +43,7 @@ export default function AddFormation(){
             if(watchAll.url){
                 formation.append("image", data.url)
             }
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/formation/add`, formation,
+            await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/add`, formation,
                 { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true }
             ).then(()=>{
                 setImage(null)
@@ -117,7 +119,7 @@ export default function AddFormation(){
                             <div className="element">
                                 <button disabled={addFormationLoading}>
                                     Soumettre
-                                    { addFormationLoading && <img src="/images/spinner.png" alt="" />}    
+                                    { addFormationLoading && <Image src="/images/spinner.png" alt="loader spiner" width={50} height={50} priority />}    
                                 </button>
                             </div>
                         </fieldset>
