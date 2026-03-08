@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Nav } from "@/components/nav"
-import Link from "next/router"
+import Link from "next/link"
 import Image from "next/image"
 
 export default function NotFound(){
