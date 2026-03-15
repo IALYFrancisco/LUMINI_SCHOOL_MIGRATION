@@ -7,13 +7,14 @@ module.exports = {
     additionalPaths: async ()=>{
         try{
             let articles = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get`)
-            return articles.map( a => ({
+            return articles.data.map( a => ({
                 loc: `/article/${a.slug}/`,
                 changefreq: "weekly",
                 priority: 0.8,
                 lastmod: a.updatedAt
             }))
-        }catch{
+        }catch(err){
+            console.log(err)
             return []
         }
     },
