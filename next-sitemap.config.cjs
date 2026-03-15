@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 
 /** @type { import('next-sitemap').IConfig } */
 module.exports = {
@@ -11,9 +11,11 @@ module.exports = {
                 loc: `/article/${a.slug}/`,
                 changefreq: "weekly",
                 priority: 0.8,
-                lastmod: 
+                lastmod: a.updatedAt
             }))
-        }catch{}
+        }catch{
+            return []
+        }
     },
     generateIndexSitemap: false,
     outDir: "./dist",
