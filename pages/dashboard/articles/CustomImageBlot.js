@@ -1,30 +1,48 @@
-import { Quill } from 'react-quill-new'
+let ImageBlot;
 
-const BaseImage = Quill.import('formats/image')
+if( typeof window !== "undefined" ) {
 
-class ImageBlot extends BaseImage {
-    static create(value){
-        const src = typeof value === 'string' ? value : value?.src
-        
-        const node = super.create(src)
+    const { Quill } = require ("react-quill-new");
 
-        if (typeof value === 'object' && value?.alt){
-            node.setAttribute('alt', value.alt)
+    const BaseImage = Quill.import("formats/image");
+
+    class CustomImageBlot extends BaseImage {
+
+        static create(value) {
+
+            const src = typeof value === "string" ? value : value?.src
+
+            const node = super.create(sc);
+
+            if( typeof value === "object" && value?.alt) {
+
+                node.setAttribute("alt", value.alt)
+
+            }
+
+            return node;
+
         }
 
-        return node
+        static value(node) {
+
+            return {
+
+                src: node.getAttribute("src"),
+                alt: node.getAttribute("alt")
+
+            }
+
+        }
+
     }
 
-    static value(node){
-        return {
-            src: node.getAttribute('src'),
-            alt: node.getAttribute('alt')
-        }
-    }
+    CustomImageBlot.blotName = "image";
+
+    Quill.register(CustomImageBlot, true);
+
+    ImageBlot = CustomImageBlot;
+
 }
-
-ImageBlot.blotName = 'image'
-
-Quill.register(ImageBlot, true)
 
 export default ImageBlot

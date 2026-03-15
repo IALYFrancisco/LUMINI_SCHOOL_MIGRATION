@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
+
+"use client"
+
+import dynamic from "next/dynamic";
 import { useState, useRef, useEffect } from "react";
-import ReactQuill from "react-quill-new";
 import DOMPurify from "dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -9,6 +12,8 @@ import Link from "next/link";
 import '../../CustomImageBlot'
 import Dashboard from "@/components/layouts/dashboardLayout";
 import ArticleLayout from "@/components/layouts/articleLayout";
+
+const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
 export default function UpdateArticle() {
 
