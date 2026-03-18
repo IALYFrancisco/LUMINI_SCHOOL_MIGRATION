@@ -3,7 +3,8 @@
 import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react";
 // import { sanitize } from "dompurify";
-import _default from "dompurify";
+// import _default from "dompurify";
+import DOMPurify from "dompurify"
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import '@/components/dashboard/articles/CustomImageBlot'
@@ -13,6 +14,8 @@ import ArticleLayout from "@/components/layouts/articleLayout";
 const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
 export default function CreateArticle() {
+
+  console.log(DOMPurify)
 
   const { register, handleSubmit, reset, watch } = useForm()
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
@@ -143,7 +146,7 @@ const _handleSubmit = (data) => {
 
   if(content == "<p><br></p>") return
 
-  const cleanHTML = _default.sanitize(content);
+  const cleanHTML = DOMPurify.sanitize(content);
   const article = new FormData()
   
   article.append('title', data.title)
@@ -218,7 +221,7 @@ const _handleSubmit = (data) => {
                 </form>
                 <div className="previsualisation ql-container ql-snow">
                     <h3>Prévisualisation :</h3>
-                    <div dangerouslySetInnerHTML={{ __html: _default.sanitize(content) }} className="ql-editor" ></div>
+                    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} className="ql-editor" ></div>
                 </div>
             </div>
             </>
