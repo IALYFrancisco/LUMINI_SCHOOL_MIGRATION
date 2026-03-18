@@ -4,7 +4,6 @@
 
 import dynamic from "next/dynamic";
 import { useState, useRef, useEffect } from "react";
-// import DOMPurify from "dompurify";
 import sanitize from "dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
