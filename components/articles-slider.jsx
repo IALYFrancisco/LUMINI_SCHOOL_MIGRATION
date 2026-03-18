@@ -3,7 +3,7 @@ import 'swiper/css'
 import { useEffect, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import axios from "axios";
-import DOMPurify from "dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import Link from "next/link"
 import Image from "next/image"
 

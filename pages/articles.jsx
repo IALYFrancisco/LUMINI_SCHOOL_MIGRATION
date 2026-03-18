@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Loading from "@/components/loading"
-import DOMPurify from "dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"

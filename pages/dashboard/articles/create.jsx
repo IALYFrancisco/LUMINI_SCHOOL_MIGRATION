@@ -2,9 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react";
-// import { sanitize } from "dompurify";
-// import _default from "dompurify";
-import DOMPurify from "dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import '@/components/dashboard/articles/CustomImageBlot'

@@ -3,7 +3,7 @@ import { Nav } from "@/components/nav"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Loading from "@/components/loading"
-import DOMPurify from 'dompurify'
+import DOMPurify from 'isomorphic-dompurify'
 import Head from "next/head"
 
 export default function ArticleView(){

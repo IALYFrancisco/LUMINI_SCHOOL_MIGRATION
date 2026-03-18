@@ -4,7 +4,7 @@
 
 import dynamic from "next/dynamic";
 import { useState, useRef, useEffect } from "react";
-import sanitize from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -167,7 +167,7 @@ const _handleSubmit = (data) => {
 
         try{
 
-            const cleanHTML = sanitize(content);
+            const cleanHTML = DOMPurify.sanitize(content);
             const _article = new FormData()
     
             if(article.title !== watchAll.title && data.title !== ""){
@@ -270,7 +270,7 @@ const _handleSubmit = (data) => {
 
                 <div className="previsualisation ql-container ql-snow">
                     <h3>Prévisualisation :</h3>
-                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: sanitize(content) }} />
+                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
                 </div>
             </div>
             </>

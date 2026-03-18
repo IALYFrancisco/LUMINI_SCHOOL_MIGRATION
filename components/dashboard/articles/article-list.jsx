@@ -3,7 +3,7 @@ import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import DOMPurify from "dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import Image from "next/image"
 
 export default function ArticlesList(){
