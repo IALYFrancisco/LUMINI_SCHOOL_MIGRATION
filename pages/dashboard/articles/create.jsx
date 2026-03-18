@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react";
-import sanitize from "dompurify";
+// import { sanitize } from "dompurify";
+import _default from "dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import '@/components/dashboard/articles/CustomImageBlot'
@@ -142,7 +143,7 @@ const _handleSubmit = (data) => {
 
   if(content == "<p><br></p>") return
 
-  const cleanHTML = sanitize(content);
+  const cleanHTML = _default.sanitize(content);
   const article = new FormData()
   
   article.append('title', data.title)
@@ -217,7 +218,7 @@ const _handleSubmit = (data) => {
                 </form>
                 <div className="previsualisation ql-container ql-snow">
                     <h3>Prévisualisation :</h3>
-                    <div dangerouslySetInnerHTML={{ __html: sanitize(content) }} className="ql-editor" ></div>
+                    <div dangerouslySetInnerHTML={{ __html: _default.sanitize(content) }} className="ql-editor" ></div>
                 </div>
             </div>
             </>
