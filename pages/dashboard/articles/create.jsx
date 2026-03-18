@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client"
 
 import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react";
-import DOMPurify from "dompurify";
+import sanitize from "dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import './CustomImageBlot'
+import '@/components/dashboard/articles/CustomImageBlot'
 import Dashboard from "@/components/layouts/dashboardLayout";
 import ArticleLayout from "@/components/layouts/articleLayout";
 
@@ -143,7 +142,7 @@ const _handleSubmit = (data) => {
 
   if(content == "<p><br></p>") return
 
-  const cleanHTML = DOMPurify.sanitize(content);
+  const cleanHTML = sanitize(content);
   const article = new FormData()
   
   article.append('title', data.title)
@@ -218,7 +217,7 @@ const _handleSubmit = (data) => {
                 </form>
                 <div className="previsualisation ql-container ql-snow">
                     <h3>Prévisualisation :</h3>
-                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+                    <div dangerouslySetInnerHTML={{ __html: sanitize(content) }} className="ql-editor" ></div>
                 </div>
             </div>
             </>
