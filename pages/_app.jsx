@@ -3,6 +3,7 @@ import '@/styles/home.css';
 import '@/styles/login.css';
 import '@/styles/formationsPage.css';
 import '@/styles/dashboard/dashboard.css';
+import '@/styles/dashboard/inscription.css';
 import '@/styles/registrations.css';
 import '@/styles/articleView.css';
 import '@/styles/notFound.css';
