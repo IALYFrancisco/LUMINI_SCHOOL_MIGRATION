@@ -5,6 +5,8 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import Image from "next/image"
+import Dashboard from "@/components/layouts/dashboardLayout";
+import ArticleLayout from "@/components/layouts/articleLayout";
 
 export default function SEOUpdate(){
     
@@ -129,38 +131,42 @@ export default function SEOUpdate(){
 
     return(
         article &&
-        <>
-            <div className="update-article-seo">
-                <h3>Modification du SEO de l'article <span>"{article.title}"</span></h3>
-                <form onSubmit={handleSubmit(sumbmitForm)}>
-                    <fieldset>
-                        <div className="element">
-                            <label htmlFor="page-title">Titre de page [ title, og:title, twitter:title ] :</label>
-                            <input type="text" id="page-title" placeholder="Ajoutez un titre à la page d'article (ce sera également utilisé par og:title et twitter:title)" { ...register('title') } required/>
-                        </div>
-                        <div className="element">
-                            <label htmlFor="page-url">Url de page [ lien canonique, og:url, twitter:url ] :</label>
-                            <input type="url" id="page-url" placeholder="Url canonique à la page d'article pour link:canonical et og:url" { ...register('canonicUrl') } required disabled/>
-                        </div>
-                        <div className="element">
-                            <label htmlFor="image">Image de mise en avant [ og:image, twitter:image ] :</label>
-                            <input type="url" id="image" placeholder="Image pour og:image, twitter:image" { ...register('image') } required disabled/>
-                        </div>
-                        <div className="element">
-                            <button disabled={!isModified || isLoading}>
-                                Soumettre
-                                { isLoading && <Image src="/images/spinner.png" alt="loader" width={50} height={50} priority />}
-                            </button>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div className="element">
-                            <label htmlFor="page-description">Description de page :</label>
-                            <textarea id="page-description" placeholder="Rediger une description pour la page, ce sera utilisée par meta:description: , og:description et twitter:description" { ...register('description')} required></textarea>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </>
+        <Dashboard>
+            <ArticleLayout>
+                <>
+                    <div className="update-article-seo">
+                        <h3>Modification du SEO de l'article <span>"{article.title}"</span></h3>
+                        <form onSubmit={handleSubmit(sumbmitForm)}>
+                            <fieldset>
+                                <div className="element">
+                                    <label htmlFor="page-title">Titre de page [ title, og:title, twitter:title ] :</label>
+                                    <input type="text" id="page-title" placeholder="Ajoutez un titre à la page d'article (ce sera également utilisé par og:title et twitter:title)" { ...register('title') } required/>
+                                </div>
+                                <div className="element">
+                                    <label htmlFor="page-url">Url de page [ lien canonique, og:url, twitter:url ] :</label>
+                                    <input type="url" id="page-url" placeholder="Url canonique à la page d'article pour link:canonical et og:url" { ...register('canonicUrl') } required disabled/>
+                                </div>
+                                <div className="element">
+                                    <label htmlFor="image">Image de mise en avant [ og:image, twitter:image ] :</label>
+                                    <input type="url" id="image" placeholder="Image pour og:image, twitter:image" { ...register('image') } required disabled/>
+                                </div>
+                                <div className="element">
+                                    <button disabled={!isModified || isLoading}>
+                                        Soumettre
+                                        { isLoading && <Image src="/images/spinner.png" alt="loader" width={50} height={50} priority />}
+                                    </button>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div className="element">
+                                    <label htmlFor="page-description">Description de page :</label>
+                                    <textarea id="page-description" placeholder="Rediger une description pour la page, ce sera utilisée par meta:description: , og:description et twitter:description" { ...register('description')} required></textarea>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </>
+            </ArticleLayout>
+        </Dashboard>
     )
 }
