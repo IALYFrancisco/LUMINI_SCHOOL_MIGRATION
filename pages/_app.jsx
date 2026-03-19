@@ -4,12 +4,13 @@ import '@/styles/login.css';
 import '@/styles/formationsPage.css';
 import '@/styles/dashboard/dashboard.css';
 import '@/styles/dashboard/inscription.css';
-import '@/styles/registrations.css';
-import '@/styles/articleView.css';
-import '@/styles/notFound.css';
-import '@/styles/dashboard/formation.css';
 import '@/styles/dashboard/article.css';
 import "react-quill-new/dist/quill.snow.css";
+import '@/styles/dashboard/formation.css';
+import '@/styles/registrations.css';
+import '@/styles/user.css';
+import '@/styles/articleView.css';
+import '@/styles/notFound.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
 import { Toaster } from "sonner"
