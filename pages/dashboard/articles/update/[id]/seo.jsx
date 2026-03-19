@@ -1,33 +1,40 @@
-import { useParams } from "react-router-dom"
+/* eslint-disable react/no-unescaped-entities */
+import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function SEOUpdate(){
     
+    const router = useRouter()
+
     var [article, setArticle] = useState(null)
     var [seo, setSeo] = useState(null)
-    const {id} = useParams()
+    const {id} = router.query
     var { register, handleSubmit, reset, formState: { isDirty } } = useForm()
     var [ isLoading, setIsLoading ] = useState(false)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
-            .then((response)=>{
-                setArticle(response.data)
-            }).catch(()=>setArticle(null))
+        if(id){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
+                .then((response)=>{
+                    setArticle(response.data)
+                }).catch(()=>setArticle(null))
+        }
     },[id])
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+    if(id){
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
             .then((response)=>{
                 if(response.status === 200){
                     setSeo(response.data)
                     reset({
                         title: response.data.title,
-                        canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
-                        image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                        canonicUrl: `${process.env.NEXT_PUBLIC_APP_BASE_URL}${response.data.canonicUrl}`,
+                        image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
                         description: response.data.description
                     })
                 }
@@ -39,6 +46,7 @@ export default function SEOUpdate(){
                 setSeo(null)
                 toast.error('Erreur de récupération du SEO de cet article')
             })
+    }
     }, [article, id, reset])
 
     const isModified = isDirty
@@ -57,17 +65,17 @@ export default function SEOUpdate(){
                 if(data.description != seo.description){
                     update.description = data.description
                 }
-                let response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/seo/update`, { seoId: seo._id, update }, {withCredentials: true})
+                let response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/update`, { seoId: seo._id, update }, {withCredentials: true})
                 if(response.status === 200){
                     toast.success("Seo mis à jour avec succès.")
-                    axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
                     .then((response)=>{
                         if(response.status === 200){
                             setSeo(response.data)
                             reset({
                                 title: response.data.title,
-                                canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
-                                image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                                canonicUrl: `${process.env.NEXT_PUBLIC_APP_BASE_URL}${response.data.canonicUrl}`,
+                                image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
                                 description: response.data.description
                             })
                         }
@@ -93,16 +101,16 @@ export default function SEOUpdate(){
                 },
                 articleId: id
             }
-            axios.post(`${import.meta.env.VITE_API_BASE_URL}/seo/create`, _data, { withCredentials: true })
+            axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/create`, _data, { withCredentials: true })
             .then(()=>{
-                axios.get(`${import.meta.env.VITE_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
+                axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/seo/get?articleId=${id}`, { withCredentials: true })
                 .then((response)=>{
                     if(response.status === 200){
                         setSeo(response.data)
                         reset({
                             title: response.data.title,
-                            canonicUrl: `${import.meta.env.VITE_APP_BASE_URL}${response.data.canonicUrl}`,
-                            image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${import.meta.env.VITE_API_BASE_URL}/${response.data.image}`,
+                            canonicUrl: `${process.env.NEXT_PUBLIC_APP_BASE_URL}${response.data.canonicUrl}`,
+                            image: (response.data.image.startsWith('http') || response.data.image.startsWith('https')) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
                             description: response.data.description
                         })
                     }
@@ -141,7 +149,7 @@ export default function SEOUpdate(){
                         <div className="element">
                             <button disabled={!isModified || isLoading}>
                                 Soumettre
-                                { isLoading && <img src="/images/spinner.png" alt="" />}
+                                { isLoading && <Image src="/images/spinner.png" alt="loader" width={50} height={50} priority />}
                             </button>
                         </div>
                     </fieldset>
