@@ -1,0 +1,124 @@
+.title-for-payment {
+    color: var(--fourth)
+}
+
+.payment-container {
+    color: var(--primary);
+    height: calc(100vh - 110px);
+    overflow: auto;
+}
+
+.payment-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+.payment-container .head p {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.payment-container fieldset {
+    border: none;
+}
+
+.payment-container .forms-container {
+    margin-top: 30px;
+}
+
+.payment-container .forms-container form .element {
+    margin-top: 30px;
+}
+
+.payment-container form label {
+    font-weight: 900;
+    display: block;
+}
+
+.payment-container form .element input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.payment-container .payment-sections-container {
+    display: flex;
+    column-gap: 50px;
+}
+
+.sections-container .left,
+.sections-container .right {
+    width: 100%;
+}
+
+.payment-container form .element textarea {
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    padding: 10px;
+    font-weight: 900;
+    transition: .25s;
+    margin-top: 10px;
+    resize: none;
+    height: 138px;
+}
+
+.payment-details-container {
+    margin-top: 30px;
+}
+
+.payment-mode-container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    margin-top: 15px;
+}
+
+.payment-container .mode {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color background-color .25s;
+}
+
+.payment-container .mode.mvola.selected {
+    border-color: #006935;
+    transition: border-color background-color .25s;
+    background-color: #ffdd00;
+}
+
+.payment-container .mode.paypal.selected {
+    border-color: midnightblue;
+    transition: border-color background-color .25s;
+    background-color: var(--thirdly);
+}
+
+.payment-container .mode:active {
+    transform: scale(0.9);
+    transition: .25s;
+}
+
+.payment-mode-container .mode img {
+    width: 100px;
+    transform: greyscale(10px);
+}
+
+.payment-container .section-container {
+    display: flex;
+    column-gap: 50px;
+}
+
+.payment-container button {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+}
