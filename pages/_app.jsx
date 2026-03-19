@@ -8,9 +8,10 @@ import '@/styles/dashboard/article.css';
 import "react-quill-new/dist/quill.snow.css";
 import '@/styles/dashboard/formation.css';
 import '@/styles/registrations.css';
-import '@/styles/user.css';
-import '@/styles/setting.css';
+import '@/styles/dashboard/user.css';
+import '@/styles/dashboard/setting.css';
 import '@/styles/articleView.css';
+import '@/styles/dashboard/payment.css';
 import '@/styles/notFound.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
