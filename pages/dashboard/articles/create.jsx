@@ -13,8 +13,6 @@ const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
 export default function CreateArticle() {
 
-  console.log(DOMPurify)
-
   const { register, handleSubmit, reset, watch } = useForm()
   var [ imageIsDefined, setImageIsDefined ] = useState(false)
   var [ urlIsDefined, setUrlIsDefined ] = useState(false)
