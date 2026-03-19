@@ -32,15 +32,17 @@ export default function UpdateArticle() {
   var watchAll = watch()
 
   useEffect(()=>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
-    .then((response)=>{
-        setArticle(response.data)
-        reset({
-            title: response.data.title,
-            url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
-        })
-        setContent(response.data.contents)
-    })
+    if(id){
+      axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
+      .then((response)=>{
+          setArticle(response.data)
+          reset({
+              title: response.data.title,
+              url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
+          })
+          setContent(response.data.contents)
+      })
+    }
   }, [id, reset])
 
   const isModified = isDirty || image || (article !== null && content !== article.contents)
