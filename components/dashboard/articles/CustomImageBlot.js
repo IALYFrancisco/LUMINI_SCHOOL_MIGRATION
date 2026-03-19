@@ -12,7 +12,7 @@ if( typeof window !== "undefined" ) {
 
             const src = typeof value === "string" ? value : value?.src
 
-            const node = super.create(sc);
+            const node = super.create(src);
 
             if( typeof value === "object" && value?.alt) {
 
