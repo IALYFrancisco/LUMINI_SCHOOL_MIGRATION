@@ -9,6 +9,7 @@ import "react-quill-new/dist/quill.snow.css";
 import '@/styles/dashboard/formation.css';
 import '@/styles/registrations.css';
 import '@/styles/user.css';
+import '@/styles/setting.css';
 import '@/styles/articleView.css';
 import '@/styles/notFound.css';
 import { AuthProvider } from "@/contexts/AuthContext";
