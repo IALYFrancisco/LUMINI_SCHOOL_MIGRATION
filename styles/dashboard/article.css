@@ -80,7 +80,7 @@
     padding: 20px;
     margin-top: 30px;
     height: max-content;
-    color: var(--primary)
+    color: var(--primary);
 }
 
 .add-article .previsualisation .ql-editor {
