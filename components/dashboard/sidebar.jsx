@@ -38,7 +38,7 @@ export default function Sidebar(){
                 <li>
                     <ul>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
-                            <Link href="/dashboard" end className={ router.pathname === "/dashboard" ? "dash-link active" : "dash-link"}>
+                            <Link href="/dashboard" className={ router.pathname === "/dashboard" ? "dash-link active" : "dash-link"}>
                                 <Image src="/images/formations.png" alt="icone formations" width={48} height={48} priority />
                                 Formations
                             </Link>

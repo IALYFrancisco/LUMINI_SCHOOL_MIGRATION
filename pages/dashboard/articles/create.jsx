@@ -1,12 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
+
+import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react";
-import ReactQuill from "react-quill-new";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify"
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import './CustomImageBlot'
+import '@/components/dashboard/articles/CustomImageBlot'
 import Dashboard from "@/components/layouts/dashboardLayout";
 import ArticleLayout from "@/components/layouts/articleLayout";
+
+const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
 export default function CreateArticle() {
 
@@ -214,7 +217,7 @@ const _handleSubmit = (data) => {
                 </form>
                 <div className="previsualisation ql-container ql-snow">
                     <h3>Prévisualisation :</h3>
-                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+                    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} className="ql-editor" ></div>
                 </div>
             </div>
             </>

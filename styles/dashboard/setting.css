@@ -1,0 +1,251 @@
+.info-perso-container {
+    color: var(--primary);
+}
+
+.info-perso-container .head p {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.info-perso-container .forms-container::-webkit-scrollbar {
+    width: 0;
+}
+
+.info-perso-container .forms-container {
+    margin-top: 30px;
+    display: flex;
+    column-gap: 50px;
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+}
+
+.info-perso-container .forms-container .left {
+    width: 50%;
+}
+
+.info-perso-container .forms-container .left form button {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+    margin-top: 10px;
+}
+
+.info-perso-container .forms-container .left form button:disabled {
+    background-color: gray;
+}
+
+.info-perso-container .forms-container form fieldset {
+    border: none;
+}
+
+.info-perso-container .forms-container form label {
+    font-weight: 900;
+    display: block;
+}
+
+.info-perso-container .forms-container form .element {
+    margin-top: 30px;
+}
+
+.info-perso-container .forms-container form .element input:not([type="file"]) {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.info-perso-container .forms-container form .element input:focus:not([type="file"]) {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.info-perso-container .forms-container form .element input[type="file"] {
+    margin-top: 15px;
+}
+
+.info-perso-container .forms-container .right {
+    width: 50%;
+}
+
+.info-perso-container .forms-container .right form:nth-child(2) {
+    margin-top: 30px;
+}
+
+.info-perso-container .forms-container .right form:nth-child(2) h3 {
+    color: red;
+}
+
+.info-perso-container .forms-container .right form:nth-child(2) button {
+    background-color: red;
+    color: var(--thirdly);
+    margin-top: 10px;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-badge {
+    font-size: 13px;
+    background-color: gray;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--thirdly);
+    transition: .5s;
+}
+
+.action-badge.active {
+    background-color: var(--fourth);
+}
+
+.action-badge:active {
+    transform: scale(0.95);
+    transition: .5s;
+}
+
+.infos-overlay,
+.password-overlay {
+    background: #1b22329c;
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    transition: 250ms;
+    left: 0;
+    top: 0;
+}
+
+.infos-overlay.active,
+.password-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.infos-modal,
+.password-modal {
+    max-width: 400px;
+    background-color: var(--thirdly);
+    color: var(--primary);
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    transition: 300ms;
+    transform: scale(1.1);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.429);
+    border-radius: 5px;
+    padding: 20px;
+    top: 100px;
+    margin: 100px auto;
+    left: -50%;
+    right: -50%;
+}
+
+.password-modal {
+    margin: 0px auto;
+}
+
+.infos-modal.active,
+.password-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.infos-modal p,
+.password-modal p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.red {
+    color: red;
+    font-weight: 900;
+}
+
+.infos-modal-actions,
+.password-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+}
+
+.infos-modal-actions button:nth-child(1),
+.password-modal-actions button:nth-child(2) {
+    background-color: var(--fourth);
+    color: var(--thirdly);
+    height: 35px;
+}
+
+.infos-modal-actions button:nth-child(2) {
+    background-color: red;
+    color: var(--thirdly);
+    height: 35px;
+}
+
+.infos-modal .element,
+.password-modal .element {
+    margin-top: 20px;
+}
+
+.infos-modal .element input:not([type="file"]),
+.password-modal .element input:not([type="file"]) {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #1b223261;
+    font-weight: 900;
+    transition: .25s;
+    height: 40px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+}
+
+.infos-modal .element input:focus:not([type="file"]),
+.password-modal .element input:focus:not([type="file"]) {
+    transition: .25s;
+    border-color: #1b2232;
+}
+
+.infos-modal label,
+.password-modal label {
+    font-weight: 900;
+    display: block;
+}
+
+.close-password-overlay,
+.close-infos-overlay {
+    background-color: grey;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 2px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.close-password-overlay:active,
+.close-infos-overlay:active {
+    transform: scale(.9);
+    transition: .25s;
+}
+
+.close-password-overlay img,
+.close-infos-overlay img {
+    width: 18px;
+}

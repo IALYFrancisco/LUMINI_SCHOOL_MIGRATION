@@ -34,7 +34,7 @@ body, html {
 }
 
 .ql-document::before {
-  content: "­ƒôÄ";
+  content: "­📎";
 }
 
 .loader {

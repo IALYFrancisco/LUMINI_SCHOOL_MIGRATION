@@ -1,14 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
+
+"use client"
+
+import dynamic from "next/dynamic";
 import { useState, useRef, useEffect } from "react";
-import ReactQuill from "react-quill-new";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import '../../CustomImageBlot'
+import '@/components/dashboard/articles/CustomImageBlot'
 import Dashboard from "@/components/layouts/dashboardLayout";
 import ArticleLayout from "@/components/layouts/articleLayout";
+
+const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
 export default function UpdateArticle() {
 
@@ -27,15 +32,17 @@ export default function UpdateArticle() {
   var watchAll = watch()
 
   useEffect(()=>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
-    .then((response)=>{
-        setArticle(response.data)
-        reset({
-            title: response.data.title,
-            url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
-        })
-        setContent(response.data.contents)
-    })
+    if(id){
+      axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get?_id=${id}`, { withCredentials: true })
+      .then((response)=>{
+          setArticle(response.data)
+          reset({
+              title: response.data.title,
+              url : (response.data.image.startsWith("https") || response.data.image.startsWith("http")) ? response.data.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data.image}`,
+          })
+          setContent(response.data.contents)
+      })
+    }
   }, [id, reset])
 
   const isModified = isDirty || image || (article !== null && content !== article.contents)

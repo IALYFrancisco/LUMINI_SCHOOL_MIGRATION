@@ -1,0 +1,167 @@
+
+/* Style de la liste pour les administrateures et le superutilisateur */
+.inscriptions {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.inscriptions > li {
+    position: relative;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.inscriptions .title,
+.inscriptions .description,
+.inscriptions .addDate,
+.inscriptions .publicationDate {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.inscriptions .formation-actions {
+    width: 20%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.inscriptions .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+/* Style de la liste pour les utilisateurs simples */
+.registrations {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.registrations .titles ul {
+    display: flex;
+    column-gap: 20px;
+    font-size: 14px;
+}
+
+.registrations > li {
+    position: relative;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.registrations .formation-title,
+.registrations .addDate,
+.registrations .begin-date,
+.registrations .end-date,
+.registrations .course-price,
+.registrations .course-price-payed,
+.registrations .registration-actions,
+.registrations .course-place {
+    width: 14%;
+    padding-left: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.registrations .registration-actions {
+    position: relative;
+    text-align: start;
+}
+
+.registrations .registration-actions .custom-container {
+    cursor: pointer;
+}
+
+.registrations .registration-actions .pop-up li {
+    cursor: pointer;
+}
+
+.registrations .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.registration {
+    display: flex;
+    column-gap: 20px;
+    color: var(--primary);
+    position: relative;
+    align-items: center;
+}
+
+.registration::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--fourth);
+}
+
+.registration li p {
+    font-size: 13px;
+}
+
+.registration .course-place {
+    overflow: hidden;
+}
+
+.registration .course-place p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.registration .formation-title {
+    overflow: hidden;
+}
+
+.registration .formation-title h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.registrations .registration .pop-up {
+    background-color: var(--thirdly);
+    padding: 5px;
+    row-gap: 15px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    left: -100px;
+    z-index: 5;
+    width: max-content;
+}
+
+.registrations .registration .pop-up.show {
+    display: block;
+}
+
+.registrations .registration .pop-up.hide {
+    display: none;
+}
+
+.registrations .registration .pop-up li {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.registrations .registration .pop-up li:hover {
+    background-color: rgba(0, 0, 0, 0.163);
+}
+
+.registrations .registration .pop-up li a {
+    color: var(--primary);
+}
+
+#dashboard-view > section > ul > li:nth-child(2) > ul > li.registration-actions > ul > a {
+    color: var(--primary);
+}

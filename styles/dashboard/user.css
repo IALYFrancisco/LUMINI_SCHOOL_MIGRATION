@@ -1,0 +1,113 @@
+.user {
+    display: flex;
+    column-gap: 50px;
+    color: var(--primary);
+    position: relative;
+    align-items: center;
+}
+
+.users .user::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--fourth);
+}
+
+.users {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.users > li {
+    position: relative;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.user li p {
+    font-size: 13px;
+}
+
+.users .title,
+.users .description,
+.users .addDate,
+.users .publicationDate {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.users .published,
+.users .formation-actions {
+    width: 10%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.user .formation-actions:hover {
+    cursor: pointer;
+}
+
+.user .formation-actions img {
+    transition: .25s;
+}
+
+.user .formation-actions:active img {
+    transform: scale(0.8);
+    transition: .25s;
+}
+
+.users .titles {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.user .description {
+    overflow: hidden;
+}
+
+.user .description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.user .title {
+    overflow: hidden;
+}
+
+.user .title h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.users .badge {
+    min-width: 40px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    border-radius: 30px;
+}
+
+.users .badge.superuser {
+    background-color: crimson;
+    color: var(--secondary);
+}
+
+.users .badge.admin {
+    color: var(--primary);
+    background-color: orange;
+    width: 60px;
+}
+
+.users .badge._user {
+    color: var(--primary);
+    background-color: rgb(106, 255, 0);
+}
