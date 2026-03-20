@@ -1,21 +1,21 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import Loading from "@/components/loading";
 import { useForm } from 'react-hook-form'
-import DateRefactoring from '../../../contexts/DateRefactoring'
-import { useAuth } from '../../../contexts/AuthContext'
+import DateRefactoring from '@/contexts/DateRefactoring'
+import { useAuth } from '@/contexts/AuthContext'
 import { toast } from 'sonner'
-import { useHead } from '@unhead/react'
+import Head from 'next/head';
+import Image from 'next/image';
 
 export default function Payments(){
 
-    useHead({
-        title: 'Paiement - Dashboard | LUMINI School'
-    })
+    const router = useRouter()
     
-    const { formationId } = useParams()
+    const { formationId } = router.query
     const [ searchParams ] = useSearchParams()
     let [ formation, setFormation ] = useState(null)
     
@@ -35,24 +35,26 @@ export default function Payments(){
     }
 
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/formation/get?_id=${formationId}`)
-        .then((response)=>{
-            setFormation(response.data[0])
-            reset({
-                title: response.data[0].title,
-                prerequisites: response.data[0].prerequisites,
-                beginDate: DateRefactoring(response.data[0].beginDate),
-                endDate: DateRefactoring(response.data[0].endDate),
-                coursePlace: response.data[0].coursePlace,
-                coursePrice: response.data[0].coursePrice,
-                description: response.data[0].description,
-                phoneNumber: user.phoneNumber
+        if(formationId && user){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${formationId}`)
+            .then((response)=>{
+                setFormation(response.data[0])
+                reset({
+                    title: response.data[0].title,
+                    prerequisites: response.data[0].prerequisites,
+                    beginDate: DateRefactoring(response.data[0].beginDate),
+                    endDate: DateRefactoring(response.data[0].endDate),
+                    coursePlace: response.data[0].coursePlace,
+                    coursePrice: response.data[0].coursePrice,
+                    description: response.data[0].description,
+                    phoneNumber: user.phoneNumber
+                })
             })
-        })
-    }, [formationId, reset, user.phoneNumber])
+        }
+    }, [formationId, reset, user])
 
     const MvolaInitiateTransaction = (d)=>{
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
+        axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
         .then(()=>{
             toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
         })
@@ -78,7 +80,10 @@ export default function Payments(){
     
     if(!formation) return <Loading/>
     return(
-        <> { formation && <>
+        <> { formation && user && <>
+            <Head>
+                <title>Paiement - Dashboard | LUMINI School</title>
+            </Head>
             <h2>Paiement de droit du formation <span className='title-for-payment'>"{formation.title}"</span></h2>
             <section className="payment-container">
                 <div className="head">
@@ -130,10 +135,10 @@ export default function Payments(){
                                             <label htmlFor="">Mode de paiement :</label>
                                             <section className="payment-mode-container">
                                                 <div className={ mvolaIsSelected ? "mode mvola selected" : "mode mvola"} title='Paiment par mvola.' onClick={SelectMvolaModeToggle}>
-                                                    <img src="/images/logo-de-mvola.png" alt="" />
+                                                    <Image src="/images/logo-de-mvola.png" width={200} height={200} alt="paiement mvola" priority />
                                                 </div>
                                                 <div className={paypalIsSelected ? "mode paypal selected":"mode paypal"} title='Paiment par PayPal' onClick={SelectPayPalModeToggle}>
-                                                    <img src="/images/logo-de-paypal.webp" alt="" />    
+                                                    <Image src="/images/logo-de-paypal.webp" width={200} height={200} priority alt="paiement paypal" />    
                                                 </div>
                                             </section>
                                         </div>
