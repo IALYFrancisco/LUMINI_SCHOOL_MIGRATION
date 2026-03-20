@@ -15,9 +15,11 @@ export default function Inscriptions(){
     const { user } = useAuth()
 
     useEffect(()=>{
-        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`, { withCredentials: true })
-        .then((response)=>setRegistrations(response.data))
-    }, [])
+        if(user){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`, { withCredentials: true })
+            .then((response)=>setRegistrations(response.data))
+        }
+    }, [user])
 
     const togglePopUp = (formationId) => {
         setActivePopUp((prev) => (prev === formationId ? null : formationId))
@@ -36,7 +38,6 @@ export default function Inscriptions(){
     }, [])
 
     return(
-        user &&
         <Dashboard>
             <>
                 <Head>
@@ -47,7 +48,7 @@ export default function Inscriptions(){
                     <input type="text" name="" id="" placeholder="Recherche d'une inscription"/>
                 </div>
                 {/* List for admin or superuser */}
-                { (user.status === "superuser"||user.status === "admin") && <ul className="inscriptions">
+                { user && (user.status === "superuser"||user.status === "admin") && <ul className="inscriptions">
                     <li className="titles">
                         <ul>
                             <li className="title">Titres du formation</li>
@@ -84,7 +85,7 @@ export default function Inscriptions(){
                     </li>}
                 </ul> }
                 {/* List for user, simple user */}
-                { user.status === "user" && <ul className="registrations">
+                { user && user.status === "user" && <ul className="registrations">
                     <li className="titles">
                         <ul>
                             <li className="formation-title">Formations</li>
