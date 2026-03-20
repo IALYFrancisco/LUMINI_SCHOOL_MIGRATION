@@ -20,10 +20,10 @@ export default function Settings(){
         watch: watchInfos
     } = useForm({
         defaultValues: {
-            name: user.name,
-            email: user.email,
-            profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}${user.profile}`,
-            phoneNumber: user.phoneNumber
+            name: user?.name,
+            email: user?.email,
+            profile: (user?.profile.includes('https') || user?.profile.includes('http')) ? user?.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.profile}`,
+            phoneNumber: user?.phoneNumber
         }
     })
 
@@ -59,7 +59,7 @@ export default function Settings(){
             resetInfo({
                 name: user.name,
                 email: user.email,
-                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`,
+                profile: (user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}${user.profile}`,
                 phoneNumber: user.phoneNumber
             })
         }
