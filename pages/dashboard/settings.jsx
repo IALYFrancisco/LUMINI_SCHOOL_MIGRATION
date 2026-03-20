@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import Head from 'next/head'
 import Image from 'next/image'
+import Dashboard from "@/components/layouts/dashboardLayout"
 
 export default function Settings(){
     
@@ -164,7 +165,7 @@ export default function Settings(){
     var isInfoModified = Object.keys(dirtyFieldsInfo).length > 0 || image
 
     return(
-        <>
+        <Dashboard>
             <Head>
                 <title>Paramètres - Dashboard | LUMINI School</title>
             </Head>
@@ -276,6 +277,6 @@ export default function Settings(){
                     <button>Soumettre</button>
                 </div>
             </form>
-        </>
+        </Dashboard>
     )
 }
