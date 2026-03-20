@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { toast } from 'sonner'
 import Head from 'next/head';
 import Image from 'next/image';
+import Dashboard from "@/components/layouts/dashboardLayout"
 
 export default function Payments(){
 
@@ -80,7 +81,7 @@ export default function Payments(){
     
     if(!formation) return <Loading/>
     return(
-        <> { formation && user && <>
+        <Dashboard> { formation && user && <>
             <Head>
                 <title>Paiement - Dashboard | LUMINI School</title>
             </Head>
@@ -163,6 +164,6 @@ export default function Payments(){
                 </div>
             </section>
         </> }
-        </>
+        </Dashboard>
     )
 }
