@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import Loading from "@/components/loading";
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '../../../contexts/DateRefactoring'
