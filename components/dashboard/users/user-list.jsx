@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import axios from "axios"
 import { useEffect, useState, useRef } from "react"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function UsersList(){
 
@@ -9,7 +11,7 @@ export default function UsersList(){
     const popUpRef = useRef(null)
     
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/get`, { withCredentials: true })
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
                 setUsers(response.data)
             }).catch((err)=>{
@@ -34,10 +36,10 @@ export default function UsersList(){
     }
 
     const changeUserStatus = async (user) => {
-        await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-status`, { userId: user._id , update: { status: user.status === "user" ? "admin" : "user" }}, { withCredentials: true })
+        await axios.patch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/change-status`, { userId: user._id , update: { status: user.status === "user" ? "admin" : "user" }}, { withCredentials: true })
         .then( async ()=>{
             toast.info(`${user.name} est désormais un ${user.status === "user" ? "administrateur" : "utilisateur simple"}`)
-            await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/get`, { withCredentials: true })
+            await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
                 setUsers(response.data)
             }).catch((err)=>{
@@ -47,7 +49,7 @@ export default function UsersList(){
     }
 
     return(
-        <>
+        users && <>
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche d'utilisateur"/>
             </div>
@@ -98,7 +100,7 @@ export default function UsersList(){
                                         <div className="custom-container" 
                                         onClick={ () => togglePopUp(u._id) }
                                         >
-                                            <img src="/images/kebab.png" alt=""/>
+                                            <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
                                         </div>
                                     </li>
                                 </ul>
