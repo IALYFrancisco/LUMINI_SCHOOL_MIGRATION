@@ -136,10 +136,10 @@ export default function Payments(){
                                             <label htmlFor="">Mode de paiement :</label>
                                             <section className="payment-mode-container">
                                                 <div className={ mvolaIsSelected ? "mode mvola selected" : "mode mvola"} title='Paiment par mvola.' onClick={SelectMvolaModeToggle}>
-                                                    <Image src="/images/logo-de-mvola.png" width={200} height={200} alt="paiement mvola" priority />
+                                                    <Image src="/images/logo-de-mvola.png" width={100} height={200} alt="paiement mvola" priority />
                                                 </div>
                                                 <div className={paypalIsSelected ? "mode paypal selected":"mode paypal"} title='Paiment par PayPal' onClick={SelectPayPalModeToggle}>
-                                                    <Image src="/images/logo-de-paypal.webp" width={200} height={200} priority alt="paiement paypal" />    
+                                                    <Image src="/images/logo-de-paypal.webp" width={100} height={200} priority alt="paiement paypal" />    
                                                 </div>
                                             </section>
                                         </div>
