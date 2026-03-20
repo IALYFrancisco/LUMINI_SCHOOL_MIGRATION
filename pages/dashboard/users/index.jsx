@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import UsersList from "@/components/dashboard/users/user-list"
 import Head from "next/head"
 
 export default function Users(){
@@ -8,7 +8,7 @@ export default function Users(){
                 <title>Utilisateurs - Dashboard | LUMINI School</title>
             </Head>
             <h2>Utilisateurs</h2>
-            <Outlet/>
+            <UsersList/>
         </>
     )
 }
