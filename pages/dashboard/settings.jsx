@@ -1,16 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from 'react'
-import '../../../../public/styles/dashboard/setting.css'
-import { useAuth } from '../../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'sonner'
-import { useHead } from '@unhead/react'
+import Head from 'next/head'
+import Image from 'next/image'
 
 export default function Settings(){
-
-    useHead({
-        title: 'Paramètres - Dashboard | LUMINI School'
-    })
     
     var { user, setUser } = useAuth()
 
@@ -75,7 +72,7 @@ export default function Settings(){
         }
 
         if(watchAllDeleteAccount.deleteAccountPassword){
-            axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
+            axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/delete`, { data: _user, withCredentials: true })
             .then(()=>{
                 setUser(null)
                 toast.info("Votre compte et vos données sur LUMINI School a été bien supprimé par vous même.")
@@ -98,7 +95,7 @@ export default function Settings(){
                 currentPassword: _data.currentChangePassword,
                 newPassword: _data.newChangePassword
             }
-            axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
+            axios.patch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/change-password`, data, { withCredentials: true })
             .then(()=>{
                 setUser(null)
                 toast.success("Votre mot de passe a été bien changé.")
@@ -124,7 +121,7 @@ export default function Settings(){
             if(watchAllInfo.email !== user.email && watchAllInfo.email !== ""){
                 __user.append("email", data.email)
             }
-            if(watchAllInfo.profile !== ((user.profile.includes('https') || user.profile.includes('http')) ? user.profile : `${import.meta.env.VITE_API_BASE_URL}${user.profile}`) && watchAllInfo.profile !== ""){
+            if(watchAllInfo.profile !== ((user.profile.startsWith('https') || user.profile.startsWith('http')) ? user.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}${user.profile}`) && watchAllInfo.profile !== ""){
                 __user.append("profile", data.profile)
             }
             if(image){
@@ -134,17 +131,17 @@ export default function Settings(){
                 __user.append("phoneNumber", data.phoneNumber)
             }
 
-            axios.patch(`${import.meta.env.VITE_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
+            axios.patch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/update?_id=${user._id}`, __user, { headers: image ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}, withCredentials: true })
             .then(()=>{
                 setImage(null)
                 resetInfo()
-                axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/informations`, {withCredentials: true})
+                axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
                 .then((response)=>{
                     setUser(response.data)
                     resetInfo({
                         name: response.data.name,
                         email: response.data.email,
-                        profile: (response.data.profile.includes('https') || response.data.profile.includes('http')) ? response.data.profile : `${import.meta.env.VITE_API_BASE_URL}${response.data.profile}`,
+                        profile: (response.data.profile.startsWith('https') || response.data.profile.startsWith('http')) ? response.data.profile : `${process.env.NEXT_PUBLIC_API_BASE_URL}${response.data.profile}`,
                         phoneNumber: response.data.phoneNumber
                     })
                     setInfoFormActive(false)
@@ -168,6 +165,9 @@ export default function Settings(){
 
     return(
         <>
+            <Head>
+                <title>Paramètres - Dashboard | LUMINI School</title>
+            </Head>
             <h2>Paramètres</h2>
             <section className="info-perso-container">
                 <div className="head">
@@ -232,7 +232,7 @@ export default function Settings(){
             </div>
             <form className={ toggleInfosOverlay ? "infos-modal active" : "infos-modal" } onSubmit={handleSubmitDeleteAccount(deleteAccount)}>
                 <span className='close-infos-overlay' onClick={()=>{setToggleInfosOverlay(false);setUserIsSure(false)}}>
-                    <img src="/images/close.png" alt="" />
+                    <Image src="/images/close.png" width={50} height={50} alt="close" priority />
                 </span>
                 <h3>Suppression de compte</h3>
                 <div className="message">
@@ -253,7 +253,7 @@ export default function Settings(){
             </div>
             <form className={ togglePasswordOverlay ? "password-modal active" : "password-modal" } onSubmit={handleSubmitChangePassword(changePassword)}>
                 <span className='close-password-overlay' onClick={()=>setTogglePasswordOverlay(false)}>
-                    <img src="/images/close.png" alt="" />
+                    <Image src="/images/close.png" width={50} height={50} alt="close" priority />
                 </span>
                 <h3>Changement de mot de passe :</h3>
                 <div className="message">
