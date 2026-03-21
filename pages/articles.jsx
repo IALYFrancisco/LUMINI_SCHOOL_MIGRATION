@@ -37,9 +37,16 @@ export default function ArticlesPage(){
     if(articles) return(
         <>
             <Head>
+                <title>Articles et conseils | LUMINI School - Plateforme de formation en informatique</title>
                 <link rel="canonical" href="https://luminischool.onrender.com/articles" />
-            
+                <meta name="description" content="Découvrez tous les articles de LUMINI School : conseils, astuces et actualités sur les métiers de l'informatique, le développement web et les formations disponibles." />
+
+                <meta property="og:title" content="Articles et conseils | LUMINI School - Plateforme de formation en informatique" />
                 <meta property="og:url" content="https://luminischool.onrender.com/articles" />
+                <meta property="og:description" content="Découvrez tous les articles de LUMINI School : conseils, astuces et actualités sur les métiers de l'informatique, le développement web et les formations disponibles."/>
+
+                <meta name="twitter:title" content="Articles et conseils | LUMINI School - Plateforme de formation en informatique" />
+                <meta name="twitter:description" content="Découvrez tous les articles de LUMINI School : conseils, astuces et actualités sur les métiers de l'informatique, le développement web et les formations disponibles." />
             </Head>
             <Nav></Nav>
             <section className="formations-page">
