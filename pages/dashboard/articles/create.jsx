@@ -202,15 +202,7 @@ const _handleSubmit = (data) => {
                 <fieldset>
                     <div className="element">
                         <label htmlFor="">Contenus de l'article :</label>
-                        <ReactQuill
-                            ref={quillRef}
-                            theme="snow"
-                            value={content}
-                            onChange={setContent}
-                            modules={modules}
-                            formats={formats}
-                            placeholder="Écrivez votre article ici..."
-                        />
+                        <TiptapEditor content={content} setContent={setContent} />
                     <button>Soumettre</button>
                     </div>
                 </fieldset>
