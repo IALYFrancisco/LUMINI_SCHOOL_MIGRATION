@@ -123,7 +123,7 @@ export default function ArticleView({ article: initialArticle, seo: initialSeo }
                     })
             }).finally(()=>setLoading(false))
         }
-    }, [slug])
+    }, [slug, article])
 
     if (loading) return <Loading/>
     return (
