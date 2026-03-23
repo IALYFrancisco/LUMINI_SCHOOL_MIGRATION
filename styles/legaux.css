@@ -26,6 +26,10 @@
     margin-bottom: 20px;
 }
 
+.legaux-container a {
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 1024px){
     .legaux-container {
         padding: 50px;

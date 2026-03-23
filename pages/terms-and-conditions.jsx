@@ -120,7 +120,7 @@ export default function TermsAndConditions(){
 
                 <div className="legaux-element">
                     <h2>13. Contact</h2>
-                    <p>Pour toute question, veuillez contacter : ialyfrancisco7@gmail.com</p>
+                    <p>Pour toute question, veuillez contacter : <a href="mailto:ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</a></p>
                 </div>
             </section>
         </>
