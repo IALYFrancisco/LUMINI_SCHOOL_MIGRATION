@@ -30,6 +30,16 @@
     text-decoration: underline;
 }
 
+.legaux-container .lg-pp {
+    list-style-type: circle;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.legaux-container .lg-pp li {
+    margin: initial;
+}
+
 @media only screen and (max-width: 1024px){
     .legaux-container {
         padding: 50px;
