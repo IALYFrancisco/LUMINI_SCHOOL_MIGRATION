@@ -77,7 +77,15 @@ export function Footer(){
                 <section>
                     <h3>Légales</h3>
                     <ul>
-                        <li>Conditions d'utilisation</li>
+                        <li>
+                            <Link href="/terms-and-conditions">Conditions générales</Link>
+                        </li>
+                        <li>
+                            <Link href="/privacy-policy">Politique de confidentialité</Link>
+                        </li>
+                        <li>
+                            <Link href="/legal-notice">Mentions légales</Link>
+                        </li>
                     </ul>
                     <h3>Réseaux sociaux</h3>
                     <ul className="rs">
