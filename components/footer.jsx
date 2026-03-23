@@ -54,9 +54,9 @@ export function Footer(){
                     <h3>Nos contacts</h3>
                     <ul>
                         <li>
-                            <a href="#contact">
+                            <Link href="/#contact">
                                 Ecrire un message à LUMINI
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <Image src="/images/phone (1).png" alt="icone téléphone" width={50} height={50} priority />
