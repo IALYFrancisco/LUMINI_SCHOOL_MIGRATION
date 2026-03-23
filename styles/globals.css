@@ -53,3 +53,69 @@ body, html {
     align-items: center;
     justify-content: center;
 }
+
+
+
+
+
+
+.ProseMirror {
+  min-height: 200px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0;
+}
+
+
+
+
+
+
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px;
+  background: #fff;
+}
+
+.group {
+  display: flex;
+  gap: 4px;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: #ddd;
+  margin: 0 4px;
+}
+
+.toolbar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.toolbar button:hover {
+  background: #f1f1f1;
+}
+
+.toolbar button.is-active {
+  background: #e2e8f0;
+}
