@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { Nav } from "@/components/nav"
 
 export default function TermsAndConditions(){
     return (
@@ -15,6 +16,12 @@ export default function TermsAndConditions(){
                 <meta name="twitter:title" content="Conditions générales d’utilisation et de vente | LUMINI School - Plateforme de formation en informatique" />
                 <meta name="twitter:description" content="Consultez les conditions générales d’utilisation et de vente de LUMINI School : inscription, paiement, accès aux formations en présentiel et responsabilités." />       
             </Head>
+
+            <Nav/>
+
+            <section className="legaux-container">
+                
+            </section>
         </>
     )
 }
