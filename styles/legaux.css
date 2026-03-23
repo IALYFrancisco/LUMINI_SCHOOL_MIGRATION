@@ -1,0 +1,27 @@
+.legaux-container {
+    max-width: 1024px;
+    padding: 100px;
+    margin: auto;
+    color: var(--primary);
+}
+
+.legaux-container h1 {
+    margin-bottom: 50px;
+}
+
+.legaux-container .legaux-element {
+    margin-bottom: 40px;
+}
+
+.legaux-container h2 {
+    margin-bottom: 20px;
+}
+
+.legaux-container ul {
+    list-style-type: disc;
+    margin-left: 15px;
+}
+
+.legaux-container ul li {
+    margin-bottom: 20px;
+}
