@@ -54,9 +54,9 @@ export function Footer(){
                     <h3>Nos contacts</h3>
                     <ul>
                         <li>
-                            <a href="#contact">
+                            <Link href="/#contact">
                                 Ecrire un message à LUMINI
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <Image src="/images/phone (1).png" alt="icone téléphone" width={50} height={50} priority />
@@ -77,7 +77,15 @@ export function Footer(){
                 <section>
                     <h3>Légales</h3>
                     <ul>
-                        <li>Conditions d'utilisation</li>
+                        <li className="lg">
+                            <Link href="/terms-and-conditions" className={router.pathname === "/terms-and-conditions" ? "nav-link active" : "nav-link"}>Conditions générales</Link>
+                        </li>
+                        <li className="lg">
+                            <Link href="/privacy-policy" className={router.pathname === "/privacy-policy" ? "nav-link active" : "nav-link"}>Politique de confidentialité</Link>
+                        </li>
+                        <li className="lg">
+                            <Link href="/legal-notice" className={router.pathname === "/legal-notice" ? "nav-link active" : "nav-link"}>Mentions légales</Link>
+                        </li>
                     </ul>
                     <h3>Réseaux sociaux</h3>
                     <ul className="rs">

@@ -13,6 +13,7 @@ import '@/styles/dashboard/setting.css';
 import '@/styles/articleView.css';
 import '@/styles/dashboard/payment.css';
 import '@/styles/notFound.css';
+import '@/styles/legaux.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
 import { Toaster } from "sonner"

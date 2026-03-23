@@ -1,0 +1,53 @@
+.legaux-container {
+    max-width: 1024px;
+    padding: 100px;
+    margin: auto;
+    color: var(--primary);
+}
+
+.legaux-container h1 {
+    margin-bottom: 50px;
+}
+
+.legaux-container .legaux-element {
+    margin-bottom: 40px;
+}
+
+.legaux-container h2 {
+    margin-bottom: 20px;
+}
+
+.legaux-container ul {
+    list-style-type: disc;
+    margin-left: 15px;
+}
+
+.legaux-container ul li {
+    margin-bottom: 20px;
+}
+
+.legaux-container a {
+    text-decoration: underline;
+}
+
+.legaux-container .lg-pp {
+    list-style-type: circle;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.legaux-container .lg-pp li {
+    margin: initial;
+}
+
+@media only screen and (max-width: 1024px){
+    .legaux-container {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .legaux-container {
+        padding: 25px;
+    }
+}
