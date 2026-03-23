@@ -500,7 +500,8 @@ footer > section:nth-child(1) {
     width: 25%;
 }
 
-footer > section:nth-child(2) ul li {
+footer > section:nth-child(2) ul li,
+footer > section:nth-child(4) ul li.lg {
     position: relative;
     width: max-content;
 }
