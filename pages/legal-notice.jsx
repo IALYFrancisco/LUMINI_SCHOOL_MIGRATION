@@ -31,8 +31,10 @@ export default function TermsAndConditions(){
                     <p>Email : <a href="mailto:ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</a></p>
                 </div>
 
-                <h2>2. Développement</h2>
-                <p>Le site a été développé par <a href="https://lumini.onrender.com" target="_blank" rel="noopener noreferrer">LUMINI</a>, agence spécialisée dans le développement de sites web et d’applications web. LUMINI intervient uniquement en tant que prestataire technique pour la création initiale du site et n’a aucune responsabilité sur son contenu ou son fonctionnement.</p>
+	<div className="legaux-element">
+                    <h2>2. Développement</h2>
+                    <p>Le site a été développé par <a href="https://lumini.onrender.com" target="_blank" rel="noopener noreferrer">LUMINI</a>, agence spécialisée dans le développement de sites web et d’applications web. LUMINI intervient uniquement en tant que prestataire technique pour la création initiale du site et n’a aucune responsabilité sur son contenu ou son fonctionnement.</p>
+	</div>
 
                 <div className="legaux-element">
                     <h2>3. Maintenance</h2>
