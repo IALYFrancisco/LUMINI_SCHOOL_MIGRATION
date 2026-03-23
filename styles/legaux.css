@@ -25,3 +25,15 @@
 .legaux-container ul li {
     margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 1024px){
+    .legaux-container {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .legaux-container {
+        padding: 25px;
+    }
+}
