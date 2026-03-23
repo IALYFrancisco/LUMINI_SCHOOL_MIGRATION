@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { Nav } from "@/components/nav"
+import { Footer } from "@/components/footer"
 
 export default function TermsAndConditions(){
     return (
@@ -123,6 +124,8 @@ export default function TermsAndConditions(){
                     <p>Pour toute question, veuillez contacter : <a href="mailto:ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</a></p>
                 </div>
             </section>
+
+            <Footer/>
         </>
     )
 }
