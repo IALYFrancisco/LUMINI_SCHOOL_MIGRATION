@@ -9,41 +9,59 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 import IsAuthenticated from "@/components/isAuthenticated"
 
-export default function Registrations(){
+// 🔹 Génération des routes statiques
+export async function getStaticPaths() {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`)
+    const formations = res.data.filter( f => f.published === true )
+
+    const paths = formations.map(f => ({
+        params: { id: f._id }
+    }))
+
+    return {
+        paths,
+        fallback: false // routes inconnues → 404
+    }
+}
+
+// 🔹 Préchargement des données au build
+export async function getStaticProps({ params }) {
+    const { id } = params
+
+    const resFormation = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
+    const formation = resFormation.data
+
+    return {
+        props: { formation }
+    }
+}
+
+// 🔹 Composant principal (ton code source inchangé)
+export default function Registrations({ formation: initialFormation }) {
 
     const router = useRouter()
-
     const { reset, register, handleSubmit } = useForm()
-
     const { user, setUser } = useAuth()
-    var [formation, setFormation] = useState(null)
-    var [loading, setLoading] = useState(true)
-    var { id } = router.query
+    const [formation, setFormation] = useState(initialFormation)
+    const [loading, setLoading] = useState(!initialFormation)
+    const [registrationLoading, setRegistrationLoading] = useState(false)
+    const { id } = router.query
 
-    var [ registrationLoading, setRegistrationLoading ] = useState(false)
+    const _formation = { _id: id }
 
-    var _formation = {
-        _id: id
-    }
-
-    var _handleSubmit = async (data) => {
+    const _handleSubmit = async (data) => {
         try{
-
             setRegistrationLoading(true)
+            const dataToSend = { formation: _formation, userPhoneNumber: data.phoneNumber }
 
-            var dataToSend = {
-                formation: _formation,
-                userPhoneNumber: data.phoneNumber
-            }
             await axios.post(
                 `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/create`,
                 dataToSend,
                 { withCredentials: true }
-            ).then( async ()=>{
+            ).then(async () => {
                 await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
                     .then((response)=> {
                         setUser(response.data)
-                        console.log(response.data)
                         reset()
                         router.push('/formations')
                     })
@@ -51,20 +69,22 @@ export default function Registrations(){
             })
         }catch(err){
             console.log(err)
+        }finally{
+            setRegistrationLoading(false)
         }
     }
 
     useEffect(()=>{
-        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
-        .then((response)=>setFormation(response.data))
-        .catch(()=>setFormation(null))
-        .finally(()=>{ setRegistrationLoading(false); setLoading(false)})
+        if(!initialFormation && id){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
+                .then((response)=>setFormation(response.data))
+                .catch(()=>setFormation(null))
+                .finally(()=>setLoading(false))
+        }
         axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
-        .then((response)=> {
-            setUser(response.data)
-        })
-        .catch(()=>setUser(null))
-    }, [id, setUser])
+            .then((response)=> setUser(response.data))
+            .catch(()=>setUser(null))
+    }, [id, setUser, initialFormation])
 
     if(loading) return(<Loading/>)
     if(!loading) return(
@@ -73,7 +93,7 @@ export default function Registrations(){
                 <Nav></Nav>
                 { formation &&
                     <section className="registrations-container">
-                        { formation.map( f =>
+                        { formation.map(f =>
                             <span key={f._id}>
                                 <h2>Inscription à la formation <span className="title">"{f.title}"</span></h2>
                                 <p>Veuillez <a href="#submition" className="colored" style={{ textDecoration: "underline" }}>soumettre votre inscription</a> pour que vous soyez inscrit à cette formation 📖 .</p>
