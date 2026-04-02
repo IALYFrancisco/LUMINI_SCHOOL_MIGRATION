@@ -2,9 +2,13 @@
 import { Nav } from "@/components/nav"
 import Link from "next/link"
 import Image from "next/image"
+import Head from "next/head"
 
 export default function NotFound(){
     return(<>
+        <Head>
+            <title>Page introuvable | LUMINI School - Plateforme de formation en informatique</title>
+        </Head>
         <Nav/>
         <section className="not-found-container">
             <div>
