@@ -8,12 +8,12 @@ export default function TermsAndConditions(){
         <>
             <Head>
                 <title>Mentions légales | LUMINI School - Plateforme de formation en informatique</title>
-                <link rel="canonical" href="https://luminischool.onrender.com/terms-and-conditions" />
+                <link rel="canonical" href="https://luminischool.onrender.com/legal-notice" />
                 <meta name="description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité."/>
 
                 <meta property="og:title" content="Mentions légales | LUMINI School - Plateforme de formation en informatique" />
                 <meta property="og:description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité." key="og:description"/>
-                <meta property="og:url" content="https://luminischool.onrender.com/terms-and-conditions" />
+                <meta property="og:url" content="https://luminischool.onrender.com/legal-notice" />
 
                 <meta name="twitter:title" content="Mentions légales | LUMINI School - Plateforme de formation en informatique" />
                 <meta name="twitter:description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité." />       
