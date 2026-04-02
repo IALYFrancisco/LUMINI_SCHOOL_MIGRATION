@@ -14,11 +14,14 @@ export default function Home() {
       <Head>
         <title>Accueil | LUMINI School - Plateforme de formation en informatique</title>
         <link rel="canonical" href="https://luminischool.onrender.com" />
+        <meta name="description" content="Apprenez l’informatique facilement avec LUMINI School. Formations pratiques, encadrement par des experts et parcours adaptés pour progresser et réussir dans le numérique."/>
 
         <meta property="og:title" content="Accueil | LUMINI School - Plateforme de formation en informatique" />
         <meta property="og:url" content="https://luminischool.onrender.com" />
+        <meta property="og:description" content="Apprenez l’informatique facilement avec LUMINI School. Formations pratiques, encadrement par des experts et parcours adaptés pour progresser et réussir dans le numérique."/>
 
         <meta name="twitter:title" content="Accueil | LUMINI School - Plateforme de formation en informatique" />
+        <meta name="twitter:description" content="Apprenez l’informatique facilement avec LUMINI School. Formations pratiques, encadrement par des experts et parcours adaptés pour progresser et réussir dans le numérique." />
       </Head>
       <Header />
       <Formations />
