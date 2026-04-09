@@ -8,12 +8,12 @@ export default function TermsAndConditions(){
         <>
             <Head>
                 <title>Mentions légales | LUMINI School - Plateforme de formation en informatique</title>
-                <link rel="canonical" href="https://luminischool.onrender.com/terms-and-conditions" />
+                <link rel="canonical" href="https://luminischool.onrender.com/legal-notice" />
                 <meta name="description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité."/>
 
                 <meta property="og:title" content="Mentions légales | LUMINI School - Plateforme de formation en informatique" />
                 <meta property="og:description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité." key="og:description"/>
-                <meta property="og:url" content="https://luminischool.onrender.com/terms-and-conditions" />
+                <meta property="og:url" content="https://luminischool.onrender.com/legal-notice" />
 
                 <meta name="twitter:title" content="Mentions légales | LUMINI School - Plateforme de formation en informatique" />
                 <meta name="twitter:description" content="Informations légales concernant LUMINI School : éditeur du site, contact, hébergement et responsabilité." />       
@@ -31,10 +31,10 @@ export default function TermsAndConditions(){
                     <p>Email : <a href="mailto:ialyfrancisco7@gmail.com">ialyfrancisco7@gmail.com</a></p>
                 </div>
 
-	<div className="legaux-element">
+	            <div className="legaux-element">
                     <h2>2. Développement</h2>
                     <p>Le site a été développé par <a href="https://lumini.onrender.com" target="_blank" rel="noopener noreferrer">LUMINI</a>, agence spécialisée dans le développement de sites web et d’applications web. LUMINI intervient uniquement en tant que prestataire technique pour la création initiale du site et n’a aucune responsabilité sur son contenu ou son fonctionnement.</p>
-	</div>
+	            </div>
 
                 <div className="legaux-element">
                     <h2>3. Maintenance</h2>
