@@ -123,3 +123,15 @@
     background-color: var(--fourth);
     color: var(--thirdly);
 }
+
+.payment-container button:disabled {
+    background-color: grey;
+    transform: none;
+    column-gap: 10px;
+}
+
+.payment-container button img {
+    width: 18px;
+    height: auto;
+    animation: spinner infinite 3s linear;
+}

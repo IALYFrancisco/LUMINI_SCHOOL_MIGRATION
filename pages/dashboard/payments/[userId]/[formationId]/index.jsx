@@ -23,6 +23,8 @@ export default function Payments(){
     var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
     var [ paypalIsSelected, setPayPalIsSelected ] = useState(false)
 
+    var [ paymentLoading, setPaymentLoading ] = useState(false)
+
     const { user } = useAuth()
 
     const { reset, register, handleSubmit } = useForm()
@@ -58,28 +60,32 @@ export default function Payments(){
         axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
         .then(()=>{
             toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
+            setPaymentLoading(false)
         })
         .catch(()=>{
             toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
+            setPaymentLoading(false)
         })
     }
 
     const _handleSubmit = (data) =>{
 
-        console.log(searchParams)
+            setPaymentLoading(true)
+        
+            if(mvolaIsSelected){
 
-        if(mvolaIsSelected){
+                let _data = {
+                    clientMsisdn: data.phoneNumber,
+                    registration: searchParams['registration'],
+                }
+    
+                MvolaInitiateTransaction(_data)
 
-            let _data = {
-                clientMsisdn: data.phoneNumber,
-                registration: searchParams['registration'],
+            }
+            if(paypalIsSelected){
+                console.log("Mode paiement: paypal")
             }
 
-            MvolaInitiateTransaction(_data)
-        }
-        if(paypalIsSelected){
-            console.log("Mode paiement: paypal")
-        }
     } 
     
     if(!formation) return <Loading/>
@@ -151,7 +157,10 @@ export default function Payments(){
                                             <input type="tel" id="" { ...register('phoneNumber', {required: true}) } required />
                                         </div> }
                                         <div className="element">
-                                            <button>Faire la transaction</button>
+                                            <button disabled={paymentLoading}>
+                                                Faire la transaction
+                                                { paymentLoading && <Image src="/images/spinner.png" className='loader' alt="chargement spinner" width={50} height={50} priority /> }
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="right">
