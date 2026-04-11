@@ -65,11 +65,14 @@ export default function Payments(){
     }
 
     const _handleSubmit = (data) =>{
+
+        console.log(searchParams)
+
         if(mvolaIsSelected){
 
             let _data = {
                 clientMsisdn: data.phoneNumber,
-                registration: searchParams.get('registration'),
+                registration: searchParams['registration'],
             }
 
             MvolaInitiateTransaction(_data)
