@@ -170,6 +170,11 @@ aside .actions p img {
     color: var(--secondary);
 }
 
+.badge.pending {
+    background-color: yellow;
+    color: var(--primary);
+}
+
 
 
 .pop-up {

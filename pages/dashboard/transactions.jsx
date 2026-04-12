@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Dashboard from "@/components/layouts/dashboardLayout"
 import Head from "next/head"
 import { useAuth } from "@/contexts/AuthContext"
@@ -13,11 +14,11 @@ export default function Transactions(){
 
     var [ activePopUp, setActivePopUp ] = useState(null)
 
-    const transactions = [
+    var transactions = [
         {
             _id: "3857828",
             transactionTime: "2025-12-12T06:36:05.770Z",
-            transactionState: "failed",
+            transactionState: "pending",
             paymentMode: "mvola",
             transactionAmount: "50.000",
             formation: {
@@ -49,7 +50,7 @@ export default function Transactions(){
                         <li className="course-price-payed">Etat</li>
                         <li className="begin-date">Date de début</li>
                         <li className="end-date">Date de fin</li>
-                        <li className="course-price">Droit à payer</li>
+                        <li className="course-price">Montant</li>
                         <li className="registration-actions">Actions</li>
                     </ul>
                 </li>
@@ -65,6 +66,9 @@ export default function Transactions(){
                         <li  className="course-price-payed">
                             { transaction.transactionState === "success" && <div className="badge yes">
                                 <p>validée</p>
+                            </div> }
+                            { transaction.transactionState === "pending" && <div className="badge pending">
+                                <p>en attente</p>
                             </div> }
                             { transaction.transactionState === "failed" && <div className="badge no">
                                 <p>annulée</p>
@@ -95,6 +99,11 @@ export default function Transactions(){
                     </ul>
                 ))}
             </li>}
+            {/* { !transactions &&
+                <div className="no-transaction">
+                    <h5>Vous n'avez aucune transaction pour le moment</h5> 
+                </div>
+            } */}
         </ul> }
     </Dashboard>)
 
