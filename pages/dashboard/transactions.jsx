@@ -27,6 +27,10 @@ export default function Transactions(){
         }
     ]
 
+    const togglePopUp = (transactionId) => {
+        setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
+    }
+
     return (
         <Dashboard>
             <Head>
@@ -79,15 +83,10 @@ export default function Transactions(){
                             <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
-                                }} >Télécharger les détails</li>
+                                }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
-                                }} >Reçevoir par email les détails</li>
-                                <Link href={`/dashboard/payments/${user._id}/${transaction.formation._id}?registration=${transaction._id}`}>
-                                <li onClick={ () => {
-                                    togglePopUp(transaction._id);
-                                } }>Payer le droit</li>
-                                </Link>
+                                }} >Annuler la transaction</li>
                             </ul>
                             <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
                                 <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
