@@ -7,11 +7,39 @@ import DateRefactoring from "@/contexts/DateRefactoring"
 import Dashboard from "@/components/layouts/dashboardLayout"
 import FormationLayout from "@/components/layouts/formationLayout"
 
-export default function UpdateFormation(){
+export async function getStaticPaths(){
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`)
+    const formations = res.data
+
+    const paths = formations.map( f => ({
+        params: { id: f._id }
+    }))
+
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps({ params }) {
+    const { id } = params
+
+    const resFormation = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
+
+    var formation = resFormation.data[0]
+
+    formation.coursePrice = JSON.stringify(resFormation.data[0].coursePrice)
+
+    return {
+        props: { formation }
+    }
+}
+
+export default function UpdateFormation({ formation: initialFormation }){
     const router = useRouter()
 
     var { register, handleSubmit, reset, formState: { errors, isDirty }, watch } = useForm()
-    var [formation, setFormation] = useState(null)
+    var [formation, setFormation] = useState(initialFormation)
     var [ image, setImage ] = useState('')
     var [ urlIsDefined, setUrlIsDefined ] = useState(false)
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
@@ -21,24 +49,19 @@ export default function UpdateFormation(){
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
     var watchAll = watch()
-
+    
     useEffect(()=>{
-        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${id}`)
-        .then((response)=>{
-            response.data[0].coursePrice = JSON.stringify(response.data[0].coursePrice)
-            setFormation(response.data[0])
-            reset({
-                title: response.data[0].title,
-                prerequisites: response.data[0].prerequisites[0],
-                description: response.data[0].description,
-                url: (response.data[0].image.startsWith("https") || response.data[0].image.startsWith("http")) ? response.data[0].image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${response.data[0].image}`,
-                beginDate: DateRefactoring(response.data[0].beginDate),
-                endDate: DateRefactoring(response.data[0].endDate),
-                coursePlace: response.data[0].coursePlace,
-                coursePrice: response.data[0].coursePrice,
+        reset({
+            title: initialFormation.title,
+                prerequisites: initialFormation.prerequisites[0],
+                description: initialFormation.description,
+                url: (initialFormation.image.startsWith("https") || initialFormation.image.startsWith("http")) ? initialFormation.image : `${process.env.NEXT_PUBLIC_API_BASE_URL}/${initialFormation.image}`,
+                beginDate: DateRefactoring(initialFormation.beginDate),
+                endDate: DateRefactoring(initialFormation.endDate),
+                coursePlace: initialFormation.coursePlace,
+                coursePrice: initialFormation.coursePrice,
             })
-        })
-    },[id, reset])
+    },[initialFormation, reset])
 
     useEffect(()=>{
         
