@@ -13,11 +13,17 @@ export default function Transactions(){
 
     var [ activePopUp, setActivePopUp ] = useState(null)
 
-    const registrations = [
-        { 
-            _id: "123456",
-            formation: { title: "How are you sir??", coursePlace: "Toamasina", beginDate: "", endDate: "", coursePrice: "50.0000" },
-            coursePricePayed: false,
+    const transactions = [
+        {
+            _id: "3857828",
+            transactionTime: "2025-12-12T06:36:05.770Z",
+            transactionState: "pending",
+            paymentMode: "mvola",
+            transactionAmount: "50.000",
+            formation: {
+                _id: "123",
+                title: "I'm fine and you sir?"
+            }
         }
     ]
 
@@ -43,47 +49,47 @@ export default function Transactions(){
                         <li className="registration-actions">Actions</li>
                     </ul>
                 </li>
-                    { registrations && <li ref={popUpRef}>
-                    { registrations.map( registration => (
-                    <ul className="registration" key={registration._id}>
+                    { transactions && <li ref={popUpRef}>
+                    { transactions.map( transaction => (
+                    <ul className="registration" key={transaction._id}>
                         <li className="formation-title">
-                            <h5>{registration.formation.title}</h5>
+                            <h5>{transaction.formation.title}</h5>
                         </li>
                         <li  className="course-place">
-                            <p>{registration.formation.coursePlace}</p>
+                            <p>{transaction.paymentMode}</p>
                         </li>
                         <li  className="course-price-payed">
-                            { registration.coursePricePayed && <div className="badge yes">
-                            <p>oui</p>
+                            { transaction.transactionState && <div className="badge yes">
+                                <p>oui</p>
                             </div> }
-                            { !registration.coursePricePayed && <div className="badge no">
+                            { !transaction.transactionState && <div className="badge no">
                                 <p>non</p>
                             </div> }
                         </li>
                         <li  className="begin-date">
-                            <p>{ new Date(registration.formation.beginDate).toLocaleString("fr-FR") }</p>
+                            <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
                         </li>
                         <li  className="end-date">
-                            <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
+                            <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
                         </li>
                         <li  className="course-price">
-                            <p>{ registration.formation.coursePrice } Ar</p>
+                            <p>{ transaction.transactionAmount } Ar</p>
                         </li>
                         <li className="registration-actions">
-                            <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
+                            <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
-                                    togglePopUp(registration._id);
+                                    togglePopUp(transaction._id);
                                 }} >Télécharger les détails</li>
                                 <li onClick={ () => {
-                                    togglePopUp(registration._id);
+                                    togglePopUp(transaction._id);
                                 }} >Reçevoir par email les détails</li>
-                                <Link href={`/dashboard/payments/${user._id}/${registration.formation._id}?registration=${registration._id}`}>
+                                <Link href={`/dashboard/payments/${user._id}/${transaction.formation._id}?registration=${transaction._id}`}>
                                 <li onClick={ () => {
-                                    togglePopUp(registration._id);
+                                    togglePopUp(transaction._id);
                                 } }>Payer le droit</li>
                                 </Link>
                             </ul>
-                            <div className="custom-container" onClick={ () => togglePopUp(registration._id) }>
+                            <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
                                 <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
                             </div>
                         </li>
