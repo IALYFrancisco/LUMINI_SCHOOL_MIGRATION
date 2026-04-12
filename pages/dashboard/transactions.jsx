@@ -17,7 +17,7 @@ export default function Transactions(){
         {
             _id: "3857828",
             transactionTime: "2025-12-12T06:36:05.770Z",
-            transactionState: "pending",
+            transactionState: "failed",
             paymentMode: "mvola",
             transactionAmount: "50.000",
             formation: {
@@ -45,8 +45,8 @@ export default function Transactions(){
                 <li className="titles">
                     <ul>
                         <li className="formation-title">Formations</li>
-                        <li className="course-place">Lieu du formation</li>
-                        <li className="course-price-payed">Droit déjà payé ?</li>
+                        <li className="course-place">Mode</li>
+                        <li className="course-price-payed">Etat</li>
                         <li className="begin-date">Date de début</li>
                         <li className="end-date">Date de fin</li>
                         <li className="course-price">Droit à payer</li>
@@ -63,11 +63,11 @@ export default function Transactions(){
                             <p>{transaction.paymentMode}</p>
                         </li>
                         <li  className="course-price-payed">
-                            { transaction.transactionState && <div className="badge yes">
-                                <p>oui</p>
+                            { transaction.transactionState === "success" && <div className="badge yes">
+                                <p>validée</p>
                             </div> }
-                            { !transaction.transactionState && <div className="badge no">
-                                <p>non</p>
+                            { transaction.transactionState === "failed" && <div className="badge no">
+                                <p>annulée</p>
                             </div> }
                         </li>
                         <li  className="begin-date">

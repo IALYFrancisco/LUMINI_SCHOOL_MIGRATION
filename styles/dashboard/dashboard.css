@@ -150,7 +150,8 @@ aside .actions p img {
 }
 
 .badge {
-    width: 40px;
+    width: max-content;
+    padding: 0 10px;
     height: 20px;
     display: flex;
     align-items: center;
