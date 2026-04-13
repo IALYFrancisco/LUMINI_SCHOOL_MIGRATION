@@ -4,7 +4,8 @@ import Head from "next/head"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 
 export default function Transactions(){
 
@@ -13,6 +14,12 @@ export default function Transactions(){
     const popUpRef = useRef(null)
 
     var [ activePopUp, setActivePopUp ] = useState(null)
+
+    var [ _transactions, setTransactions ] = useState(null)
+    
+    useEffect(()=>{
+        const res = axios.get(
+    }, [])
 
     var transactions = [
         {
