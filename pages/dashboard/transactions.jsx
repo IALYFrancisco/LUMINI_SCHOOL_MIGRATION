@@ -48,7 +48,7 @@ export default function Transactions(){
                         <li className="formation-title">Formations</li>
                         <li className="course-place">Mode</li>
                         <li className="course-price-payed">Etat</li>
-                        <li className="begin-date">Date de début</li>
+                        <li className="begin-date">Date et heure</li>
                         <li className="end-date">Date de fin</li>
                         <li className="course-price">Montant</li>
                         <li className="registration-actions">Actions</li>
