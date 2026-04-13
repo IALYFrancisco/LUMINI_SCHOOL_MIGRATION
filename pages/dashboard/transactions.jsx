@@ -21,6 +21,7 @@ export default function Transactions(){
             transactionState: "pending",
             paymentMode: "mvola",
             transactionAmount: "50.000",
+            registration_id: "38538",
             formation: {
                 _id: "123",
                 title: "I'm fine and you sir?"
@@ -49,7 +50,7 @@ export default function Transactions(){
                         <li className="course-place">Mode</li>
                         <li className="course-price-payed">Etat</li>
                         <li className="begin-date">Date et heure</li>
-                        <li className="end-date">Date de fin</li>
+                        <li className="end-date">Inscription</li>
                         <li className="course-price">Montant</li>
                         <li className="registration-actions">Actions</li>
                     </ul>
@@ -78,7 +79,7 @@ export default function Transactions(){
                             <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
                         </li>
                         <li  className="end-date">
-                            <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
+                            <p>{ transaction.registration_id }</p>
                         </li>
                         <li  className="course-price">
                             <p>{ transaction.transactionAmount } Ar</p>
