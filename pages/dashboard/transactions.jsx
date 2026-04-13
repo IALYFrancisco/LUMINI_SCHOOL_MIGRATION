@@ -18,7 +18,12 @@ export default function Transactions(){
     var [ _transactions, setTransactions ] = useState(null)
     
     useEffect(()=>{
-        const res = axios.get(
+        try{
+            const res = axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+            console.log(res.data)
+        }catch(err){
+            console.log(err)
+        }
     }, [])
 
     var transactions = [
