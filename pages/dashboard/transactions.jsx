@@ -34,6 +34,7 @@ export default function Transactions(){
             paymentMode: "mvola",
             transactionAmount: "50.000",
             registration_id: "38538",
+            user: { name: "Jean de Dieu" },
             formation: {
                 _id: "123",
                 title: "I'm fine and you sir?"
@@ -50,15 +51,16 @@ export default function Transactions(){
             <Head>
                 <title>Transactions - Dashboard | LUMINI School</title>
             </Head>
-            <h2>Vos transactions de paiements</h2>
+            { user && (user.status === "superuser"||user.status === "admin") && <h2>Toutes les transactions de paiements</h2> }
+            { user && user.status === "user" && <h2>Vos transactions de paiements</h2> }
             <div className="actions">
                 <input type="text" name="" id="" placeholder="Recherche de transactions"/>
             </div>
-            {/* List for user, simple user */}
-            { user && user.status === "user" && <ul className="registrations">
+            {/* List for admin or superuser */}
+            { user && (user.status === "superuser"||user.status === "admin") && <ul className="registrations">
                 <li className="titles">
                     <ul>
-                        <li className="formation-title">Formations</li>
+                        <li className="formation-title">ID de transaction</li>
                         <li className="course-place">Mode</li>
                         <li className="course-price-payed">Etat</li>
                         <li className="begin-date">Date et heure</li>
@@ -71,7 +73,7 @@ export default function Transactions(){
                     { transactions.map( transaction => (
                     <ul className="registration" key={transaction._id}>
                         <li className="formation-title">
-                            <h5>{transaction.formation.title}</h5>
+                            <h5>{transaction._id}</h5>
                         </li>
                         <li  className="course-place">
                             <p>{transaction.paymentMode}</p>
