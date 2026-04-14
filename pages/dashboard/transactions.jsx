@@ -15,32 +15,34 @@ export default function Transactions(){
 
     var [ activePopUp, setActivePopUp ] = useState(null)
 
-    var [ _transactions, setTransactions ] = useState(null)
+    var [ transactions, setTransactions ] = useState([])
     
     useEffect(()=>{
         try{
-            const res = axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-            console.log(res.data)
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+            .then((res)=>{
+                setTransactions(res.data)
+            })
         }catch(err){
             console.log(err)
         }
     }, [])
 
-    var transactions = [
-        {
-            _id: "3857828",
-            transactionTime: "2025-12-12T06:36:05.770Z",
-            transactionState: "pending",
-            paymentMode: "mvola",
-            transactionAmount: "50.000",
-            registration_id: "38538",
-            user: { name: "Jean de Dieu" },
-            formation: {
-                _id: "123",
-                title: "I'm fine and you sir?"
-            }
-        }
-    ]
+    // var transactions = [
+    //     {
+    //         _id: "3857828",
+    //         transactionTime: "2025-12-12T06:36:05.770Z",
+    //         transactionState: "pending",
+    //         paymentMode: "mvola",
+    //         transactionAmount: "50.000",
+    //         registration_id: "38538",
+    //         user: { name: "Jean de Dieu" },
+    //         formation: {
+    //             _id: "123",
+    //             title: "I'm fine and you sir?"
+    //         }
+    //     }
+    // ]
 
     const togglePopUp = (transactionId) => {
         setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
@@ -114,11 +116,11 @@ export default function Transactions(){
                     </ul>
                 ))}
             </li>}
-            {/* { !transactions &&
+            { !transactions &&
                 <div className="no-transaction">
-                    <h5>Vous n'avez aucune transaction pour le moment</h5> 
+                    <h5>Il n'y a pas de transaction pour le moment</h5>
                 </div>
-            } */}
+            }
         </ul> }
             {/* List for user, simple user */}
             { user && user.status === "user" && <ul className="registrations">
