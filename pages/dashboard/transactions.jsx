@@ -118,6 +118,70 @@ export default function Transactions(){
                 </div>
             } */}
         </ul> }
+            {/* List for user, simple user */}
+            { user && user.status === "user" && <ul className="registrations">
+                <li className="titles">
+                    <ul>
+                        <li className="formation-title">Formations</li>
+                        <li className="course-place">Mode</li>
+                        <li className="course-price-payed">Etat</li>
+                        <li className="begin-date">Date et heure</li>
+                        <li className="end-date">Inscription</li>
+                        <li className="course-price">Montant</li>
+                        <li className="registration-actions">Actions</li>
+                    </ul>
+                </li>
+                    { transactions && <li ref={popUpRef}>
+                    { transactions.map( transaction => (
+                    <ul className="registration" key={transaction._id}>
+                        <li className="formation-title">
+                            <h5>{transaction.formation.title}</h5>
+                        </li>
+                        <li  className="course-place">
+                            <p>{transaction.paymentMode}</p>
+                        </li>
+                        <li  className="course-price-payed">
+                            { transaction.transactionState === "success" && <div className="badge yes">
+                                <p>validée</p>
+                            </div> }
+                            { transaction.transactionState === "pending" && <div className="badge pending">
+                                <p>en attente</p>
+                            </div> }
+                            { transaction.transactionState === "failed" && <div className="badge no">
+                                <p>annulée</p>
+                            </div> }
+                        </li>
+                        <li  className="begin-date">
+                            <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
+                        </li>
+                        <li  className="end-date">
+                            <p>{ transaction.registration_id }</p>
+                        </li>
+                        <li  className="course-price">
+                            <p>{ transaction.transactionAmount } Ar</p>
+                        </li>
+                        <li className="registration-actions">
+                            <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
+                                <li onClick={ () => {
+                                    togglePopUp(transaction._id);
+                                }} >Valider la transaction</li>
+                                <li onClick={ () => {
+                                    togglePopUp(transaction._id);
+                                }} >Annuler la transaction</li>
+                            </ul>
+                            <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
+                                <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
+                            </div>
+                        </li>
+                    </ul>
+                ))}
+            </li>}
+            {/* { !transactions &&
+                <div className="no-transaction">
+                    <h5>Vous n'avez aucune transaction pour le moment</h5> 
+                </div>
+            } */}
+        </ul> }
     </Dashboard>)
 
 }
