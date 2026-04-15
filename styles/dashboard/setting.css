@@ -248,4 +248,5 @@
 .close-password-overlay img,
 .close-infos-overlay img {
     width: 18px;
+    height: auto;
 }
