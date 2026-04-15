@@ -51,7 +51,7 @@ export default function ArticlesPage(){
             <Nav></Nav>
             <section className="formations-page">
                 <div className="head">
-                    <h2>Tout nos articles :</h2>
+                    <h1>Tout nos articles :</h1>
                     <p>Former et informer les gens est une occupation de haut niveau. Non seulement un dévoir sacré mais aussi une manière d'éduquer. Ceci dit, nos pensées sont à la portée de tous à travers nos articles  📜.</p>
                     <div className="actions">
                         <input type="text" name="formation" id="" value={prompt} onChange={(e)=>setPrompt(e.target.value)} placeholder="Rehcreche d'article"/>
