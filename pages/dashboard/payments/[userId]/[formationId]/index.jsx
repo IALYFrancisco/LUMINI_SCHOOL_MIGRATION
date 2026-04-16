@@ -58,9 +58,10 @@ export default function Payments(){
 
     const MvolaInitiateTransaction = (d)=>{
         axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
-        .then(()=>{
+        .then((response)=>{
             toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
             setPaymentLoading(false)
+            router.push(`/dashboard/transactions?scId=${response.data.serverCorrelationId}`)
         })
         .catch(()=>{
             toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
