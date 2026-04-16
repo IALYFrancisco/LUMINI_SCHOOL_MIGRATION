@@ -164,11 +164,11 @@ export default function Transactions(){
                     </ul>
                 ))}
             </li>}
-            {/* { !transactions &&
+            { !transactions &&
                 <div className="no-transaction">
                     <h5>Vous n'avez aucune transaction pour le moment</h5> 
                 </div>
-            } */}
+            }
         </ul> }
     </Dashboard>)
 
