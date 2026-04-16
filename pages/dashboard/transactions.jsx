@@ -28,22 +28,6 @@ export default function Transactions(){
         }
     }, [])
 
-    // var transactions = [
-    //     {
-    //         _id: "3857828",
-    //         transactionTime: "2025-12-12T06:36:05.770Z",
-    //         transactionState: "pending",
-    //         paymentMode: "mvola",
-    //         transactionAmount: "50.000",
-    //         registration_id: "38538",
-    //         user: { name: "Jean de Dieu" },
-    //         formation: {
-    //             _id: "123",
-    //             title: "I'm fine and you sir?"
-    //         }
-    //     }
-    // ]
-
     const togglePopUp = (transactionId) => {
         setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
     }
