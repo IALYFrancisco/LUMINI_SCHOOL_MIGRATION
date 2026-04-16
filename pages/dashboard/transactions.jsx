@@ -92,7 +92,7 @@ export default function Transactions(){
                             </div> }
                         </li>
                         <li  className="begin-date">
-                            <p>{ new Date(transaction.transactionTime).toLocaleString("fr-FR") }</p>
+                            <p>{ new Date(transaction.mvolamodetransaction.transactionDate).toLocaleString("fr-FR") }</p>
                         </li>
                         <li  className="end-date">
                             <p>{ transaction.registration_id }</p>
