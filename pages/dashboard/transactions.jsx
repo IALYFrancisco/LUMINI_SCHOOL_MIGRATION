@@ -2,7 +2,6 @@
 import Dashboard from "@/components/layouts/dashboardLayout"
 import Head from "next/head"
 import { useAuth } from "@/contexts/AuthContext"
-import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
