@@ -166,7 +166,7 @@ export default function Transactions(){
             </li>}
             { !transactions &&
                 <div className="no-transaction">
-                    <h5>Vous n'avez aucune transaction pour le moment</h5> 
+                    <h5>Vous n'avez aucune transaction pour le moment</h5>
                 </div>
             }
         </ul> }
