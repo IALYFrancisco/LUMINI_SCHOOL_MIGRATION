@@ -81,13 +81,13 @@ export default function Transactions(){
                             <p>{transaction.paymentMode}</p>
                         </li>
                         <li  className="course-price-payed">
-                            { transaction.transactionState === "success" && <div className="badge yes">
+                            { transaction.mvolamodetransaction.status === "success" && <div className="badge yes">
                                 <p>validée</p>
                             </div> }
-                            { transaction.transactionState === "pending" && <div className="badge pending">
+                            { transaction.mvolamodetransaction.status === "pending" && <div className="badge pending">
                                 <p>en attente</p>
                             </div> }
-                            { transaction.transactionState === "failed" && <div className="badge no">
+                            { transaction.mvolamodetransaction.status === "failed" && <div className="badge no">
                                 <p>annulée</p>
                             </div> }
                         </li>
@@ -98,7 +98,7 @@ export default function Transactions(){
                             <p>{ transaction.registration_id }</p>
                         </li>
                         <li  className="course-price">
-                            <p>{ transaction.transactionAmount } Ar</p>
+                            <p>{ transaction.formation.coursePrice } Ar</p>
                         </li>
                         <li className="registration-actions">
                             <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
