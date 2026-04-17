@@ -106,7 +106,7 @@ export default function Transactions(){
                             <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
-                                    transaction.paymentMode === "mvola" ? ValidateMvolaTransaction() : ()=>{}
+                                    transaction.paymentMode === "mvola" ? ValidateMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
                                 }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
