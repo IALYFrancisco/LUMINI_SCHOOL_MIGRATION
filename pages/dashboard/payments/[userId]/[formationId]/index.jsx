@@ -158,9 +158,9 @@ export default function Payments(){
                                             <input type="tel" id="" { ...register('phoneNumber', {required: true}) } required />
                                         </div> }
                                         <div className="element">
-                                            <button disabled={paymentLoading}>
+                                            <button disabled={(mvolaIsSelected || paypalIsSelected) && paymentLoading}>
                                                 Faire la transaction
-                                                { paymentLoading && <Image src="/images/spinner.png" className='loader' alt="chargement spinner" width={50} height={50} priority /> }
+                                                {(mvolaIsSelected || paypalIsSelected) && paymentLoading && <Image src="/images/spinner.png" className='loader' alt="chargement spinner" width={50} height={50} priority /> }
                                             </button>
                                         </div>
                                     </div>
