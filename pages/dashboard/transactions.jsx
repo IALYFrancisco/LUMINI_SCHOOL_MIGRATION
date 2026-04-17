@@ -192,6 +192,7 @@ export default function Transactions(){
                                 }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
+                                    transaction.paymentMode === "mvola" ? CancelMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
                                 }} >Annuler la transaction</li>
                             </ul>
                             <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
