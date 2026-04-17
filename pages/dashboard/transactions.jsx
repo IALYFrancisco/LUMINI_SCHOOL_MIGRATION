@@ -50,6 +50,24 @@ export default function Transactions(){
             })
     }
 
+    const CancelMvolaTransaction = async function(scId){
+        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/cancel?scId=${scId}`, {}, { withCredentials: true })
+            .then(()=>{
+                toast.success("La transaction est annulée ✅✅.")
+                try{
+                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+                    .then((res)=>{
+                        setTransactions(res.data)
+                    })
+                }catch(err){
+                    console.log(err)
+                }
+            })
+            .catch(()=>{
+                toast.error("Erreur d'annulation du transaction, veuillez réessayer plus tard.")
+            })
+    }
+
     return (
         <Dashboard>
             <Head>
