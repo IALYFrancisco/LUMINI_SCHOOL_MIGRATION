@@ -106,7 +106,6 @@ export default function Transactions(){
                             <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
-                                    transaction.paymentMode === "mvola" ? ValidateMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
                                 }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
@@ -171,7 +170,7 @@ export default function Transactions(){
                             <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
-                                    transaction
+                                    transaction.paymentMode === "mvola" ? ValidateMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
                                 }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
@@ -186,10 +185,4 @@ export default function Transactions(){
             </li>}
             { !transactions &&
                 <div className="no-transaction">
-                    <h5>Vous n'avez aucune transaction pour le moment</h5>
-                </div>
-            }
-        </ul> }
-    </Dashboard>)
-
-}
+                    <h5>Vous n'ave
