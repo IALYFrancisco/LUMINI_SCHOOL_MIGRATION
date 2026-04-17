@@ -33,7 +33,7 @@ export default function Transactions(){
     }
 
     const ValidateMvolaTransaction = async function(scId){
-        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/validate?scId=${scId}`, {}, { withCredentials: true })
+        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/validate?scId=${scId}`, {}, { withCredentials: true })
             .then(()=>{
                 toast.success("Votre transaction est désormais validée ✅✅.")
                 try{
