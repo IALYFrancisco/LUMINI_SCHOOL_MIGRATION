@@ -70,10 +70,10 @@ export default function Payments(){
     }
 
     const _handleSubmit = (data) =>{
-
-            setPaymentLoading(true)
         
             if(mvolaIsSelected){
+
+                setPaymentLoading(true)
 
                 let _data = {
                     clientMsisdn: data.phoneNumber,
@@ -84,7 +84,13 @@ export default function Payments(){
 
             }
             if(paypalIsSelected){
+
+                setPaymentLoading(true)
+            
+                setPaymentLoading(false)
+            
                 console.log("Mode paiement: paypal")
+            
             }
 
     } 
