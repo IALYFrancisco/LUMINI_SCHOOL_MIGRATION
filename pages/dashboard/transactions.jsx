@@ -33,24 +33,21 @@ export default function Transactions(){
     }
 
     const ValidateMvolaTransaction = async function(scId){
-        try{
-            axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/validate?scId=${scId}`, {}, { withCredentials: true })
-                .then(()=>{
-                    toast.success("Votre transaction est désormais validée ✅✅.")
-                    try{
-                        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-                        .then((res)=>{
-                            setTransactions(res.data)
-                        })
-                    }catch(err){
-                        console.log(err)
-                    }
-                })
-                .catch(()=>{
-                    toast.error("Erreur de validation de transaction, veuillez réessayer plus tard.")
-                })
-        }
-        catch{}
+        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/validate?scId=${scId}`, {}, { withCredentials: true })
+            .then(()=>{
+                toast.success("Votre transaction est désormais validée ✅✅.")
+                try{
+                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+                    .then((res)=>{
+                        setTransactions(res.data)
+                    })
+                }catch(err){
+                    console.log(err)
+                }
+            })
+            .catch(()=>{
+                toast.error("Erreur de validation de transaction, veuillez réessayer plus tard.")
+            })
     }
 
     return (
