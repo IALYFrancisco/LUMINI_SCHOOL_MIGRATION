@@ -31,6 +31,13 @@ export default function Transactions(){
         setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
     }
 
+    const ValidateMvolaTransaction = async function(scId){
+        try{
+            axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}//payment/mvola/transactions/validate`,)
+        }
+        catch{}
+    }
+
     return (
         <Dashboard>
             <Head>
