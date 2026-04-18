@@ -51,7 +51,7 @@ export default function Sidebar(){
                         </li>
                         <li>
                             <Link href="/dashboard/transactions" className={ router.pathname === "/dashboard/transactions" ? "dash-link active" : "dash-link"}>
-                                <Image src="/images/inscription.png" alt="icone transactions" width={50} height={50} priority />
+                                <Image src="/images/transactions.png" alt="icone transactions" width={50} height={50} priority />
                                 Transactions
                             </Link>
                         </li>
