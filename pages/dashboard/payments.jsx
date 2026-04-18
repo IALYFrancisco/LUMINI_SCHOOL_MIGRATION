@@ -15,7 +15,7 @@ export default function Payments(){
 
     const router = useRouter()
     
-    const { formationId, registration } = router.query
+    const { fId, r } = router.query
     
     let [ formation, setFormation ] = useState(null)
     
@@ -37,8 +37,8 @@ export default function Payments(){
     }
 
     useEffect(()=>{
-        if(formationId && user){
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${formationId}`)
+        if(fId && user){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${fId}`)
             .then((response)=>{
                 setFormation(response.data[0])
                 reset({
@@ -53,7 +53,7 @@ export default function Payments(){
                 })
             })
         }
-    }, [formationId, reset, user])
+    }, [fId, reset, user])
 
     const MvolaInitiateTransaction = (d)=>{
         axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
@@ -76,7 +76,7 @@ export default function Payments(){
 
                 let _data = {
                     clientMsisdn: data.phoneNumber,
-                    registration: registration,
+                    registration: r,
                 }
     
                 MvolaInitiateTransaction(_data)
