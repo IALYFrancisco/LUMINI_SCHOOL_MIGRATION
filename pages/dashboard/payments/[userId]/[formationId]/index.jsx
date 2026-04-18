@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation';
 import Loading from "@/components/loading";
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '@/contexts/DateRefactoring'
@@ -16,8 +15,8 @@ export default function Payments(){
 
     const router = useRouter()
     
-    const { formationId } = router.query
-    const [ searchParams ] = useSearchParams()
+    const { formationId, registration } = router.query
+    
     let [ formation, setFormation ] = useState(null)
     
     var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
@@ -71,13 +70,13 @@ export default function Payments(){
 
     const _handleSubmit = (data) =>{
         
-            if(mvolaIsSelected){
+            if(mvolaIsSelected && router.isReady){
 
                 setPaymentLoading(true)
 
                 let _data = {
                     clientMsisdn: data.phoneNumber,
-                    registration: searchParams['registration'],
+                    registration: registration,
                 }
     
                 MvolaInitiateTransaction(_data)
