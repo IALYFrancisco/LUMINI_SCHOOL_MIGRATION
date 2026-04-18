@@ -49,6 +49,12 @@ export default function Sidebar(){
                                 Inscriptions
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/dashboard/transactions" className={ router.pathname === "/dashboard/transactions" ? "dash-link active" : "dash-link"}>
+                                <Image src="/images/transactions.png" alt="icone transactions" width={50} height={50} priority />
+                                Transactions
+                            </Link>
+                        </li>
                         { user && (user.status === "superuser" || user.status === "admin") && <li>
                             <Link href="/dashboard/articles"  className={router.pathname === "/dashboard/articles" ? "dash-link active" : "dash-link"}>
                                 <Image src="/images/article.png" alt="icone article" width={50} height={50} priority />

@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation';
 import Loading from "@/components/loading";
 import { useForm } from 'react-hook-form'
 import DateRefactoring from '@/contexts/DateRefactoring'
@@ -16,12 +15,14 @@ export default function Payments(){
 
     const router = useRouter()
     
-    const { formationId } = router.query
-    const [ searchParams ] = useSearchParams()
+    const { fId, r } = router.query
+    
     let [ formation, setFormation ] = useState(null)
     
     var [ mvolaIsSelected, setMvolaIsSelected ] = useState(false)
     var [ paypalIsSelected, setPayPalIsSelected ] = useState(false)
+
+    var [ paymentLoading, setPaymentLoading ] = useState(false)
 
     const { user } = useAuth()
 
@@ -36,8 +37,8 @@ export default function Payments(){
     }
 
     useEffect(()=>{
-        if(formationId && user){
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${formationId}`)
+        if(fId && user){
+            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get?_id=${fId}`)
             .then((response)=>{
                 setFormation(response.data[0])
                 reset({
@@ -52,31 +53,45 @@ export default function Payments(){
                 })
             })
         }
-    }, [formationId, reset, user])
+    }, [fId, reset, user])
 
     const MvolaInitiateTransaction = (d)=>{
         axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/initiate`, d, { withCredentials: true })
-        .then(()=>{
+        .then((response)=>{
             toast.success("La transaction s'est bien initiée, il faut la valider pour terminer l'étape.")
+            setPaymentLoading(false)
+            router.push(`/dashboard/transactions?scId=${response.data.serverCorrelationId}`)
         })
         .catch(()=>{
             toast.error("Erreur lors du transaction, veuillez réessayer plus tard.")
+            setPaymentLoading(false)
         })
     }
 
     const _handleSubmit = (data) =>{
-        if(mvolaIsSelected){
+        
+            if(mvolaIsSelected && router.isReady){
 
-            let _data = {
-                clientMsisdn: data.phoneNumber,
-                registration: searchParams.get('registration'),
+                setPaymentLoading(true)
+
+                let _data = {
+                    clientMsisdn: data.phoneNumber,
+                    registration: r,
+                }
+    
+                MvolaInitiateTransaction(_data)
+
+            }
+            if(paypalIsSelected){
+
+                setPaymentLoading(true)
+            
+                setPaymentLoading(false)
+            
+                console.log("Mode paiement: paypal")
+            
             }
 
-            MvolaInitiateTransaction(_data)
-        }
-        if(paypalIsSelected){
-            console.log("Mode paiement: paypal")
-        }
     } 
     
     if(!formation) return <Loading/>
@@ -148,7 +163,10 @@ export default function Payments(){
                                             <input type="tel" id="" { ...register('phoneNumber', {required: true}) } required />
                                         </div> }
                                         <div className="element">
-                                            <button>Faire la transaction</button>
+                                            <button disabled={(mvolaIsSelected || paypalIsSelected) && paymentLoading}>
+                                                Faire la transaction
+                                                {(mvolaIsSelected || paypalIsSelected) && paymentLoading && <Image src="/images/spinner.png" className='loader' alt="chargement spinner" width={50} height={50} priority /> }
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="right">
