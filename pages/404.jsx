@@ -8,6 +8,7 @@ export default function NotFound(){
     return(<>
         <Head>
             <title>Page introuvable | LUMINI School - Plateforme de formation en informatique</title>
+            <meta name="robots" content="noindex, nofollow" key="robots" />
         </Head>
         <Nav/>
         <section className="not-found-container">
