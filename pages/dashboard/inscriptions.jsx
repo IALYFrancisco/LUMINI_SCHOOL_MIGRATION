@@ -40,7 +40,7 @@ export default function Inscriptions(){
 
     const GetPDFRegistrationDetails = async (registration_id) =>{
         try{
-           let response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`)
+           let response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`, {}, { withCredentials: true })
         }
         catch(err){
             console.log(err)
@@ -138,6 +138,7 @@ export default function Inscriptions(){
                                             <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
+                                                    GetPDFRegistrationDetails(registration._id);
                                                 }} >Télécharger les détails (PDF)</li>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
