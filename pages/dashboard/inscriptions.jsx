@@ -39,7 +39,7 @@ export default function Inscriptions(){
 
     const GetPDFRegistrationDetails = async (registration_id) =>{
         try{
-            
+           let response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`)
         }
         catch{}
     }
