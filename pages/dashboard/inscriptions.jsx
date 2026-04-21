@@ -37,6 +37,13 @@ export default function Inscriptions(){
         }
     }, [])
 
+    const GetPDFRegistrationDetails = async (registration_id) =>{
+        try{
+            
+        }
+        catch{}
+    }
+
     return(
         <Dashboard>
             <>
