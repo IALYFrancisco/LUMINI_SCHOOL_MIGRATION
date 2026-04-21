@@ -6,6 +6,7 @@ import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
 import Dashboard from "@/components/layouts/dashboardLayout"
+import { toast } from "sonner"
 
 export default function Inscriptions(){
 
@@ -41,7 +42,10 @@ export default function Inscriptions(){
         try{
            let response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`)
         }
-        catch{}
+        catch(err){
+            console.log(err)
+            toast.error("Erreur de téléchargement en PDF des détails de l'inscription.")
+        }
     }
 
     return(
@@ -134,7 +138,7 @@ export default function Inscriptions(){
                                             <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
-                                                }} >Télécharger les détails</li>
+                                                }} >Télécharger les détails (PDF)</li>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
                                                 }} >Reçevoir par email les détails</li>
