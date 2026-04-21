@@ -40,7 +40,20 @@ export default function Inscriptions(){
 
     const GetPDFRegistrationDetails = async (registration_id) =>{
         try{
-           let response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`, {}, { withCredentials: true })
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`, {}, { responseType: "blob", withCredentials: true })
+            const blob = new Blob([response.data], { type: "application/pdf" });
+
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "inscription-LUMINI_School.pdf";
+
+            document.body.appendChild(link);
+            link.click();
+
+            link.remove();
+            window.URL.revokeObjectURL(url);
         }
         catch(err){
             console.log(err)
