@@ -55,7 +55,7 @@ export default function Inscriptions(){
             link.remove();
             window.URL.revokeObjectURL(url);
 
-console.log(response.status)
+            console.log(response)
         }
         catch(err){
             console.log(err)
