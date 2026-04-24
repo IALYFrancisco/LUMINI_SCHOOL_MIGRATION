@@ -38,28 +38,44 @@ export default function Inscriptions(){
         }
     }, [])
 
-    const GetPDFRegistrationDetails = async (registration_id) =>{
-        try{
-            let response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id=${registration_id}`, { responseType: 'blob', withCredentials: true })
-            const url = window.URL.createObjectURL(new Blob([response.data]));
+const GetPDFRegistrationDetails = async (registration_id) => {
+    try {
+        const response = await axios({
+            url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf`,
+            method: 'GET',
+            params: { registration_id },
+            responseType: 'blob', // Indispensable pour les fichiers
+            withCredentials: true
+        });
 
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", "facture.pdf")
-
-
-
-            document.body.appendChild(link);
-            link.click();
-
-            link.remove();
-
+        // Vérification que nous avons bien reçu un PDF
+        if (response.data.type !== 'application/pdf') {
+            console.error("Le format reçu n'est pas un PDF.");
+            return;
         }
-        catch(err){
-            console.log(err)
-            toast.error("Erreur de téléchargement en PDF des détails de l'inscription.")
-        }
+
+        // Création de l'URL à partir du blob
+        const url = window.URL.createObjectURL(response.data);
+        
+        const link = document.createElement("a");
+        link.href = url;
+        
+        // On définit le nom du fichier ici aussi pour plus de sécurité
+        link.setAttribute("download", `facture_${registration_id}.pdf`);
+
+        document.body.appendChild(link);
+        link.click();
+
+        // NETTOYAGE : Indispensable pour que le navigateur ferme la transaction proprement
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+        // Si "Network Error" persiste ici, vérifiez que le port du backend est bien autorisé dans CORS
+        console.error("Erreur de téléchargement:", err);
+        toast.error("Erreur lors de la génération du fichier.");
     }
+};
 
     return(
         <Dashboard>
