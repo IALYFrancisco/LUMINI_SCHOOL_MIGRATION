@@ -40,26 +40,37 @@ export default function Inscriptions(){
 
 const GetPDFRegistrationDetails = async (registration_id) => {
     try {
+        const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/download/token/${registration_id}`,
+            {},
+            { responseType: "blob", withCredentials: true }
+        );
 
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/download/token/${registration_id}`, {}, { responseType: 'blob', withCredentials: true })
+        const blob = response.data;
 
-        const url = window.URL.createObjectURL(response.data);
-        
+        // 🔥 récupérer le filename depuis le backend
+        let filename = "facture.pdf";
+
+        const contentDisposition = response.headers["content-disposition"];
+
+        if (contentDisposition) {
+            const match = contentDisposition.match(/filename="?(.+)"?/);
+            if (match) filename = match[1];
+        }
+
+        const url = window.URL.createObjectURL(blob);
+
         const link = document.createElement("a");
         link.href = url;
-        
-        // On définit le nom du fichier ici aussi pour plus de sécurité
-        link.setAttribute("download", `facture_${registration_id}.pdf`);
+        link.setAttribute("download", filename);
 
         document.body.appendChild(link);
         link.click();
 
-        // NETTOYAGE : Indispensable pour que le navigateur ferme la transaction proprement
-        document.body.removeChild(link);
+        link.remove();
         window.URL.revokeObjectURL(url);
 
     } catch (err) {
-        // Si "Network Error" persiste ici, vérifiez que le port du backend est bien autorisé dans CORS
         console.error("Erreur de téléchargement:", err);
         toast.error("Erreur lors de la génération du fichier.");
     }
