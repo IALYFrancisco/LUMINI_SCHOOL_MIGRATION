@@ -40,21 +40,9 @@ export default function Inscriptions(){
 
 const GetPDFRegistrationDetails = async (registration_id) => {
     try {
-        const response = await axios({
-            url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf`,
-            method: 'GET',
-            params: { registration_id },
-            responseType: 'blob', // Indispensable pour les fichiers
-            withCredentials: true
-        });
 
-        // Vérification que nous avons bien reçu un PDF
-        if (response.data.type !== 'application/pdf') {
-            console.error("Le format reçu n'est pas un PDF.");
-            return;
-        }
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id`, {}, { responseType: 'blob', withCredentials: true })
 
-        // Création de l'URL à partir du blob
         const url = window.URL.createObjectURL(response.data);
         
         const link = document.createElement("a");
