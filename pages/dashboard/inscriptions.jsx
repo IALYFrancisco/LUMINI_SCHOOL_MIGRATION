@@ -41,7 +41,7 @@ export default function Inscriptions(){
 const GetPDFRegistrationDetails = async (registration_id) => {
     try {
 
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/details/pdf?registration_id`, {}, { responseType: 'blob', withCredentials: true })
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/download/token/${registration_id}`, {}, { responseType: 'blob', withCredentials: true })
 
         const url = window.URL.createObjectURL(response.data);
         
