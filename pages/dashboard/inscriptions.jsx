@@ -54,7 +54,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
         const contentDisposition = response.headers["content-disposition"];
 
         if (contentDisposition) {
-            const match = contentDisposition.match(/filename="?(.+)"?/);
+            const match = contentDisposition.match(/filename="?([^"]+)"?/);
             if (match) filename = match[1];
         }
 
