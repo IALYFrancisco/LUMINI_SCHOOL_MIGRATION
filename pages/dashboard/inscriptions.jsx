@@ -43,20 +43,25 @@ const GetPDFRegistrationDetails = async (registration_id) => {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/download/token/${registration_id}`,
             {},
-            { responseType: "blob", withCredentials: true }
+            { withCredentials: true }
         );
 
-        const blob = response.data;
+        const { file, filename, mimeType } = response.data;
 
-        // 🔥 récupérer le filename depuis le backend
-        let filename = "facture.pdf";
+        // 🔥 conversion base64 → bytes
+        const byteCharacters = atob(file);
+        const byteNumbers = new Array(byteCharacters.length);
 
-        const contentDisposition = response.headers["content-disposition"];
-
-        if (contentDisposition) {
-            const match = contentDisposition.match(/filename="?([^"]+)"?/);
-            if (match) filename = match[1];
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
         }
+
+        const byteArray = new Uint8Array(byteNumbers);
+
+        // 🔥 création Blob
+        const blob = new Blob([byteArray], {
+            type: mimeType || "application/pdf"
+        });
 
         const url = window.URL.createObjectURL(blob);
 
@@ -71,8 +76,8 @@ const GetPDFRegistrationDetails = async (registration_id) => {
         window.URL.revokeObjectURL(url);
 
     } catch (err) {
-        console.error("Erreur de téléchargement:", err);
-        toast.error("Erreur lors de la génération du fichier.");
+        console.error("Erreur téléchargement:", err);
+        toast.error("Erreur lors de la génération du PDF.");
     }
 };
 
