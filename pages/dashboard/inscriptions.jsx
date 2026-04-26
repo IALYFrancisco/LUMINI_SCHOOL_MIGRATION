@@ -48,14 +48,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
 
         const { file, filename, mimeType } = response.data;
 
-        // 🔥 conversion base64 → bytes
-        const byteCharacters = atob(file);
-        const byteNumbers = new Array(byteCharacters.length);
-
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-
+        const byteNumbers = file.split(',').map(num => Number(num));
         const byteArray = new Uint8Array(byteNumbers);
 
         // 🔥 création Blob
