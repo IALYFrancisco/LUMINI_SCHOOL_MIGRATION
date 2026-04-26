@@ -32,41 +32,41 @@ export default function Transactions(){
         setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
     }
 
-    const ValidateMvolaTransaction = async function(scId){
-        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/validate?scId=${scId}`, {}, { withCredentials: true })
-            .then(()=>{
-                toast.success("Votre transaction est désormais validée ✅✅.")
-                try{
-                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-                    .then((res)=>{
-                        setTransactions(res.data)
-                    })
-                }catch(err){
-                    console.log(err)
-                }
-            })
-            .catch(()=>{
-                toast.error("Erreur de validation de transaction, veuillez réessayer plus tard.")
-            })
-    }
+    // const ValidateMvolaTransaction = async function(scId){
+    //     axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/validate?scId=${scId}`, {}, { withCredentials: true })
+    //         .then(()=>{
+    //             toast.success("Votre transaction est désormais validée ✅✅.")
+    //             try{
+    //                 axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+    //                 .then((res)=>{
+    //                     setTransactions(res.data)
+    //                 })
+    //             }catch(err){
+    //                 console.log(err)
+    //             }
+    //         })
+    //         .catch(()=>{
+    //             toast.error("Erreur de validation de transaction, veuillez réessayer plus tard.")
+    //         })
+    // }
 
-    const CancelMvolaTransaction = async function(scId){
-        axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/cancel?scId=${scId}`, {}, { withCredentials: true })
-            .then(()=>{
-                toast.success("La transaction est annulée ✅✅.")
-                try{
-                    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-                    .then((res)=>{
-                        setTransactions(res.data)
-                    })
-                }catch(err){
-                    console.log(err)
-                }
-            })
-            .catch(()=>{
-                toast.error("Erreur d'annulation du transaction, veuillez réessayer plus tard.")
-            })
-    }
+    // const CancelMvolaTransaction = async function(scId){
+    //     axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/cancel?scId=${scId}`, {}, { withCredentials: true })
+    //         .then(()=>{
+    //             toast.success("La transaction est annulée ✅✅.")
+    //             try{
+    //                 axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+    //                 .then((res)=>{
+    //                     setTransactions(res.data)
+    //                 })
+    //             }catch(err){
+    //                 console.log(err)
+    //             }
+    //         })
+    //         .catch(()=>{
+    //             toast.error("Erreur d'annulation du transaction, veuillez réessayer plus tard.")
+    //         })
+    // }
 
     return (
         <Dashboard>
@@ -185,7 +185,7 @@ export default function Transactions(){
                             <p>{ transaction.formation.coursePrice } Ar</p>
                         </li>
                         <li className="registration-actions">
-                            <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
+                            {/* <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
                                     transaction.paymentMode === "mvola" ? ValidateMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
@@ -194,7 +194,7 @@ export default function Transactions(){
                                     togglePopUp(transaction._id);
                                     transaction.paymentMode === "mvola" ? CancelMvolaTransaction(transaction.mvolamodetransaction.serverCorrelationId) : ()=>{return}
                                 }} >Annuler la transaction</li>
-                            </ul>
+                            </ul> */}
                             <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
                                 <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
                             </div>

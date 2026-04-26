@@ -6,6 +6,7 @@ import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
 import Dashboard from "@/components/layouts/dashboardLayout"
+import { toast } from "sonner"
 
 export default function Inscriptions(){
 
@@ -36,6 +37,42 @@ export default function Inscriptions(){
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
+
+const GetPDFRegistrationDetails = async (registration_id) => {
+    try {
+        const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/download/token/${registration_id}`,
+            {},
+            { withCredentials: true }
+        );
+
+        const { file, filename, mimeType } = response.data;
+
+        const byteNumbers = file.split(',').map(num => Number(num));
+        const byteArray = new Uint8Array(byteNumbers);
+
+        // 🔥 création Blob
+        const blob = new Blob([byteArray], {
+            type: mimeType || "application/pdf"
+        });
+
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", filename);
+
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+        console.error("Erreur téléchargement:", err);
+        toast.error("Erreur lors de la génération du PDF.");
+    }
+};
 
     return(
         <Dashboard>
@@ -127,7 +164,8 @@ export default function Inscriptions(){
                                             <ul className={ activePopUp === registration._id ? 'pop-up show' : 'pop-up hide'}>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
-                                                }} >Télécharger les détails</li>
+                                                    GetPDFRegistrationDetails(registration._id);
+                                                }} >Télécharger les détails (PDF)</li>
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
                                                 }} >Reçevoir par email les détails</li>
