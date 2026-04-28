@@ -165,3 +165,8 @@
 #dashboard-view > section > ul > li:nth-child(2) > ul > li.registration-actions > ul > a {
     color: var(--primary);
 }
+
+.course-price-payed-action {
+    color: gray;
+    text-decoration: line-through;
+}
