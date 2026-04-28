@@ -170,7 +170,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                                     togglePopUp(registration._id);
                                                 }} >Reçevoir par email les détails</li>
                                                 <Link href={`/dashboard/payments?u=${user._id}&fId=${registration.formation._id}&r=${registration._id}`}>
-                                                    <li onClick={ () => {
+                                                    <li className={ registration.coursePricePayed ? "course-price-payed" : "" } onClick={ () => {
                                                         togglePopUp(registration._id);
                                                     } }>Payer le droit</li>
                                                 </Link>
