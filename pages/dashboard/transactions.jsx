@@ -85,14 +85,14 @@ export default function Transactions(){
                             <p>{ transaction.formation.coursePrice } Ar</p>
                         </li>
                         <li className="registration-actions">
-                            <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
+                            {/* <ul className={ activePopUp === transaction._id ? 'pop-up show' : 'pop-up hide'}>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
                                 }} >Valider la transaction</li>
                                 <li onClick={ () => {
                                     togglePopUp(transaction._id);
                                 }} >Annuler la transaction</li>
-                            </ul>
+                            </ul> */}
                             <div className="custom-container" onClick={ () => togglePopUp(transaction._id) }>
                                 <Image src="/images/kebab.png" width={32} height={32} alt="menu" priority/>
                             </div>
