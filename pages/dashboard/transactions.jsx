@@ -32,42 +32,6 @@ export default function Transactions(){
         setActivePopUp((prev) => (prev === transactionId ? null : transactionId))
     }
 
-    // const ValidateMvolaTransaction = async function(scId){
-    //     axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/validate?scId=${scId}`, {}, { withCredentials: true })
-    //         .then(()=>{
-    //             toast.success("Votre transaction est désormais validée ✅✅.")
-    //             try{
-    //                 axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-    //                 .then((res)=>{
-    //                     setTransactions(res.data)
-    //                 })
-    //             }catch(err){
-    //                 console.log(err)
-    //             }
-    //         })
-    //         .catch(()=>{
-    //             toast.error("Erreur de validation de transaction, veuillez réessayer plus tard.")
-    //         })
-    // }
-
-    // const CancelMvolaTransaction = async function(scId){
-    //     axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transaction/cancel?scId=${scId}`, {}, { withCredentials: true })
-    //         .then(()=>{
-    //             toast.success("La transaction est annulée ✅✅.")
-    //             try{
-    //                 axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-    //                 .then((res)=>{
-    //                     setTransactions(res.data)
-    //                 })
-    //             }catch(err){
-    //                 console.log(err)
-    //             }
-    //         })
-    //         .catch(()=>{
-    //             toast.error("Erreur d'annulation du transaction, veuillez réessayer plus tard.")
-    //         })
-    // }
-
     return (
         <Dashboard>
             <Head>
