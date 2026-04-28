@@ -169,8 +169,8 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                                 <li onClick={ () => {
                                                     togglePopUp(registration._id);
                                                 }} >Reçevoir par email les détails</li>
-                                                <Link href={ registration.coursePricePayed ? `/dashboard/payments?u=${user._id}&fId=${registration.formation._id}&r=${registration._id}` : ()=>{ toast.info("Le frais de formation à cette inscription est déjà payé"); return "" }}>
-                                                    <li className={ registration.coursePricePayed ? "course-price-payed" : "" } onClick={ () => {
+                                                <Link href={ registration.coursePricePayed ? `/dashboard/payments?u=${user._id}&fId=${registration.formation._id}&r=${registration._id}` : "" }>
+                                                    <li className={ registration.coursePricePayed ? "course-price-payed-action" : "" } onClick={ () => {
                                                         togglePopUp(registration._id);
                                                     } }>Payer le droit</li>
                                                 </Link>

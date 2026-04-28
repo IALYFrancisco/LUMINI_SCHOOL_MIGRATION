@@ -166,7 +166,7 @@
     color: var(--primary);
 }
 
-.course-price-payed {
+.course-price-payed-action {
     color: gray;
     text-decoration: line-through;
 }
