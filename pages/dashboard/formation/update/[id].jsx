@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import DateRefactoring from "@/contexts/DateRefactoring"
 import Dashboard from "@/components/layouts/dashboardLayout"
 import FormationLayout from "@/components/layouts/formationLayout"
+import Image from "next/image"
 
 export async function getStaticPaths(){
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`)
@@ -45,6 +46,8 @@ export default function UpdateFormation({ formation: initialFormation }){
     var [ imageIsDefined, setImageIsDefined ] = useState(false)
     const { id } = router.query
 
+    var [ updating, setUpdating ] = useState(false)
+
     const descriptionValue = watch("description") || ""
     const wordCount = descriptionValue.trim().split(/\s+/).filter(Boolean).length
 
@@ -76,10 +79,13 @@ export default function UpdateFormation({ formation: initialFormation }){
     const isModified = isDirty || image
 
     const onSubmit = async (data) => {
+
         
         if(!isModified) return;
         else {
             try {
+
+                setUpdating(true)
 
                 let _formation = new FormData()
                     
@@ -138,6 +144,8 @@ export default function UpdateFormation({ formation: initialFormation }){
                 
             }catch(err){
                 console.log(err)
+            }finally{
+                setUpdating(false)
             }
             
         }
@@ -207,7 +215,10 @@ export default function UpdateFormation({ formation: initialFormation }){
                                 </fieldset>
                                 <fieldset>
                                     <div className="element update-actions">
-                                        <button disabled={!isModified}>Soumettre</button>
+                                        <button disabled={!isModified}>
+                                            Soumettre
+                                            { updating && <Image src="/images/spinner.png" className='loader' alt="chargement spinner" width={50} height={50} priority /> }
+                                        </button>
                                     </div>
                                 </fieldset>
                             </div>
