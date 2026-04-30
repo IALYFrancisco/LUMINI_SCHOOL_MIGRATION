@@ -19,8 +19,6 @@ export default function FormationsList(){
         axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`, { withCredentials: true })
             .then((response)=>{
                 setFormations(response.data)
-            }).catch((err)=>{
-                console.log(err)
             })
     }, [])
 
@@ -69,10 +67,8 @@ export default function FormationsList(){
                 if(formation.published){
                     toast.info(`Vous avez dépublié la formation ${formation.title}.`)
                 }
-            }).catch((err)=>{
-                console.log(err)
             })
-        }).catch((err)=>console.log(err))
+        }).catch(()=>{ toast.error('Erreur de publication du formation, veuillez réessayer plus tard.') })
     }
 
     return(
