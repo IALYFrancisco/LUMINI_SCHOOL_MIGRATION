@@ -53,7 +53,7 @@ export default function ArticlesList(){
         axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/delete`, { data: { _id: articleId }, withCredentials: true })
             .then(()=>{ setArticles( (prev) => prev.filter( article => article._id !== articleId ) ) })
             .catch(()=>{
-                toast.err("Erreur de suppression de l'article, veuillez réessayer plus tard.")
+                toast.error("Erreur de suppression de l'article, veuillez réessayer plus tard.")
             }
         )
     }
@@ -65,7 +65,7 @@ export default function ArticlesList(){
             .then((response)=>{
                 setArticles(response.data)
             })
-        }).catch(()=>{ toast.err("Erreur de publication de l'article, veuillez réessayer plus tard.") })
+        }).catch(()=>{ toast.error("Erreur de publication de l'article, veuillez réessayer plus tard.") })
     }
 
     return(

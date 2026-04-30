@@ -206,7 +206,7 @@ const _handleSubmit = (data) => {
                 })
 
         }catch{
-          toast.err("Erreur de mis à jour de l'article, veuillez réessayer plus tard.")
+          toast.error("Erreur de mis à jour de l'article, veuillez réessayer plus tard.")
         }
     }
 
