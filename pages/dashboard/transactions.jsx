@@ -18,14 +18,10 @@ export default function Transactions(){
     var [ transactions, setTransactions ] = useState([])
     
     useEffect(()=>{
-        try{
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-            .then((res)=>{
-                setTransactions(res.data)
-            })
-        }catch(err){
-            console.log(err)
-        }
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+        .then((res)=>{
+            setTransactions(res.data)
+        })
     }, [])
 
     const togglePopUp = (transactionId) => {
