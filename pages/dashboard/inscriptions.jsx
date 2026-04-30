@@ -72,8 +72,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
         link.remove();
         window.URL.revokeObjectURL(url);
 
-    } catch (err) {
-        console.error("Erreur téléchargement:", err);
+    } catch {
         toast.error("Erreur lors de la génération du PDF.");
     }
 };
