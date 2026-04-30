@@ -8,6 +8,7 @@ import Loading from "@/components/loading"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import IsAuthenticated from "@/components/isAuthenticated"
+import { toast } from "sonner"
 
 // 🔹 Génération des routes statiques
 export async function getStaticPaths() {
@@ -67,8 +68,8 @@ export default function Registrations({ formation: initialFormation }) {
                     })
                     .catch(()=>setUser(null))
             })
-        }catch(err){
-            console.log(err)
+        }catch{
+            toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
         }finally{
             setRegistrationLoading(false)
         }
