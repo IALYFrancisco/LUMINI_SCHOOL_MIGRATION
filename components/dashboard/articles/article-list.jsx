@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import DOMPurify from "isomorphic-dompurify"
 import Image from "next/image"
-import toast from 'sonner'
+import { toast } from "sonner"
 
 export default function ArticlesList(){
 
