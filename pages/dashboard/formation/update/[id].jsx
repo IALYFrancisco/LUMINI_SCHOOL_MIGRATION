@@ -7,6 +7,7 @@ import DateRefactoring from "@/contexts/DateRefactoring"
 import Dashboard from "@/components/layouts/dashboardLayout"
 import FormationLayout from "@/components/layouts/formationLayout"
 import Image from "next/image"
+import { toast } from "sonner"
 
 export async function getStaticPaths(){
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/formation/get`)
@@ -140,10 +141,9 @@ export default function UpdateFormation({ formation: initialFormation }){
                     })
                     setImage(null)
                 })
-                .catch((err)=> console.log(err))
                 
-            }catch(err){
-                console.log(err)
+            }catch{
+                toast.error('Erreur de modification du formation, veuillez réessayer plus tard.')
             }finally{
                 setUpdating(false)
             }
