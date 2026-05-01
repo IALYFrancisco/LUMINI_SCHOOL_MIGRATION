@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import DOMPurify from "isomorphic-dompurify"
 import Image from "next/image"
 import { toast } from "sonner"
+import { FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function ArticlesList(){
 
@@ -99,10 +100,10 @@ export default function ArticlesList(){
                                         <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
                                     </li>
                                     <li className="addDate">
-                                        <p>{ new Date(article.createdAt).toLocaleString("fr-FR") }</p>
+                                        <p>{ FormatDateAndHourMG(article.createdAt) }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { article.published ? <p>{ new Date(article.publishedAt).toLocaleString("fr-FR") }</p> : <p>------------</p>}
+                                        { article.published ? <p>{ FormatDateAndHourMG(article.publishedAt) }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { article.published && <div className="badge yes">
