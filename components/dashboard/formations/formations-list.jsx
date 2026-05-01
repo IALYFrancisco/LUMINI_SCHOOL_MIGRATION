@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { toast } from "sonner"
 import Image from "next/image"
+import { FormatDateMG } from "@/contexts/DateRefactoring"
 
 export default function FormationsList(){
 
@@ -102,10 +103,10 @@ export default function FormationsList(){
                                         <p>{formation.description}</p>
                                     </li>
                                     <li  className="addDate">
-                                        <p>{ new Date(formation.createdAt).toLocaleString("fr-FR") }</p>
+                                        <p>{ FormatDateMG(formation.createdAt) }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { formation.published ? <p>{ new Date(formation.publishDate).toLocaleString("fr-FR") }</p> : <p>------------</p>}
+                                        { formation.published ? <p>{ FormatDateMG(formation.publishDate) }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { formation.published && <div className="badge yes">
