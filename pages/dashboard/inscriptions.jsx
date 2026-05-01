@@ -7,7 +7,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Dashboard from "@/components/layouts/dashboardLayout"
 import { toast } from "sonner"
-import { FormatDateMG } from "@/contexts/DateRefactoring"
+import { FormatDateMG, FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function Inscriptions(){
 
@@ -156,10 +156,10 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                             </div> }
                                         </li>
                                         <li  className="begin-date">
-                                            <p>{ new Date(registration.formation.beginDate).toLocaleString("fr-FR") }</p>
+                                            <p>{ FormatDateAndHourMG(registration.formation.beginDate) }</p>
                                         </li>
                                         <li  className="end-date">
-                                            <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
+                                            <p>{ FormatDateAndHourMG(registration.formation.endDate) }</p>
                                         </li>
                                         <li  className="course-price">
                                             <p>{ registration.formation.coursePrice } Ar</p>
