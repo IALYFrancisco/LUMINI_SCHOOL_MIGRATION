@@ -10,6 +10,7 @@ import { toast } from 'sonner'
 import Head from 'next/head';
 import Image from 'next/image';
 import Dashboard from "@/components/layouts/dashboardLayout"
+import { FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function Payments(){
 
@@ -44,8 +45,8 @@ export default function Payments(){
                 reset({
                     title: response.data[0].title,
                     prerequisites: response.data[0].prerequisites,
-                    beginDate: DateRefactoring(response.data[0].beginDate),
-                    endDate: DateRefactoring(response.data[0].endDate),
+                    beginDate: FormatDateAndHourMG(response.data[0].beginDate),
+                    endDate: FormatDateAndHourMG(response.data[0].endDate),
                     coursePlace: response.data[0].coursePlace,
                     coursePrice: response.data[0].coursePrice,
                     description: response.data[0].description,
@@ -121,11 +122,11 @@ export default function Payments(){
                                     </div>
                                     <div className="element">
                                         <label htmlFor="beginDate">Date et heure de début du formation :</label>
-                                        <input type="datetime-local" id="beginDate" disabled readOnly { ...register('beginDate') }/>
+                                        <input type="text" id="beginDate" disabled readOnly { ...register('beginDate') }/>
                                     </div>
                                     <div className="element">
                                         <label htmlFor="endDate">Date et heure de fin du formation :</label>
-                                        <input type="datetime-local" id="endDate" disabled readOnly { ...register('endDate') }/>
+                                        <input type="text" id="endDate" disabled readOnly { ...register('endDate') }/>
                                     </div>
                                 </section>
                                 <section className="right">
