@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import { toast } from "sonner"
+import { FormatDateMG } from "@/contexts/DateRefactoring"
 
 export default function Transactions(){
 
@@ -72,7 +73,7 @@ export default function Transactions(){
                             </div> }
                         </li>
                         <li  className="begin-date">
-                            <p>{ new Date(transaction.mvolamodetransaction.transactionDate).toLocaleString("fr-FR") }</p>
+                            <p>{ FormatDateMG(transaction.mvolamodetransaction.transactionDate) }</p>
                         </li>
                         <li  className="end-date">
                             <p>{ transaction.registration_id }</p>
