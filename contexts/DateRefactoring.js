@@ -6,7 +6,7 @@ export default function DateRefactoring(_date){
     )  
 }
 
-export function FormatDateMG(date){
+export function FormatDateAndHourMG(date){
     return new Intl.DateTimeFormat("fr-FR", {
         timeZone: "Indian/Antananarivo",
         day: "2-digit",
@@ -15,5 +15,14 @@ export function FormatDateMG(date){
         hour: "2-digit",
         minute: "2-digit",
         hour12: false
+    }).format(new Date(date))
+}
+
+export function FormatDateMG(date){
+    return new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Indian/Antananarivo",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
     }).format(new Date(date))
 }
