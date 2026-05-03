@@ -59,14 +59,24 @@ export default function Registrations({ formation: initialFormation }) {
                 `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/create`,
                 dataToSend,
                 { withCredentials: true }
-            ).then(async () => {
-                await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
-                    .then((response)=> {
-                        setUser(response.data)
-                        reset()
-                        router.push('/formations')
-                    })
-                    .catch(()=>setUser(null))
+            ).then(async ( response ) => {
+
+                if(response.status === 201){
+
+                    await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
+                        .then((response)=> {
+                            setUser(response.data)
+                            reset()
+                            router.push('/formations')
+                        })
+                        .catch(()=>setUser(null))
+                
+                }
+
+                if(response.status === 204){
+                    toast.info("Vous êtes déjà inscrit(e) à cette formation.")
+                }
+
             })
         }catch{
             toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
