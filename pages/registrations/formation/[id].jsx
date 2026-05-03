@@ -68,6 +68,7 @@ export default function Registrations({ formation: initialFormation }) {
                             setUser(response.data)
                             reset()
                             router.push('/formations')
+                            toast.success("Votre inscription a été créée avec succès ✅.")
                         })
                         .catch(()=>setUser(null))
                 
