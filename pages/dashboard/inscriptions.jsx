@@ -142,7 +142,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                 { registrations.map( registration => (
                                     <ul className="registration" key={registration._id}>
                                         <li className="formation-title">
-                                            <h5>{registration.formation.title}</h5>
+                                            <h5 title={registration.formation.title}>{registration.formation.title}</h5>
                                         </li>
                                         <li  className="course-place">
                                             <p>{registration.formation.coursePlace}</p>
