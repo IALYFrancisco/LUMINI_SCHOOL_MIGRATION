@@ -75,12 +75,24 @@ export default function Payments(){
 
                 setPaymentLoading(true)
 
-                let _data = {
-                    clientMsisdn: data.phoneNumber,
-                    registration: r,
+                let isYasNumber = (data.phoneNumber.startsWith("034") || data.phoneNumber.startsWith("038")) ? true : false
+                let correctNumber = ( data.phoneNumber.length === 10 ) ? true : false
+
+                if( isYasNumber && correctNumber ){
+
+                    let _data = {
+                        clientMsisdn: data.phoneNumber,
+                        registration: r,
+                    }
+        
+                    MvolaInitiateTransaction(_data)
+
+                }else{
+                    
+                    setPaymentLoading(false)
+                    toast.warning("Le numéro mobile fourni pour le paiement n'est pas correcte.")
+
                 }
-    
-                MvolaInitiateTransaction(_data)
 
             }
             if(paypalIsSelected){
