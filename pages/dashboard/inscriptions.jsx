@@ -94,10 +94,10 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                         <ul>
                             <li className="title">Titres du formation</li>
                             <li className="description">Clients inscrits</li>
-                            <li className="addDate">Date de l'inscription</li>
+                            <li className="addDate">Date</li>
                             <li className="course-price-payed">Droit déjà payé ?</li>
-                            <li className="addDate">Téléphone du client</li>
-                            <li className="addDate">Actions</li>
+                            <li className="addDate">Téléphone</li>
+                            <li className="formation-actions">Actions</li>
                         </ul>
                     </li>
                     { registrations && <li>
