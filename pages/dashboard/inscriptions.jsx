@@ -104,10 +104,10 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                 { registrations.map( registration => (
                                     <ul className="formation" key={registration._id}>
                                         <li className="title">
-                                            <h5>{registration.formation.title}</h5>
+                                            <h5 title={registration.formation.title}>{registration.formation.title}</h5>
                                         </li>
                                         <li  className="description">
-                                            <p>{registration.user.name}</p>
+                                            <p title={registration.user.name}>{registration.user.name}</p>
                                         </li>
                                         <li  className="addDate">
                                             <p>{ FormatDateMG(registration.registrationDate) }</p>
