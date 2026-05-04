@@ -95,6 +95,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                             <li className="title">Titres du formation</li>
                             <li className="description">Clients inscrits</li>
                             <li className="addDate">Date de l'inscription</li>
+                            <li className="course-price-payed">Droit déjà payé ?</li>
                             <li className="addDate">Téléphone du client</li>
                             <li className="addDate">Actions</li>
                         </ul>
@@ -110,6 +111,14 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                         </li>
                                         <li  className="addDate">
                                             <p>{ FormatDateMG(registration.registrationDate) }</p>
+                                        </li>
+                                        <li  className="course-price-payed">
+                                            { registration.coursePricePayed && <div className="badge yes">
+                                                <p>oui</p>
+                                            </div> }
+                                            { !registration.coursePricePayed && <div className="badge no">
+                                                <p>non</p>
+                                            </div> }
                                         </li>
                                         <li  className="addDate">
                                             <p>{ registration.user.phoneNumber }</p>
