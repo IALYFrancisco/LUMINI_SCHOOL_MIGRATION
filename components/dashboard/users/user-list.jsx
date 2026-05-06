@@ -14,8 +14,6 @@ export default function UsersList(){
         axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
                 setUsers(response.data)
-            }).catch((err)=>{
-                console.log(err)
             })
     }, [])
 
@@ -42,8 +40,6 @@ export default function UsersList(){
             await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get`, { withCredentials: true })
             .then((response)=>{
                 setUsers(response.data)
-            }).catch((err)=>{
-                console.log(err)
             })
         }).catch(()=>toast.error("Erreur de changement de statut d'utilisateur, veuillez réessayer plus tard."))
     }

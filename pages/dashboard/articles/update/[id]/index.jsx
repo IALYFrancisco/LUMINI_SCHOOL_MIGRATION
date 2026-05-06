@@ -12,6 +12,7 @@ import Link from "next/link";
 import '@/components/dashboard/articles/CustomImageBlot'
 import Dashboard from "@/components/layouts/dashboardLayout";
 import ArticleLayout from "@/components/layouts/articleLayout";
+import { toast } from "sonner";
 
 const ReactQuill = dynamic(()=> import('react-quill-new'), { ssr: false })
 
@@ -203,10 +204,9 @@ const _handleSubmit = (data) => {
                     })
                     setImage(null)
                 })
-            .catch((err)=> console.log(err))
 
-        }catch(err){
-            console.log(err)
+        }catch{
+          toast.error("Erreur de mis à jour de l'article, veuillez réessayer plus tard.")
         }
     }
 

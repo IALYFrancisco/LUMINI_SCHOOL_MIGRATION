@@ -11,7 +11,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/ialy (5).jfif" alt="Profile de IALY Francisco Raymond" width={300} height={300} priority />
+                            <Image src="/images/ialy-francisco-raymond.jpg" alt="Profile de IALY Francisco Raymond" width={100} height={100} priority />
                         </div>
                         <div className="user-name">
                             <h4>IALY Francisco</h4>
@@ -25,7 +25,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/muriella (2).jpg" alt="Profile de Muriella" width={300} height={300} priority />
+                            <Image src="/images/michella.jpg" alt="Profile de Muriella" width={100} height={100} priority />
                         </div>
                         <div className="user-name">
                             <h4>Marie Michëlla</h4>
@@ -40,7 +40,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/sedera (2).jpg" alt="Profile de Sederaniaina" width={300} height={300} priority />
+                            <Image src="/images/sedera.jpg" alt="Profile de Sederaniaina" width={100} height={100} priority />
                         </div>
                         <div className="user-name">
                             <h4>Sederaniaina R.</h4>
@@ -54,7 +54,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/tandra.jpg" alt="Profile de Tandra" width={300} height={300} priority />
+                            <Image src="/images/tandra.jpg" alt="Profile de Tandra" width={100} height={100} priority />
                         </div>
                         <div className="user-name">
                             <h4>Tandra Mario J.</h4>
@@ -68,7 +68,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/muriella.jpg" alt="Profile de Francisca Zoë" width={300} height={300} priority />
+                            <Image src="/images/muriella.jpg" alt="Profile de Francisca Zoë" width={100} height={100} priority />
 
                         </div>
                         <div className="user-name">
@@ -83,7 +83,7 @@ export function Avis(){
                 <div className="card">
                     <div className="info-user">
                         <div className="img-container">
-                            <Image src="/images/juliot (1).jpg" alt="Profile de Juliot" width={300} height={300} priority />
+                            <Image src="/images/juliot.jpg" alt="Profile de Juliot" width={100} height={100} priority />
                         </div>
                         <div className="user-name">
                             <h4>R. Juliot</h4>

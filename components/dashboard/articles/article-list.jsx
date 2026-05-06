@@ -5,6 +5,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import DOMPurify from "isomorphic-dompurify"
 import Image from "next/image"
+import { toast } from "sonner"
+import { FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function ArticlesList(){
 
@@ -51,8 +53,8 @@ export default function ArticlesList(){
     const deleteArticle = (articleId) => {
         axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/delete`, { data: { _id: articleId }, withCredentials: true })
             .then(()=>{ setArticles( (prev) => prev.filter( article => article._id !== articleId ) ) })
-            .catch((err)=>{
-                console.log(err)
+            .catch(()=>{
+                toast.error("Erreur de suppression de l'article, veuillez réessayer plus tard.")
             }
         )
     }
@@ -63,10 +65,8 @@ export default function ArticlesList(){
             await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/get`, { withCredentials: true })
             .then((response)=>{
                 setArticles(response.data)
-            }).catch((err)=>{
-                console.log(err)
             })
-        }).catch((err)=>console.log(err))
+        }).catch(()=>{ toast.error("Erreur de publication de l'article, veuillez réessayer plus tard.") })
     }
 
     return(
@@ -100,10 +100,10 @@ export default function ArticlesList(){
                                         <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contents) }}></p>
                                     </li>
                                     <li className="addDate">
-                                        <p>{ new Date(article.createdAt).toLocaleString("fr-FR") }</p>
+                                        <p>{ FormatDateAndHourMG(article.createdAt) }</p>
                                     </li>
                                     <li className="publicationDate">
-                                        { article.published ? <p>{ new Date(article.publishedAt).toLocaleString("fr-FR") }</p> : <p>------------</p>}
+                                        { article.published ? <p>{ FormatDateAndHourMG(article.publishedAt) }</p> : <p>------------</p>}
                                     </li>
                                     <li className="published">
                                         { article.published && <div className="badge yes">

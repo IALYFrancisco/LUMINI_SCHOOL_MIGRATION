@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import { toast } from "sonner"
+import { FormatDateMG, FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function Transactions(){
 
@@ -18,14 +19,10 @@ export default function Transactions(){
     var [ transactions, setTransactions ] = useState([])
     
     useEffect(()=>{
-        try{
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-            .then((res)=>{
-                setTransactions(res.data)
-            })
-        }catch(err){
-            console.log(err)
-        }
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
+        .then((res)=>{
+            setTransactions(res.data)
+        })
     }, [])
 
     const togglePopUp = (transactionId) => {
@@ -76,7 +73,7 @@ export default function Transactions(){
                             </div> }
                         </li>
                         <li  className="begin-date">
-                            <p>{ new Date(transaction.mvolamodetransaction.transactionDate).toLocaleString("fr-FR") }</p>
+                            <p>{ FormatDateMG(transaction.mvolamodetransaction.transactionDate) }</p>
                         </li>
                         <li  className="end-date">
                             <p>{ transaction.registration_id }</p>
@@ -140,7 +137,7 @@ export default function Transactions(){
                             </div> }
                         </li>
                         <li  className="begin-date">
-                            <p>{ new Date(transaction.mvolamodetransaction.transactionDate).toLocaleString("fr-FR") }</p>
+                            <p>{ FormatDateAndHourMG(transaction.mvolamodetransaction.transactionDate) }</p>
                         </li>
                         <li  className="end-date">
                             <p>{ transaction.registration_id }</p>

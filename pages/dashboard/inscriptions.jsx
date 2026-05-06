@@ -7,6 +7,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Dashboard from "@/components/layouts/dashboardLayout"
 import { toast } from "sonner"
+import { FormatDateMG, FormatDateAndHourMG } from "@/contexts/DateRefactoring"
 
 export default function Inscriptions(){
 
@@ -17,8 +18,12 @@ export default function Inscriptions(){
 
     useEffect(()=>{
         if(user){
-            axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`, { withCredentials: true })
-            .then((response)=>setRegistrations(response.data))
+            axios.get(
+	user.status === 'user' ?
+	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
+	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
+	, { withCredentials: true })
+            	.then((response)=>setRegistrations(response.data))
         }
     }, [user])
 
@@ -68,8 +73,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
         link.remove();
         window.URL.revokeObjectURL(url);
 
-    } catch (err) {
-        console.error("Erreur téléchargement:", err);
+    } catch {
         toast.error("Erreur lors de la génération du PDF.");
     }
 };
@@ -90,22 +94,31 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                         <ul>
                             <li className="title">Titres du formation</li>
                             <li className="description">Clients inscrits</li>
-                            <li className="addDate">Date de l'inscription</li>
-                            <li className="addDate">Téléphone du client</li>
-                            <li className="addDate">Actions</li>
+                            <li className="addDate">Date</li>
+                            <li className="course-price-payed">Droit déjà payé ?</li>
+                            <li className="addDate">Téléphone</li>
+                            <li className="formation-actions">Actions</li>
                         </ul>
                     </li>
                     { registrations && <li>
                                 { registrations.map( registration => (
                                     <ul className="formation" key={registration._id}>
                                         <li className="title">
-                                            <h5>{registration.formation.title}</h5>
+                                            <h5 title={registration.formation.title}>{registration.formation.title}</h5>
                                         </li>
                                         <li  className="description">
-                                            <p>{registration.user.name}</p>
+                                            <p title={registration.user.name}>{registration.user.name}</p>
                                         </li>
                                         <li  className="addDate">
-                                            <p>{ new Date(registration.registrationDate).toLocaleString("fr-FR") }</p>
+                                            <p>{ FormatDateMG(registration.registrationDate) }</p>
+                                        </li>
+                                        <li  className="course-price-payed">
+                                            { registration.coursePricePayed && <div className="badge yes">
+                                                <p>oui</p>
+                                            </div> }
+                                            { !registration.coursePricePayed && <div className="badge no">
+                                                <p>non</p>
+                                            </div> }
                                         </li>
                                         <li  className="addDate">
                                             <p>{ registration.user.phoneNumber }</p>
@@ -138,7 +151,7 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                 { registrations.map( registration => (
                                     <ul className="registration" key={registration._id}>
                                         <li className="formation-title">
-                                            <h5>{registration.formation.title}</h5>
+                                            <h5 title={registration.formation.title}>{registration.formation.title}</h5>
                                         </li>
                                         <li  className="course-place">
                                             <p>{registration.formation.coursePlace}</p>
@@ -152,10 +165,10 @@ const GetPDFRegistrationDetails = async (registration_id) => {
                                             </div> }
                                         </li>
                                         <li  className="begin-date">
-                                            <p>{ new Date(registration.formation.beginDate).toLocaleString("fr-FR") }</p>
+                                            <p>{ FormatDateAndHourMG(registration.formation.beginDate) }</p>
                                         </li>
                                         <li  className="end-date">
-                                            <p>{ new Date(registration.formation.endDate).toLocaleString("fr-FR") }</p>
+                                            <p>{ FormatDateAndHourMG(registration.formation.endDate) }</p>
                                         </li>
                                         <li  className="course-price">
                                             <p>{ registration.formation.coursePrice } Ar</p>

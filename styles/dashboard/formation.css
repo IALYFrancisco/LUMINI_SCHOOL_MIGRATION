@@ -199,3 +199,8 @@
     animation: spinner infinite 3s linear;
     width: 20px;
 }
+
+
+#dashboard-view > section > section > form > div.fieldsets-bottom > fieldset:nth-child(3) > div > button > img {
+    height: auto;
+}

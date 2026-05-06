@@ -16,15 +16,19 @@
 .inscriptions .title,
 .inscriptions .description,
 .inscriptions .addDate,
-.inscriptions .publicationDate {
-    width: 20%;
+.inscriptions .publicationDate,
+.inscriptions .course-price-payed {
+    width: 18%;
     padding-left: 10px;
+    text-align: center;
 }
 
 .inscriptions .formation-actions {
-    width: 20%;
+    width: 10%;
     padding-left: 10px;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .inscriptions .titles {
@@ -42,6 +46,8 @@
     display: flex;
     column-gap: 20px;
     font-size: 14px;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .registrations > li {
@@ -65,6 +71,15 @@
     text-align: center;
     display: flex;
     justify-content: center;
+}
+
+#dashboard-view > section > ul > li:nth-child(2) > ul {
+    justify-content: space-between;
+    text-align: center;
+}
+
+#dashboard-view > section > ul > li:nth-child(2) > ul > li.course-price-payed > div {
+    margin: auto;
 }
 
 .registrations .registration-actions {

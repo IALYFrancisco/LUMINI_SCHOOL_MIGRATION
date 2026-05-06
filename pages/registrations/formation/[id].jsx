@@ -8,6 +8,7 @@ import Loading from "@/components/loading"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import IsAuthenticated from "@/components/isAuthenticated"
+import { toast } from "sonner"
 
 // 🔹 Génération des routes statiques
 export async function getStaticPaths() {
@@ -58,17 +59,28 @@ export default function Registrations({ formation: initialFormation }) {
                 `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/create`,
                 dataToSend,
                 { withCredentials: true }
-            ).then(async () => {
-                await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
-                    .then((response)=> {
-                        setUser(response.data)
-                        reset()
-                        router.push('/formations')
-                    })
-                    .catch(()=>setUser(null))
+            ).then(async ( response ) => {
+
+                if(response.status === 201){
+
+                    await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/informations`, {withCredentials: true})
+                        .then((response)=> {
+                            setUser(response.data)
+                            reset()
+                            router.push('/formations')
+                            toast.success("Votre inscription a été créée avec succès ✅.")
+                        })
+                        .catch(()=>setUser(null))
+                
+                }
+
+                if(response.status === 204){
+                    toast.info("Vous êtes déjà inscrit(e) à cette formation.")
+                }
+
             })
-        }catch(err){
-            console.log(err)
+        }catch{
+            toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
         }finally{
             setRegistrationLoading(false)
         }
