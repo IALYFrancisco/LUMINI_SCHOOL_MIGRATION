@@ -55,27 +55,35 @@ const GetPDFRegistrationDetails = async (registration_id) => {
             { withCredentials: true }
         );
 
-        const { file, filename, mimeType } = response.data;
+        if(response.status === 200){
 
-        const byteNumbers = file.split(',').map(num => Number(num));
-        const byteArray = new Uint8Array(byteNumbers);
+            const { file, filename, mimeType } = response.data;
+    
+            const byteNumbers = file.split(',').map(num => Number(num));
+            const byteArray = new Uint8Array(byteNumbers);
+    
+            // 🔥 création Blob
+            const blob = new Blob([byteArray], {
+                type: mimeType || "application/pdf"
+            });
+    
+            const url = window.URL.createObjectURL(blob);
+    
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", filename);
+    
+            document.body.appendChild(link);
+            link.click();
+    
+            link.remove();
+            window.URL.revokeObjectURL(url);
 
-        // 🔥 création Blob
-        const blob = new Blob([byteArray], {
-            type: mimeType || "application/pdf"
-        });
+        }
 
-        const url = window.URL.createObjectURL(blob);
-
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", filename);
-
-        document.body.appendChild(link);
-        link.click();
-
-        link.remove();
-        window.URL.revokeObjectURL(url);
+        if(response.status === 204){
+            toast.error("Erreur lors de la génération du PDF.");
+        }
 
     } catch {
         toast.error("Erreur lors de la génération du PDF.");
