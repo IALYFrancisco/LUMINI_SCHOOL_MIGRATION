@@ -75,12 +75,16 @@ export default function Registrations({ formation: initialFormation }) {
                 }
 
                 if(response.status === 204){
-                    toast.info("Vous êtes déjà inscrit(e) à cette formation.")
+                    toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
                 }
 
             })
-        }catch{
-            toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
+        }catch(error){
+            if(error.status === 409){
+                toast.info("Vous êtes déjà inscrit(e) à cette formation.")
+            }else{
+                toast.error("Erreur de l'inscription à la formation, veuillez réessayer plus tard.")
+            }
         }finally{
             setRegistrationLoading(false)
         }
