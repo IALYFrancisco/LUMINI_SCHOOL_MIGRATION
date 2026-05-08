@@ -19,15 +19,11 @@ export default function Inscriptions(){
     useEffect(()=>{
         if(user){
             axios.get(
-                user.status === 'user' ?
-                `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
-                `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
-                , { withCredentials: true })
-                .then((response)=>{
-                    if(response.status === 200){
-                        setRegistrations(response.data)
-                    }
-                })
+	user.status === 'user' ?
+	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
+	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
+	, { withCredentials: true })
+            	.then((response)=>setRegistrations(response.data))
         }
     }, [user])
 
@@ -55,35 +51,27 @@ const GetPDFRegistrationDetails = async (registration_id) => {
             { withCredentials: true }
         );
 
-        if(response.status === 200){
+        const { file, filename, mimeType } = response.data;
 
-            const { file, filename, mimeType } = response.data;
-    
-            const byteNumbers = file.split(',').map(num => Number(num));
-            const byteArray = new Uint8Array(byteNumbers);
-    
-            // 🔥 création Blob
-            const blob = new Blob([byteArray], {
-                type: mimeType || "application/pdf"
-            });
-    
-            const url = window.URL.createObjectURL(blob);
-    
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", filename);
-    
-            document.body.appendChild(link);
-            link.click();
-    
-            link.remove();
-            window.URL.revokeObjectURL(url);
+        const byteNumbers = file.split(',').map(num => Number(num));
+        const byteArray = new Uint8Array(byteNumbers);
 
-        }
+        // 🔥 création Blob
+        const blob = new Blob([byteArray], {
+            type: mimeType || "application/pdf"
+        });
 
-        if(response.status === 204){
-            toast.error("Erreur lors de la génération du PDF.");
-        }
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", filename);
+
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(url);
 
     } catch {
         toast.error("Erreur lors de la génération du PDF.");

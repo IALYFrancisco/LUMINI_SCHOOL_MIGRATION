@@ -20,10 +20,8 @@ export default function Transactions(){
     
     useEffect(()=>{
         axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/mvola/transactions/get`, { withCredentials: true })
-        .then((response)=>{
-            if(response.status === 200){
-                setTransactions(response.data)
-            }
+        .then((res)=>{
+            setTransactions(res.data)
         })
     }, [])
 
