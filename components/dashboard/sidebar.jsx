@@ -12,8 +12,13 @@ export default function Sidebar(){
 
     const handleClick = () => {
         axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/authentication/logout`, {}, {withCredentials: true})
-        .then(()=>{
-            setUser(null)
+        .then((response)=>{
+            if(response.status === 200){
+                setUser(null)
+            }
+            if(response.status === 204){
+                toast.error("Erreur de déconnexion, veuillez réessayer plus tard.")
+            }
         }).catch(()=>{
             toast.error("Erreur de déconnexion, veuillez réessayer plus tard.")
         })
