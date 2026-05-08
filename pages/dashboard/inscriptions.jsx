@@ -19,11 +19,11 @@ export default function Inscriptions(){
     useEffect(()=>{
         if(user){
             axios.get(
-	user.status === 'user' ?
-	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
-	`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
-	, { withCredentials: true })
-            	.then((response)=>setRegistrations(response.data))
+                user.status === 'user' ?
+                `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
+                `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
+                , { withCredentials: true })
+                .then((response)=>setRegistrations(response.data))
         }
     }, [user])
 
