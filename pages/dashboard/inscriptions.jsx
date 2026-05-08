@@ -23,7 +23,11 @@ export default function Inscriptions(){
                 `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get?user_id=${user._id}` :
                 `${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/get`
                 , { withCredentials: true })
-                .then((response)=>setRegistrations(response.data))
+                .then((response)=>{
+                    if(response.status === 200){
+                        setRegistrations(response.data)
+                    }
+                })
         }
     }, [user])
 
