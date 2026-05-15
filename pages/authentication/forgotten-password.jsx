@@ -23,9 +23,8 @@ export default function ForgottenPassword(){
                         <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
                     </div>
                     <div className="element">
-                        <button>Envoyer le lien                                                </button>
-                                                <Link href="/authentication/forgotten-password" className="forgotten-password-link">Mot de passe oublié ?</Link>
-                                            </div>            
+                        <button>Envoyer le lien</button>
+                    </div>            
                 </form>
             </section>
         </>
