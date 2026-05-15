@@ -22,10 +22,6 @@
     box-shadow:  3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
 }
 
-.login-form form label {
-    color: var(--secondary);
-}
-
 .login-form h2 {
     color: var(--fourth);
     margin-bottom: 10px;
