@@ -161,3 +161,16 @@
         bottom: -80px;
     }
 }
+
+@media screen and (max-width: 350px) {
+
+    .login-form .element:has(a) {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .login-form .forgotten-password-link {
+        margin-top: 15px;
+    }
+
+}
