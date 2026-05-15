@@ -21,11 +21,11 @@ export default function ResetPassword(){
                     <Image src="/images/coffee-laptop.png" alt="café et laptop" className="mouse" width={400} height={400} priority />
                     <div className="element">
                         <label htmlFor="newPassword">Nouveau mot de passe :</label>
-                        <input type="password" id="newPassword" placeholder="Ex: johndoe@example.com" { ...register('newPassword', { required: true }) } required />
+                        <input type="password" id="newPassword" placeholder="Choisissez un mot de passe fort" { ...register('newPassword', { required: true }) } required />
                     </div>
                     <div className="element">
                         <label htmlFor="confirmPassword">Confirmez le nouveau mot de passe :</label>
-                        <input type="password" id="confirmPassword" placeholder="Ex: johndoe@example.com" { ...register('confirmPassword', { required: true }) } required />
+                        <input type="password" id="confirmPassword" placeholder="Le même mot de passe que dessus" { ...register('confirmPassword', { required: true }) } required />
                     </div>
                     <div className="element">
                         <button>Soumettre</button>
