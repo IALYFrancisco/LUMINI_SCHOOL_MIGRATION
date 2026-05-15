@@ -16,6 +16,7 @@ import '@/styles/dashboard/transaction.css';
 import '@/styles/notFound.css';
 import '@/styles/legaux.css';
 import '@/styles/forgottenPassword.css';
+import '@/styles/resetPassword.css';
 import { AuthProvider } from "@/contexts/AuthContext";
 import Head from "next/head"
 import { Toaster } from "sonner"
