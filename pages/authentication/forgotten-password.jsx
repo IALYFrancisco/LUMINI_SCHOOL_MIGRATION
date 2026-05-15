@@ -1,11 +1,29 @@
 import Head from "next/head"
+import { Nav } from "@/components/nav"
+import Image from "next/image"
+import { useForm } from "react-hook-form"
 
 export default function ForgottenPassword(){
+
+    const { register } = useForm()
+
     return(
         <>
             <Head>
                 <title>Mot de passe oublié | LUMINI School - Plateforme de formation en informatique</title>
             </Head>
+            <Nav/>
+            <section className="forgotten-password-form">
+                <h2>Mot de passe oublié</h2>
+                <form>
+                    <Image src="/images/fleur.png" alt="fleur" className="laptop-mouse" width={400} height={400} priority />
+                    <Image src="/images/coffee-laptop.png" alt="café et laptop" className="mouse" width={400} height={400} priority />
+                    <div className="element">
+                        <label htmlFor="user-email">Votre adresse email :</label>
+                        <input type="email" id="user-email" placeholder="Ex: johndoe@example.com" { ...register('email', { required: true }) } required />
+                    </div>               
+                </form>
+            </section>
         </>
     )
 }
