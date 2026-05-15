@@ -3,13 +3,14 @@ import Head from "next/head"
 import { Nav } from "@/components/nav"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
+import IsNotAuthenticated from "@/components/isNotAuthenticated"
 
 export default function ForgottenPassword(){
 
     const { register } = useForm()
 
     return(
-        <>
+        <IsNotAuthenticated>
             <Head>
                 <title>Mot de passe oublié | LUMINI School - Plateforme de formation en informatique</title>
             </Head>
@@ -29,6 +30,6 @@ export default function ForgottenPassword(){
                     </div>
                 </form>
             </section>
-        </>
+        </IsNotAuthenticated>
     )
 }
