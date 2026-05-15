@@ -88,6 +88,7 @@ export default function Login(){
                                 Soumettre
                                 { loginLoading && <Image src="/images/spinner.png" alt="chargement spinner" width={50} height={50} priority />}
                             </button>
+                            <Link href="">Mot de passe oublié ?</Link>
                         </div>
                     </form>
                     <span>
