@@ -2,13 +2,14 @@ import Head from "next/head"
 import Image from "next/image"
 import { Nav } from "@/components/nav"
 import { useForm } from "react-hook-form"
+import IsNotAuthenticated from "@/components/isNotAuthenticated"
 
 export default function ResetPassword(){
 
     const { register } = useForm()
 
     return(
-        <>
+        <IsNotAuthenticated>
             <Head>
                 <title>Réinitialisation de mot de passe | LUMINI School - Plateforme de formation en informatique</title>
             </Head>
@@ -32,6 +33,6 @@ export default function ResetPassword(){
                     </div>
                 </form>
             </section>
-        </>
+        </IsNotAuthenticated>
     )
 }
