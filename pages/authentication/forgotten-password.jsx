@@ -26,7 +26,7 @@ export default function ForgottenPassword(){
                     </div>
                     <div className="element">
                         <button>Envoyer le lien</button>
-                    </div>            
+                    </div>
                 </form>
             </section>
         </>
