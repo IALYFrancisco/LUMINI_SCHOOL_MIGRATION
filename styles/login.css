@@ -22,10 +22,6 @@
     box-shadow:  3px 3px 10px rgba(220, 220, 220, 0.524), -3px -3px 10px rgba(128, 128, 128, 0.524);
 }
 
-.login-form form label {
-    color: var(--secondary);
-}
-
 .login-form h2 {
     color: var(--fourth);
     margin-bottom: 10px;
@@ -123,6 +119,17 @@
     color: var(--primary);
 }
 
+.login-form .element:has(a) {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.login-form .forgotten-password-link {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
 .login-form a:hover {
     text-decoration: underline;
 }
@@ -149,4 +156,17 @@
     100% {
         bottom: -80px;
     }
+}
+
+@media screen and (max-width: 350px) {
+
+    .login-form .element:has(a) {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .login-form .forgotten-password-link {
+        margin-top: 15px;
+    }
+
 }
